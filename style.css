@@ -1,0 +1,281 @@
+  input{
+    all: initial;
+    }
+html, body {
+    background-color: antiquewhite;
+    padding: 0;
+    margin: 0;
+    font-style: normal;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1em;
+    color: rgb(170, 233, 212);
+    overflow: auto;
+    background-color: rgb(3, 53, 53);
+    background-image: url(/Files/background.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* REGISTER PAGE */
+#register-page {
+    display:none;
+    width: 50%;
+    height: auto;
+    margin: 2VW 20% 0 20%;
+    padding: 2em;
+    background-color: rgba(26, 1, 41, 0.774);
+    overflow: hidden;
+    border-radius: 1em;
+}
+#register-page h1 {
+    text-align: center;
+    color: rgb(15, 173, 81);
+}
+div.form label {
+    color: rgb(11, 177, 127);
+    font-weight: bold;
+    font-size: larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+div.form input{
+    width: 60%;
+    margin: 2em 5em  2em  2em;
+    padding: 0.7em;
+    font-size: 1.2em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(52, 171, 218);
+    border-style: solid;
+    border-color: rgb(8, 66, 105);
+    background-color: rgba(11, 1, 27, 0.548);
+    border-radius: 0.3em;
+    border-width: 0.1em;
+}
+div.form button {
+    width: 30%;
+    margin: 0 35% 0  35%;
+    align-items: center;
+    font-weight: bolder;
+    padding: 1em;
+    border: none;
+    border-radius: 2em;
+    color: rgb(15, 139, 92);
+    font-size: larger;
+    background-color: rgba(4, 61, 41, 0.671);
+}
+.form button:hover {
+    background-color: rgb(1, 24, 27);
+    cursor: pointer;
+}
+/* tablet */
+@media (max-width: 1200px) {
+
+    #register-page {
+        padding: 0;
+        width: 70%;
+        margin: 2vw 15% 0% 15%;
+    }
+    #register-page button {
+        width: fit-content;
+        margin-left:30% ;
+    }
+    #register-page label {
+        margin-left: 3vw;
+    }
+    #register-page input {
+        width: 70%;
+    }
+
+  }
+  /* phone*/
+@media (max-width: 700px) {
+    #register-page {
+        margin: 3vw 2% 0 1%;
+        width: 95%;
+        padding: 0.2em;
+    }
+    #register-page input {
+        width: 80%;
+        margin: 2vw 7.5% 2vw 7.5%;
+        
+    }
+    #register-page label {
+        margin: 0 7.5% 0 7.5%;
+        
+    }
+    #register-page h1{
+        text-align: start;
+        padding: 3vw;
+    }
+    #register-page button {
+        width: fit-content;
+        margin: 2% 10% 2% 10%;
+    }
+  }
+
+
+/* CHAT PAGE */
+#chat-page {
+    margin: 1em 0 1em 0;
+    padding: 0;
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.425);
+}
+
+/* the settings part */
+div.settings {
+    width: 25%;
+    float: left;
+    position: fixed;
+}
+div.settings button{
+    float: right;
+    margin: 1.3em;
+    background-color: none;
+}
+div.settings p {
+    float: left;
+    margin: 1em;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* the chatting part */
+div.chat-container {
+    overflow: visible;
+    background-color: rgba(44, 1, 1, 0.493);
+    width: 75%;
+    height: 100vw;
+    float: right;
+}
+div.messages {
+    overflow: auto;
+}
+div.enter-text {
+    width: 70%;
+    height:fit-content;
+    position: fixed;
+    bottom: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 1em;
+    border-color: rgb(7, 7, 58);
+    border-style: solid;
+    margin: 1em;
+    background-color: rgba(21, 24, 23, 0.192);
+    border-width: 0.1em;
+}
+div.enter-text input {
+    padding: 0.5em;
+    margin: 0 1em 0em 1em;
+    border-radius: 2em;
+    width: 43%;
+    border-style: solid;
+    border-color: rgb(5, 44, 59);
+    color: rgb(126, 192, 192);
+    background-color: rgba(36, 58, 2, 0.123);
+    font-size: 1.3em;
+}
+div.enter-text button {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 2em;
+    border: none;
+    color: rgb(8, 131, 24);
+    font-weight: bold;
+}
+#send-button {
+    background-color: rgb(42, 45, 48);
+    margin: 2vw 2vw 0 0;
+    padding: 1vw;
+}
+.add-new {
+    display : none;
+}
+div.recieved {
+    width: fit-content;
+    max-width: 60%;
+    background-color: rgb(8, 46, 46);
+    padding: 1em;
+    margin: 1em 1em 1em 1em;
+    border-radius: 0 2em 1em 2em;
+    border-style: solid;
+    border-color: rgb(127, 139, 18);
+    left: 0;
+   flex: 0;
+}
+
+div.sent {
+    width: fit-content;
+    max-width: 60%;
+    background-color: rgb(3, 48, 30);
+    padding: 1em;
+    margin: 1em;
+    border-radius: 2em 0em 2em 1em;
+    border-style: solid;
+    border-color: rgb(18, 139, 139);
+    right: 0;
+    float: right;
+    
+}
+
+div.sent strong {
+    color: brown;
+}
+div.sent p {
+    color: rgb(150, 170, 142);
+}
+div.recieved strong {
+    color: rgb(126, 11, 219);
+}
+div.recieved p {
+    color: rgb(201, 174, 140);
+}
+/* for smaller screens */
+@media (max-width: 1200px) {
+
+    div.chat-container {
+        overflow: visible;
+        background-color: rgba(44, 1, 1, 0.493);
+        width: 100%;
+        height: fit-content;
+        float: right;
+    }
+    div.settings {
+       display: none;
+    }
+    div.enter-text {
+        width: 98%;
+        margin: 0 1% 0 1%;
+        padding: 1vw;
+    }
+    
+  }
+
+  @media (max-width: 800px) {
+    div.chat-container {
+        overflow: visible;
+        background-color: rgba(44, 1, 1, 0.493);
+        width: 100%;
+        height: fit-content;
+        float: right;
+    }
+    div.settings {
+       display: none;
+    }
+    .add-file {
+        display: none;
+    }
+    .add-new {
+        display: block;
+    }
+    div.enter-text button {
+        position: absolute;
+        margin-left: 1vw;
+     }
+     div.enter-text input {
+         margin: 0;
+         width: 60%;
+     }
+  }

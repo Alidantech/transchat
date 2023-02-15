@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Register on Wechat</title>
+</head>
+<body bgcolor="000000">
+    <!-- REGISTER PAGE FRAGMENT -->
+    <div id="register-page">
+        <h1>Welcome to WeChat .....</h1>
+        <div class="form">
+            <form action="">
+                <label for="user-name">Username:</label>
+                <input type="text" id="user-name" maxlength="50"><br>
+                <label for="phone-no">Phone NO:</label>
+                <input type="text" id="phone-no" maxlength="13"><br>
+                <label for="password">Password:</label>
+                <input type="text" id="password" maxlength="30"><br>
+            </form>
+            <button   id="submit" name="submit" 
+         onclick="registered_successifully()">Create Account
+        </button>
+        </div>
+    </div>
+
+    <!-- LOGIN PAGE FRAGMENT -->
+    <div id="login-page">
+       
+    </div>
+
+ 
+    <!-- CHAT PAGE FRAGMENT -->
+   <div id="chat-page">
+    <div class="settings">
+        <p>Settings:</p>
+        <button>search</button>
+    </div>
+    <div class="chat-container">
+        <div class="enter-text">
+            <button class="add-file">
+                <img src="/Files/files-img.svg" 
+                width="30vw"
+                height="30vw"
+                alt="">
+            </button>
+            <button class="add-file">
+                <img src="/Files/camera-img.svg" 
+                width="30vw"
+                height="30vw"
+                alt="">
+            </button>
+            <button class="add-file">
+                <img src="/Files/document-img.svg" 
+                width="30vw"
+                height="30vw"
+                alt="">
+            </button>
+            <button class="add-file">
+                <img src="/Files/mic-img.svg" 
+                width="30vw"
+                height="30vw"
+                alt="">
+            </button>
+            <input type="text" id="message-body" name="message-body">
+            <button id="send-button">
+                <img src="/Files/send-img.svg" 
+                width="30vw"
+                height="30vw"
+                alt="">
+            </button>
+            <button class="add-new">
+                <img src="/Files/add-files-img.svg" 
+                width="30vw"
+                height="30vw"
+                alt="">
+            </button>
+          
+        </div>
+        <div class="messages">
+              <!-- container for received messages -->
+            <div class="recieved">
+                <strong>Sender Name</strong>
+                <p>
+                    Yesterday I went for a walk</p>
+            </div>  
+           <!-- container for sent messages -->
+      
+            <div class="sent">
+                <strong>User Name</strong>
+                <p>
+                    I was out for a run this morning</p>
+            </div>
+            
+        </div>
+    </div>
+   </div>
+</body>
+</html>

@@ -1,6 +1,20 @@
+  /* setting and resetting */
   input{
     all: initial;
     }
+   button {
+    all: initial;
+  }
+  button:hover {
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar {
+     width: 0; 
+    height: 0;
+  }
+  
+
+  /* MAIN */
 html, body {
     background-color: antiquewhite;
     padding: 0;
@@ -19,7 +33,7 @@ html, body {
 
 /* REGISTER PAGE */
 #register-page {
-    display:none;
+    display:block;
     width: 50%;
     height: auto;
     margin: 2VW 20% 0 20%;
@@ -42,9 +56,9 @@ div.form input{
     width: 60%;
     margin: 2em 5em  2em  2em;
     padding: 0.7em;
-    font-size: 1.2em;
+    font-size: 1em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(52, 171, 218);
+    color: rgb(232, 249, 255);
     border-style: solid;
     border-color: rgb(8, 66, 105);
     background-color: rgba(11, 1, 27, 0.548);
@@ -52,7 +66,7 @@ div.form input{
     border-width: 0.1em;
 }
 div.form button {
-    width: 30%;
+    width: fit-content;
     margin: 0 35% 0  35%;
     align-items: center;
     font-weight: bolder;
@@ -116,9 +130,10 @@ div.form button {
 
 /* CHAT PAGE */
 #chat-page {
-    margin: 1em 0 1em 0;
+    margin: 0;
     padding: 0;
-    display: block;
+    display: none;
+    top: 0;
     width: 100%;
     height: auto;
     background-color: rgba(0, 0, 0, 0.425);
@@ -126,156 +141,255 @@ div.form button {
 
 /* the settings part */
 div.settings {
-    width: 25%;
-    float: left;
+   float: left;
+   width: 25%;
+   padding: 0;
+    margin: 0;
+    background-color: #4e4b4ba2;
     position: fixed;
+    overflow: visible;
 }
-div.settings button{
-    float: right;
-    margin: 1.3em;
-    background-color: none;
+div.settings h1 {
+width: 100%;
+font-size: 1.8em;
+margin: 0;
+color: #0b8057;
+background: linear-gradient(to left, #035236, #000000);
 }
-div.settings p {
-    float: left;
-    margin: 1em;
-    font-weight: bold;
-    font-size: 1.2em;
+div.settings a {
+   text-decoration: none;
+   width: 100%;
+   padding: 0.5em;
+   color: #1b9c6f;
+   font-size: larger;
+   font-weight: bolder;
+   border-style: solid;
+   border-radius: 3em;
+   border-color: #044739;
+   border-width: 0.1vw;
+}
+div.settings li {
+    list-style-type: none;
+   padding: 0;
+   margin-top: 2em;
+   margin-bottom: 5em;
+   top: 0;
+   left: 0;
+}
+div.settings a:hover {
+   border-width: 0.2vw;
+    border-radius: 3em;
+    background-color: #07070733;
 }
 
 /* the chatting part */
 div.chat-container {
     overflow: visible;
-    background-color: rgba(44, 1, 1, 0.493);
+    background-color: rgba(128, 112, 112, 0.918);
     width: 75%;
+    margin: 0;
+    padding: 0;
     height: 100vw;
     float: right;
 }
+DIV.chat-container h1 {
+    background: linear-gradient(to bottom, #04502cdc, #034b2d81);
+    color: #0ab479;
+    font-size: 1em;
+    top: 0;
+    position: fixed;
+    width:75%;
+    text-align: center;
+    padding: 0.5vw;
+    margin: 0;
+}
 div.messages {
     overflow: auto;
+    margin-top: 3vw;
 }
+/* the text entering part */
 div.enter-text {
-    width: 70%;
+    width: 71%;
     height:fit-content;
     position: fixed;
     bottom: 0;
-    padding: 0;
+    padding: 0vw;
     overflow: hidden;
     border-radius: 1em;
-    border-color: rgb(7, 7, 58);
+    border-color: rgba(15, 15, 100, 0.082);
     border-style: solid;
-    margin: 1em;
-    background-color: rgba(21, 24, 23, 0.192);
-    border-width: 0.1em;
+    margin: 1.2vw;
+    background-color: rgba(211, 211, 211, 0);
+    border-width: 0.4em;
+    vertical-align: middle;
 }
 div.enter-text input {
-    padding: 0.5em;
-    margin: 0 1em 0em 1em;
+    padding-right: 3vw;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    text-indent: 3em;
     border-radius: 2em;
-    width: 43%;
+    width: 95%;
+    border-width: 0.2vw;
     border-style: solid;
-    border-color: rgb(5, 44, 59);
-    color: rgb(126, 192, 192);
-    background-color: rgba(36, 58, 2, 0.123);
+    border-color: rgb(2, 25, 34);
+    color: rgb(1, 32, 1);
+    background-color: rgba(130, 134, 122, 0.199);
     font-size: 1.3em;
+    position: relative;
+}
+div.enter-text input:focus {
+    background-color: rgb(219, 231, 231);
 }
 div.enter-text button {
     background-color: rgba(255, 255, 255, 0);
-    border-radius: 2em;
+    border-radius: 5em;
     border: none;
     color: rgb(8, 131, 24);
     font-weight: bold;
+    background-color: rgba(12, 14, 15, 0);
+    position: absolute;
+    right: 0;
+    width: fit-content;
+    top: 0;
+    bottom: 0;
+    padding: 0.2em;
 }
-#send-button {
-    background-color: rgb(42, 45, 48);
-    margin: 2vw 2vw 0 0;
-    padding: 1vw;
+#add-file-button {
+   left: 0;
 }
-.add-new {
-    display : none;
+div.enter-text img {
+    width:3vw;
+    height: 2.5vw;
+}
+
+
+/* the received messages part */
+.message-and-profile-container {
+    overflow: hidden;
+    clear: both;
 }
 div.recieved {
     width: fit-content;
-    max-width: 60%;
-    background-color: rgb(8, 46, 46);
-    padding: 1em;
+    max-width: 50%;
+    background-color: rgb(53, 85, 85);
     margin: 1em 1em 1em 1em;
     border-radius: 0 2em 1em 2em;
     border-style: solid;
     border-color: rgb(127, 139, 18);
+    border-width: 0.1vw;
     left: 0;
-   flex: 0;
+    flex: 0;
+    clear: right;
+    float: left;
+    font-size: 0.8em;
 }
-
+div.recieved strong {
+    color: rgb(11, 136, 219);
+    font-size: 0.7em;
+    margin: 0 1vw 0 1vw;
+}
+div.recieved p {
+    color: rgb(255, 255, 255);
+    padding: 0.5vw 1vw 0 1vw;
+    margin: 0;
+}
+.sender-pic {
+    float: left;
+    background-color: rgb(248, 248, 242);
+    padding: 0.1vw;
+    border-radius: 3vw;
+    margin-left: 0.5vw;
+}
+/* the sent messages part */
 div.sent {
+    overflow: hidden;
     width: fit-content;
-    max-width: 60%;
-    background-color: rgb(3, 48, 30);
-    padding: 1em;
+    max-width: 50%;
+    background-color: rgb(34, 80, 61);
     margin: 1em;
     border-radius: 2em 0em 2em 1em;
     border-style: solid;
     border-color: rgb(18, 139, 139);
+    border-width: 0.1vw;
     right: 0;
     float: right;
-    
+    clear: left;
+    font-size: 0.8em;
 }
-
+.profile-pic {
+    float: right;
+    background-color: rgb(255, 255, 255);
+    padding: 0.1vw;
+    border-radius: 3vw;
+    margin-right: 0.5vw;
+}
 div.sent strong {
-    color: brown;
+    color: rgb(27, 53, 202);
+    font-size: 0.7em;
+    margin: 0 1vw 0 1vw;
 }
 div.sent p {
-    color: rgb(150, 170, 142);
+    color: rgb(250, 250, 250);
+    padding: 0.5vw 1vw 0 1vw;
+    margin: 0;
 }
-div.recieved strong {
-    color: rgb(126, 11, 219);
-}
-div.recieved p {
-    color: rgb(201, 174, 140);
+
+em {
+    float: right;
+    font-size: 0.7em;
+    margin: 0.6vw 0.6vw 0.6vw 0.6vw;
+    color: brown;
 }
 /* for smaller screens */
 @media (max-width: 1200px) {
-
-    div.chat-container {
-        overflow: visible;
-        background-color: rgba(44, 1, 1, 0.493);
-        width: 100%;
-        height: fit-content;
-        float: right;
-    }
     div.settings {
-       display: none;
-    }
-    div.enter-text {
-        width: 98%;
-        margin: 0 1% 0 1%;
-        padding: 1vw;
-    }
-    
-  }
-
-  @media (max-width: 800px) {
-    div.chat-container {
-        overflow: visible;
-        background-color: rgba(44, 1, 1, 0.493);
-        width: 100%;
-        height: fit-content;
-        float: right;
-    }
-    div.settings {
-       display: none;
-    }
-    .add-file {
         display: none;
     }
-    .add-new {
-        display: block;
+    div.chat-container {
+        width: 100%;
     }
-    div.enter-text button {
-        position: absolute;
-        margin-left: 1vw;
-     }
-     div.enter-text input {
-         margin: 0;
-         width: 60%;
-     }
-  }
+    div.enter-text input {
+        width: 96.7%;
+    }
+    div.enter-text {
+        width: 99%;
+        margin: 0;
+    }
+    DIV.chat-container h1 {
+        width: 100%;
+    }
+}
+@media (max-width: 600px) {
+    div.enter-text img {
+        width:6vw;
+        height: 4.5vw;
+    }
+    div.messages {
+        overflow: auto;
+        margin-top: 7vw;
+    }
+}
+
+/* a floating action button */
+#floating-buttons-container {
+    display: none;
+    width: fit-content;
+    height: fit-content;
+    position: fixed;
+    float: left;
+    margin-left: 1.5%;
+    bottom: 12%;
+    z-index: 30;
+}
+.floating-buttons {
+    background-color: rgb(210, 216, 205);
+    padding: 0.8em;
+    border-radius: 100%;
+    margin: 0.3em;
+    
+}
+.floating-buttons img {
+    width: 1em;
+    height: 1em;
+}

@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" id="id_101" style="stroke: rgb(0, 15, 112);"></path><polyline points="14 2 14 8 20 8" id="id_102" style="stroke: rgb(33, 25, 153);"></polyline><line x1="16" y1="13" x2="8" y2="13" id="id_103" style="stroke: rgb(125, 25, 153);"></line><line x1="16" y1="17" x2="8" y2="17" id="id_104" style="stroke: rgb(100, 79, 219);"></line><polyline points="10 9 9 9 8 9" id="id_105" style="stroke: rgb(17, 125, 171);"></polyline></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" version="1.1">
+<rect style="opacity:0.2" width="50" height="32" x="7" y="24" rx="2.5" ry="2.5" id="id_101"></rect>
+<path style="fill: rgb(21, 128, 101);" d="M 7,44.5 C 7,45.885 8.115,47 9.5,47 H 54.5 C 55.885,47 57,45.885 57,44.5 V 17.5 C 57,16.115 55.885,15 54.5,15 H 29 V 12.5 C 29,11.115 27.885,10 26.5,10 H 9.5 C 8.115,10 7,11.115 7,12.5" id="id_102"></path>
+<rect style="opacity:0.2" width="50" height="32" x="7" y="22" rx="2.5" ry="2.5" id="id_103"></rect>
+<rect style="fill: rgb(25, 255, 198);" width="44" height="20" x="10" y="18" rx="2.5" ry="2.5" id="id_104"></rect>
+<rect style="fill: rgb(1, 46, 35);" width="50" height="32" x="7" y="23" rx="2.5" ry="2.5" id="id_105"></rect>
+<path style="opacity: 0.1; fill: rgb(77, 222, 186);" d="M 9.5,10 C 8.115,10 7,11.115 7,12.5 V 13.5 C 7,12.115 8.115,11 9.5,11 H 26.5 C 27.885,11 29,12.115 29,13.5 V 12.5 C 29,11.115 27.885,10 26.5,10 Z M 29,15 V 16 H 54.5 C 55.89,16 57,17.115 57,18.5 V 17.5 C 57,16.115 55.89,15 54.5,15 Z" id="id_106"></path>
+<path style="fill: rgb(64, 214, 176);" d="M 25.5 29 C 24.669 29 24 29.669 24 30.5 L 24 47.5 C 24 48.331 24.669 49 25.5 49 L 38.5 49 C 39.331 49 40 48.331 40 47.5 L 40 34 L 35 29 L 25.5 29 z" id="id_107"></path>
+</svg>

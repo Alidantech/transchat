@@ -32,71 +32,119 @@
        
     </div>
 
- 
     <!-- CHAT PAGE FRAGMENT -->
    <div id="chat-page">
     <div class="settings">
-        <p>Settings:</p>
-        <button>search</button>
+       <h1>WeChat</h1>
+       <ul>
+      <li><a href="#ll">Home</a></li>
+      <li><a href="#ll">Terms and Conditions</a></li>
+      <li><a href="#ll">Dashboard</a></li>
+      <li><a href="#ll">Testimonials</a></li>
+      <li><a href="#ll">Pricing</a></li>
+      <li><a href="#ll">Contact Us</a></li>
+      <li><a href="#ll">Login</a></li>
+      <li><a href="#ll">About Us</a></li>
+       </ul>
     </div>
     <div class="chat-container">
+        <h1>BIT GROUP 2023</h1>
         <div class="enter-text">
-            <button class="add-file">
-                <img src="/Files/files-img.svg" 
-                width="30vw"
-                height="30vw"
-                alt="">
-            </button>
-            <button class="add-file">
-                <img src="/Files/camera-img.svg" 
-                width="30vw"
-                height="30vw"
-                alt="">
-            </button>
-            <button class="add-file">
-                <img src="/Files/document-img.svg" 
-                width="30vw"
-                height="30vw"
-                alt="">
-            </button>
-            <button class="add-file">
-                <img src="/Files/mic-img.svg" 
-                width="30vw"
-                height="30vw"
-                alt="">
-            </button>
             <input type="text" id="message-body" name="message-body">
             <button id="send-button">
-                <img src="/Files/send-img.svg" 
-                width="30vw"
-                height="30vw"
+                <img id="send-img" src="/Files/send-img.svg" 
                 alt="">
             </button>
-            <button class="add-new">
+            <button 
+            id="add-file-button" type="button" 
+            onclick="actionButtons()">
                 <img src="/Files/add-files-img.svg" 
-                width="30vw"
-                height="30vw"
+                width=""
+                height=""
                 alt="">
             </button>
-          
         </div>
+        
         <div class="messages">
+             <!-- floating buttons -->
+         <div id="floating-buttons-container">
+            <button class="floating-buttons">
+                <img src="/Files/files-img.svg" 
+                width=""
+                height=""
+                alt="">
+            </button><br>
+            <button class="floating-buttons">
+                <img src="/Files/mic-img.svg" 
+                width=""
+                height=""
+                alt="">
+            </button><br>
+            <button class="floating-buttons">
+                <img src="/Files/document-img.svg" 
+                width=""
+                height=""
+                alt="">
+            </button><br>
+            <button class="floating-buttons">
+                <img src="/Files/camera-img.svg" 
+                width=""
+                height=""
+                alt="">
+            </button>
+        </div>
               <!-- container for received messages -->
-            <div class="recieved">
-                <strong>Sender Name</strong>
-                <p>
-                    Yesterday I went for a walk</p>
-            </div>  
+              <div class="chat">
+                <div class="sender-pic">
+                    <img src="/Files/user-img.svg"
+                    width="20vw" 
+                    height="20vw"
+                    alt="">
+                  </div>
+                <div class="recieved">
+                    <strong>Sender Name</strong>
+                    <strong>~+254746977253</strong>
+                    <p>
+                        Yesterday I went for a walk</p>
+                        <em>2:33 pm</em>
+                    </div>  
+              </div>
+             
            <!-- container for sent messages -->
-      
-            <div class="sent">
-                <strong>User Name</strong>
-                <p>
-                    I was out for a run this morning</p>
+            <div class="message-and-profile-container">
+                  <div class="profile-pic">
+                    <img src="/Files/user-img.svg"
+                    width="20vw" 
+                    height="20vw"
+                    alt="">
+                  </div>
+                <div class="sent">
+                    <strong>User Name</strong>
+                    <strong>~+254748311679</strong>
+                    <p>
+                        I was out for a run this morning</p>
+                        <em>2:33 pm</em>
+                    </div>
             </div>
-            
+
+            <div class="message-and-profile-container">
+                <div class="profile-pic">
+                  <img src="/Files/user-img.svg"
+                  width="20vw" 
+                  height="20vw"
+                  alt="">
+                </div>
+              <div class="sent">
+                  <strong>User Name</strong>
+                  <strong>~+254748311679</strong>
+                  <p>
+                      I was out for a run this morning</p>
+                   <em>2:33 pm</em>
+                    </div>
+          </div>
         </div>
     </div>
    </div>
+ 
 </body>
 </html>

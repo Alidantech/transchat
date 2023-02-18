@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="dark.css" id="stylesheet">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="/Layouts/style.css" id="stylesheet">
+    <script src="/Layouts/script.js" defer></script>
     <title>Register on Wechat</title>
 </head>
 <body bgcolor="000000">
@@ -15,25 +15,27 @@
     <div id="register-page">
         <h1>Welcome to WeChat .....</h1>
         <div class="form">
-            <form action="">
+            <!-- the registration form  -->
+            <!-- submit usig PHP -->
+            <form action="/Server_Scripts/index.php" method="POST">
                <div class="inputs">
-                <label for="user-name">Username:</label>
-                <input type="text" id="user-name" maxlength="50"><br>
+                  <label for="user-name">Username:</label>
+                  <input name="user_name" type="text" id="user-name" maxlength="50"><br>
                </div> 
                <div class="inputs">
-                <label for="phone-no">Phone NO:</label>
-                <input type="text" id="phone-no" maxlength="13"><br>
+                  <label for="phone-no">Phone NO:</label>
+                  <input name="phone_no" type="text" id="phone-no" maxlength="13"><br>
                </div>
                <div class="inputs">
-                <label for="password">Password:</label>
-                <input type="text" id="password" maxlength="30"><br>
+                  <label for="password">Password:</label>
+                  <input name="password" type="text" id="password" maxlength="30"><br>
                </div>
+               <div class="inputs">
+                  <button  id="submit" name="submit" 
+                  onclick="registeredSuccessifully()">Create Account
+                </button>
+                </div>
             </form>
-            <div class="inputs">
-                <button  id="submit" name="submit" 
-                onclick="registeredSuccessifully()">Create Account
-               </button>
-            </div>
         </div>
     </div>
     <!-- LOGIN PAGE FRAGMENT -->
@@ -57,7 +59,7 @@
     <div class="settings" id="settings-menu">
        <h1><button id="close_show_settings_button"
         onclick="showSettings()">
-          <img src="/Files/close-img.svg" 
+          <img src="/Layouts/Files/close-img.svg" 
           alt=""
           width="20vw"
           height="20vw"
@@ -65,51 +67,51 @@
         </h1>
        <ul id="home-link">
       <li ><a href="#ll">
-        <img src="/Files/home-img.svg"
+        <img src="/Layouts/Files/home-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
         Home
       </a></li>
       <li><a id="theme" onclick="changeTheme()" href="#">
-        <img id="theme-image" src="/Files/dark-img.svg"
+        <img id="theme-image" src="/Layouts/Files/dark-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
        Theme
     </a></li>
       <li><a href="#ll">
-        <img src="/Files/dashboard-img.svg"
+        <img src="/Layouts/Files/dashboard-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
         Dashboard</a></li>
       <li><a href="#ll">
-        <img src="/Files/group-img.svg"
+        <img src="/Layouts/Files/group-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
         Groups</a></li>
       <li><a href="#ll">
-        <img src="/Files/inbox-img.svg"
+        <img src="/Layouts/Files/inbox-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
         Inbox</a></li>
       <li><a href="#ll">
-        <img src="/Files/add-new-img.svg"
+        <img src="/Layouts/Files/add-new-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
         Add New</a></li>
       <li><a href="#ll">
-        <img src="/Files/logout-img.svg"
+        <img src="/Layouts/Files/logout-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
         Log Out</a></li>
       <li><a href="#ll">
-        <img src="/Files/about-us-img.svg"
+        <img src="/Layouts/Files/about-us-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
@@ -119,7 +121,7 @@
     <div class="chat-container" id="chat-container">
     <h1> <button id="show_settings_button"
           onclick="showSettings()">
-            <img src="/Files/menu-img.svg" 
+            <img src="/Layouts/Files/menu-img.svg" 
             alt=""
             width="20vw"
             height="20vw"
@@ -129,13 +131,13 @@
         <div class="enter-text">
             <input type="text" id="message-body" name="message-body">
             <button id="send-button">
-                <img id="send-img" src="/Files/send-img.svg" 
+                <img id="send-img" src="/Layouts/Files/send-img.svg" 
                 alt="">
             </button>
             <button 
             id="add-file-button" type="button" 
             onclick="actionButtons()">
-                <img src="/Files/add-files-img.svg" 
+                <img src="/Layouts/Files/add-files-img.svg" 
                 width=""
                 height=""
                 alt="">
@@ -146,25 +148,25 @@
              <!-- floating buttons -->
          <div id="floating-buttons-container">
             <button class="floating-buttons">
-                <img src="/Files/files-img.svg" 
+                <img src="/Layouts/Files/files-img.svg" 
                 width=""
                 height=""
                 alt="">
             </button><br>
             <button class="floating-buttons">
-                <img src="/Files/mic-img.svg" 
+                <img src="/Layouts/Files/mic-img.svg" 
                 width=""
                 height=""
                 alt="">
             </button><br>
             <button class="floating-buttons">
-                <img src="/Files/document-img.svg" 
+                <img src="/Layouts/Files/document-img.svg" 
                 width=""
                 height=""
                 alt="">
             </button><br>
             <button class="floating-buttons">
-                <img src="/Files/camera-img.svg" 
+                <img src="/Layouts/Files/camera-img.svg" 
                 width=""
                 height=""
                 alt="">
@@ -173,7 +175,7 @@
               <!-- container for received messages -->
               <div class="chat">
                 <div class="sender-pic">
-                    <img src="/Files/user-img.svg"
+                    <img src="/Layouts/Files/user-img.svg"
                     width="20vw" 
                     height="20vw"
                     alt="">
@@ -190,7 +192,7 @@
            <!-- container for sent messages -->
             <div class="message-and-profile-container">
                   <div class="profile-pic">
-                    <img src="/Files/user-img.svg"
+                    <img src="/Layouts/Files/user-img.svg"
                     width="20vw" 
                     height="20vw"
                     alt="">
@@ -206,7 +208,7 @@
 
             <div class="message-and-profile-container">
                 <div class="profile-pic">
-                  <img src="/Files/user-img.svg"
+                  <img src="/Layouts/Files/user-img.svg"
                   width="20vw" 
                   height="20vw"
                   alt="">
@@ -227,7 +229,7 @@
   <!-- container for received messages -->
   <div class="chat">
     <div class="sender-pic">
-        <img src="/Files/user-img.svg"
+        <img src="/Layouts/Files/user-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
@@ -244,7 +246,7 @@
 <!-- container for sent messages -->
 <div class="message-and-profile-container">
       <div class="profile-pic">
-        <img src="/Files/user-img.svg"
+        <img src="/Layouts/Files/user-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
@@ -260,7 +262,7 @@
 
 <div class="message-and-profile-container">
     <div class="profile-pic">
-      <img src="/Files/user-img.svg"
+      <img src="/Layouts/Files/user-img.svg"
       width="20vw" 
       height="20vw"
       alt="">
@@ -276,7 +278,7 @@
   <!-- container for received messages -->
   <div class="chat">
     <div class="sender-pic">
-        <img src="/Files/user-img.svg"
+        <img src="/Layouts/Files/user-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
@@ -293,7 +295,7 @@
 <!-- container for sent messages -->
 <div class="message-and-profile-container">
       <div class="profile-pic">
-        <img src="/Files/user-img.svg"
+        <img src="/Layouts/Files/user-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
@@ -309,7 +311,7 @@
 
 <div class="message-and-profile-container">
     <div class="profile-pic">
-      <img src="/Files/user-img.svg"
+      <img src="/Layouts/Files/user-img.svg"
       width="20vw" 
       height="20vw"
       alt="">
@@ -325,7 +327,7 @@
   <!-- container for received messages -->
   <div class="chat">
     <div class="sender-pic">
-        <img src="/Files/user-img.svg"
+        <img src="/Layouts/Files/user-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
@@ -342,7 +344,7 @@
 <!-- container for sent messages -->
 <div class="message-and-profile-container">
       <div class="profile-pic">
-        <img src="/Files/user-img.svg"
+        <img src="/Layouts/Files/user-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
@@ -358,7 +360,7 @@
 
 <div class="message-and-profile-container">
     <div class="profile-pic">
-      <img src="/Files/user-img.svg"
+      <img src="/Layouts/Files/user-img.svg"
       width="20vw" 
       height="20vw"
       alt="">
@@ -374,7 +376,7 @@
   <!-- container for received messages -->
   <div class="chat">
     <div class="sender-pic">
-        <img src="/Files/user-img.svg"
+        <img src="/Layouts/Files/user-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
@@ -391,7 +393,7 @@
 <!-- container for sent messages -->
 <div class="message-and-profile-container">
       <div class="profile-pic">
-        <img src="/Files/user-img.svg"
+        <img src="/Layouts/Files/user-img.svg"
         width="20vw" 
         height="20vw"
         alt="">
@@ -407,7 +409,7 @@
 
 <div class="message-and-profile-container">
     <div class="profile-pic">
-      <img src="/Files/user-img.svg"
+      <img src="/Layouts/Files/user-img.svg"
       width="20vw" 
       height="20vw"
       alt="">

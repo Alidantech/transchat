@@ -13,9 +13,9 @@ function actionButtons() {
 }
 // function to open the chat page for a registered user
 function registeredSuccessifully(){
-    document.getElementById('login-page').style.display = 'none';
-    document.getElementById('chat-page').style.display = 'block';
-    document.getElementById('register-page').style.display = 'none';
+    // document.getElementById('login-page').style.display = 'none';
+    // document.getElementById('chat-page').style.display = 'block';
+    // document.getElementById('register-page').style.display = 'none';
 }
 
 //showing the settings fo a smaller screen and hiding it when ignored
@@ -39,13 +39,13 @@ function changeTheme(){
     let changeStyleSheet = document.getElementById("stylesheet");
     // let theme_name = docoment.getElementById('theme');
     if(light){
-        theme_image.src = '/Files/light-img.svg';
-        changeStyleSheet.href = "style.css";
+        theme_image.src = '/Layouts/Files/light-img.svg';
+        changeStyleSheet.href = "dark.css";
         light = false;
         // theme_name.innerHTML = "Light Mode";
     }else {
-        theme_image.src = '/Files/dark-img.svg';
-         changeStyleSheet.href = "dark.css"; 
+        theme_image.src = '/Layouts/Files/dark-img.svg';
+         changeStyleSheet.href = "style.css"; 
          light = true;
         //  theme_name.innerHTML = "Dark Mode";
     }

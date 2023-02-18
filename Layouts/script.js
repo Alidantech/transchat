@@ -37,13 +37,16 @@ var light = true;
 function changeTheme(){
     let theme_image = document.getElementById('theme-image');
     let changeStyleSheet = document.getElementById("stylesheet");
+    // let theme_name = docoment.getElementById('theme');
     if(light){
         theme_image.src = '/Files/light-img.svg';
         changeStyleSheet.href = "style.css";
         light = false;
+        // theme_name.innerHTML = "Light Mode";
     }else {
         theme_image.src = '/Files/dark-img.svg';
          changeStyleSheet.href = "dark.css"; 
          light = true;
+        //  theme_name.innerHTML = "Dark Mode";
     }
 }

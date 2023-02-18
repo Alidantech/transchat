@@ -24,7 +24,7 @@ html, body {
     font-size: 1em;
     color: rgb(170, 233, 212);
     overflow: hidden;
-    background-color: rgb(3, 53, 53);
+    background: linear-gradient(to bottom, #e01616, #023b15);
     background-image: url(/Files/background.jpg);
     background-position: center;
     background-size: cover;

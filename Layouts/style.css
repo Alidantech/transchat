@@ -14,9 +14,14 @@
   }
   .error {
     color: red;
-    font-size: 0.7em;
+    font-size: 0.6em;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+i {
+    color: red;
+    font-weight: bold;
+    font-size: 1.5em;
 }
 
   /* MAIN */
@@ -30,7 +35,7 @@ html, body {
     color: rgb(170, 233, 212);
     overflow: hidden;
     background: linear-gradient(to bottom, #5e07079d, #023b15);
-    background-image: url(/Layouts/Files/background.jpg);
+    background-image: url(/Files/background.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -64,7 +69,7 @@ div.inputs {
     width: 100%;
     background-color: #023b1500;
     margin: 1vw;
-    margin-top: 3vw;
+    margin-top: 1vw;
     padding: 1vw;
     align-items: center;
 }

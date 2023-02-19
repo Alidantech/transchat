@@ -18,27 +18,85 @@
         <div class="form">
             <!-- the registration form  -->
             <!-- submit usig PHP -->
-            <form action="register.php" method="POST">
+            <!-- <form action="" method=""> -->
                <div class="inputs">
                   <label for="user-name">Username:</label>
-                  <input name="user_name" type="text" id="user-name" maxlength="50"><br>
+                  <input name="user_name" type="text" id="user-name" placeholder="eg: Alidante Peter" maxlength="50"><i>*</i><br>
+                  <p id="name-error-message" class="error"></p>
                </div> 
                <div class="inputs">
                   <label for="phone-no">Phone NO:</label>
-                  <input name="phone_no" type="text" id="phone-no" maxlength="13"><br>
+                  <input name="phone_no" type="text" id="phone-no" placeholder="eg: 0746977253 or 254746977253" maxlength="13"><i>*</i><br>
+                  <p id="phone-error-message" class="error"></p>
                </div>
                <div class="inputs">
                   <label for="password">Password:</label>
-                  <input name="password" type="text" id="password" maxlength="30"><br>
+                  <input name="password" type="text" id="password" placeholder="eg: HguFGH!45" maxlength="30"><i>*</i><br>
+                  <p id="password-error-message" class="error"></p>
                </div>
                <div class="inputs">
-                  <button  id="submit" name="submit" 
-                  onclick="registeredSuccessifully()">Create Account
+                  <button  id="button" name="Validate" 
+                  onclick="validateForm()">Create Account
                 </button>
                 </div>
-            </form>
+            <!-- </form> -->
         </div>
     </div>
+
+    <!-- validating user inputs -->
+    <!-- <script>
+       
+        function validateForm() {
+            // Get form inputs
+            const name = document.getElementById("user-name").value;
+            const phone = document.getElementById("phone-no").value;
+            const password = document.getElementById("password").value;
+            var nameError = document.getElementById('name-error-message');
+            var phoneError = document.getElementById('phone-error-message');
+            var passwordError = document.getElementById('password-error-message');
+            // Regular expression patterns for validation
+            const namePattern = /^[a-zA-Z ]+$/;
+            const phonePattern = /^\d+$/;
+            const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[@$!%*#?&])[a-zA-Z\d@$!%*#?&]{8,}$/;
+            //check that the fields are not empty
+            if (name.trim() === "") {
+                nameError.innerHTML =  "Please enter your name.";
+                    return false;
+                }
+                if (phone.trim() === "") {
+                phoneError.innerHTML =  "Please enter your phone Number.";
+                    return false;
+                }
+                if (password.trim() === "") {
+                passwordError.innerHTML = "Please enter your password.";
+                    return false;
+                }
+            // Validate name
+            if (!name.match(namePattern)) {
+                nameError.innerHTML = "Name should contain only letters and spaces.";
+                return false;
+            }
+
+            // Validate phone number
+            if (!phone.match(phonePattern)) {
+               phoneError.innerHTML = "Phone number should contain only numbers.";
+                return false;
+            }
+
+            // Validate password
+            if (!password.match(passwordPattern)) {
+                passwordError.innerHTML ="Password should contain at least one letter, one number, and one special character and be at least 8 characters long.";
+                return false;
+            }
+
+            // If all inputs are valid, return true
+            nameError.innerHTML = "";
+            phoneError.innerHTML = "";
+            passwordError.innerHTML = "";
+            return true;
+}
+
+    </script> -->
   
     <!-- LOGIN PAGE FRAGMENT -->
     <div id="login-page">
@@ -211,7 +269,7 @@
     </div>
    </div>
  
-   <style>
+   <!-- <style>
       /* setting and resetting */
   input{
     all: initial;
@@ -226,7 +284,9 @@
      width: 0; 
     height: 0;
   }
-  
+  i {
+    color: red;
+  }
 
   /* MAIN */
 html, body {
@@ -239,10 +299,16 @@ html, body {
     color: rgb(170, 233, 212);
     overflow: hidden;
     background: linear-gradient(to bottom, #5e07079d, #023b15);
-    background-image: url(/Layouts/Files/background.jpg);
+    background-image: url(localhost/Layouts/Files/background.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+}
+.error {
+    color: red;
+    font-size: 0.7em;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* REGISTER PAGE */
@@ -273,7 +339,7 @@ div.inputs {
     width: 100%;
     background-color: #023b1500;
     margin: 1vw;
-    margin-top: 3vw;
+    margin-top: 1vw;
     padding: 1vw;
     align-items: center;
 }
@@ -714,6 +780,6 @@ em {
     height: 1em;
 }
 
-   </style>
+   </style> -->
 </body>
 </html>

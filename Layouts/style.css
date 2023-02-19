@@ -12,7 +12,12 @@
      width: 0; 
     height: 0;
   }
-  
+  .error {
+    color: red;
+    font-size: 0.7em;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
   /* MAIN */
 html, body {

@@ -50,3 +50,54 @@ function changeTheme(){
         //  theme_name.innerHTML = "Dark Mode";
     }
 }
+
+//function to validate the user inputs
+function validateForm() {
+    // Get form inputs
+    const name = document.getElementById("user-name").value;
+    const phone = document.getElementById("phone-no").value;
+    const password = document.getElementById("password").value;
+    var nameError = document.getElementById('name-error-message');
+    var phoneError = document.getElementById('phone-error-message');
+    var passwordError = document.getElementById('password-error-message');
+    // Regular expression patterns for validation
+    const namePattern = /^[a-zA-Z ]+$/;
+    const phonePattern = /^\d+$/;
+    const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[@$!%*#?&])[a-zA-Z\d@$!%*#?&]{8,}$/;
+    //check that the fields are not empty
+    if (name.trim() === "") {
+        nameError.innerHTML =  "Please enter your name.";
+            return false;
+        }
+        if (phone.trim() === "") {
+        phoneError.innerHTML =  "Please enter your phone Number.";
+            return false;
+        }
+        if (password.trim() === "") {
+        passwordError.innerHTML = "Please enter your password.";
+            return false;
+        }
+    // Validate name
+    if (!name.match(namePattern)) {
+        nameError.innerHTML = "Name should contain only letters and spaces.";
+        return false;
+    }
+
+    // Validate phone number
+    if (!phone.match(phonePattern)) {
+       phoneError.innerHTML = "Phone number should contain only numbers.";
+        return false;
+    }
+
+    // Validate password
+    if (!password.match(passwordPattern)) {
+        passwordError.innerHTML ="Password should contain at least one letter, one number, and one special character and be at least 8 characters long.";
+        return false;
+    }
+
+    // If all inputs are valid, return true
+    nameError.innerHTML = "";
+    phoneError.innerHTML = "";
+    passwordError.innerHTML = "";
+    return true;
+}

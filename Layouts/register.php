@@ -58,10 +58,11 @@ if ($conn->connect_error) {
 }
      $sql = "INSERT INTO users_data (user_name, phone_number, password) VALUES ('$name', '$phone', '$password')";
      if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        echo "New record created successfully<br>";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
     
      $conn->close();
+     echo "your database seems to work <br>";
   ?>

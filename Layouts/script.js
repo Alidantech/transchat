@@ -126,4 +126,17 @@ function changeTheme(){
             passwordError.innerHTML = "";
             
             form.submit();
+           
 });
+//clearing the form
+
+// Get the form element
+// Reset the form after submission
+form.addEventListener("submit", (event) => {
+  // Prevent the form from actually submitting
+  event.preventDefault();
+  
+  // Reset the form fields to their default values
+  form.reset();
+});
+

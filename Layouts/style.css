@@ -35,7 +35,7 @@ html, body {
     color: rgb(170, 233, 212);
     overflow: hidden;
     background: linear-gradient(to bottom, #5e07079d, #023b15);
-    background-image: url(/Files/background.jpg);
+    background-image: url(Files/background.jpg);
     background-position: center;
     background-size: cover;
     background-attachment: fixed;

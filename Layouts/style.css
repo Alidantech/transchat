@@ -26,7 +26,7 @@ i {
 
   /* MAIN */
 html, body {
-    background-color: antiquewhite;
+    background-color: rgb(38, 54, 18);
     padding: 0;
     margin: 0;
     font-style: normal;
@@ -43,12 +43,12 @@ html, body {
 
 /* REGISTER PAGE */
 #register-page {
-    display:block;
+    display: block;
     width: 50%;
     height: auto;
     margin: 2VW 25% 0 25%;
     padding: 2em;
-    background-color: rgba(105, 144, 179, 0.884);
+    background-color: rgba(80, 99, 114, 0.884);
     overflow: hidden;
     border-radius: 1em;
 }
@@ -156,38 +156,82 @@ div.form button {
 
 /*  LOGIN PAGE*/
 #login-page {
-    display:none;
+    display: none;
     width: 50%;
     height: auto;
-    margin: 2VW 20% 0 20%;
+    margin: 2VW 25% 0 25%;
     padding: 2em;
-    background-color: rgba(26, 1, 41, 0.774);
+    background-color: rgba(80, 99, 114, 0.884);
     overflow: hidden;
     border-radius: 1em;
 }
-/* smaller devices */
-@media (max-width: 1000px) {
+#login-page h1 {
+    text-align: center;
+    color: rgb(9, 194, 65);
+    font-size:smaller;
+}
+#login-page button {
+    width: 15%;
+    text-align: center;
+}
+
+/* tablet */
+@media (max-width: 1300px) {
 
     #login-page {
         padding: 0;
         width: 70%;
-        margin: 2vw 15% 0% 15%;
+        margin: 10% 15% 0 15%;
     }
-}
+    #login-page button {
+        width: fit-content;
+        margin-left:30% ;
+    }
+    #login-page label {
+        margin-left: 3vw;
+    }
+    #login-page input {
+        width: 70%;
+    }
+
+  }
+  /* phone*/
 @media (max-width: 700px) {
     #login-page {
-        margin: 3vw 2% 0 1%;
-        width: 95%;
-        padding: 0.2em;
+        margin: 3vw 5% 0 5%;
+        width: 90%;
+        padding: 0em;
     }
-}
+    div.inputs {
+        padding: 1em;
+    }
+    #login-page input {
+        width: 60%;
+        margin: 0%;
+        
+    }
+    #login-page label {
+        margin: 0;
+        font-size: 0.6em;
+        
+    }
+    #login-page h1{
+        text-align: start;
+        padding: 4vw;
+    }
+    #login-page button {
+        width: fit-content;
+       
+    }
+  }
+
 
 
 /* CHAT PAGE */
 #chat-page {
     margin: 0;
     padding: 0;
-    display: none;
+    display: block;
     top: 0;
     width: 100%;
     height: auto;

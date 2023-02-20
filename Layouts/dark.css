@@ -39,7 +39,7 @@ html, body {
 
 /* REGISTER PAGE */
 #register-page {
-    display:block;
+    display: block;
     width: 50%;
     height: auto;
     margin: 2VW 25% 0 25%;
@@ -152,7 +152,7 @@ div.form button {
 
 /*  LOGIN PAGE*/
 #login-page {
-    display:none;
+    display: none;
     width: 50%;
     height: auto;
     margin: 2VW 20% 0 20%;
@@ -183,7 +183,7 @@ div.form button {
 #chat-page {
     margin: 0;
     padding: 0;
-    display: none;
+    display: block;
     top: 0;
     width: 100%;
     height: auto;

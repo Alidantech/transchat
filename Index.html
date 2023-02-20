@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Layouts/style.css" id="stylesheet">
+    <link rel="icon" href="Layouts/Files/myfavicon-img.svg" type="image/x-icon">
+    <script src="/Layouts/script.js" defer></script>
+    <title>Welcome to Wechat</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</head>
+<body bgcolor="000000">
+    <!-- SECURITY AND LOGIN PART -->
+  
+         <!-- REGISTER PAGE FRAGMENT -->
+    <div id="register-page">
+        <h1>Welcome to WeChat .....</h1>
+        <div class="form">
+            <!-- the registration form  -->
+            <!-- submit usig PHP -->
+            <form action="/Server_Scripts/register.php" method="post" id="myForm">
+               <div class="inputs">
+                  <label for="user-name">Username:</label>
+                  <input name="user_name" type="text" id="user-name" placeholder="eg: Alidante Peter" maxlength="50"><i>*</i><br>
+                  <p id="name-error-message" class="error"></p>
+               </div> 
+               <div class="inputs">
+                  <label for="phone-no">Phone NO:</label>
+                  <input name="phone_no" type="text" id="phone-no" placeholder="eg: 0746977253 or 254746977253" maxlength="13"><i>*</i><br>
+                  <p id="phone-error-message" class="error"></p>
+               </div>
+               <div class="inputs">
+                  <label for="password">Password:</label>
+                  <input name="password" type="password" id="password" placeholder="eg: HguFGH!45" maxlength="30"><i>*</i><br>
+                  <p id="password-error-message" class="error"></p>
+               </div>
+               <div class="inputs">
+                  <button type="submit"  id="submitButton" name="Validate" onclick="registeredSuccessifully()">Create Account </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- LOGIN PAGE FRAGMENT -->
+    <div id="login-page">
+        <h1>Welcome back to WeChat .....</h1>
+      <div class="form">
+        <form action="/Server_Scripts/login.php" method="post" id="loginForm">
+        <div class="inputs">
+          <label for="phone-no">Phone NO:</label>
+          <input name="phone_no" type="text" id="login-phone-no" placeholder="eg: 0746977253 or 254746977253" maxlength="13"><i>*</i><br>
+          <p id="login-phone-error-message" class="error"></p>
+       </div>
+       <div class="inputs">
+          <label for="password">Password:</label>
+          <input name="password" type="password" id="login-password" placeholder="eg: HguFGH!45" maxlength="30"><i>*</i><br>
+          <p id="login-password-error-message" class="error"></p>
+       </div>
+       <div class="inputs">
+          <button type="submit"  id="loginSubmitButton" name="Validate">Log In</button>
+        </div>
+      </form>
+      </div>
+    </div>
+ 
+</body>
+</html>

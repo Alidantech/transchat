@@ -170,3 +170,54 @@ function showSettings() {
     }
 /** adding an on ignore functionality*/
 }
+
+/**
+ * THE MESSAGE SENDING PART
+ */
+function clearInput() {
+  document.getElementById("message-body").value = "";
+}
+
+//on send
+function sendMessage() {
+//div that contains messages.
+  var parentDiv = document.getElementById("messages");
+//div that contains the whole chat part.
+var messageContainerDiv = document.createElement("div");
+    messageContainerDiv.className = "message-and-profile-container";
+    parentDiv.appendChild(messageContainerDiv);
+    messageDiv.className = "message-and-profile-container";
+//div that contains the profile pic.
+var profileDiv = document.createElement("div");
+    profileDiv.className = "message-and-profile-container";
+    messageContainerDiv.appendChild(profileDiv);
+    messageDiv.className = "profile-pic";
+//div that contains the message.
+var message = document.getElementById("message-body").value;
+var messageDiv = document.createElement("div");
+var text = document.createElement("p");
+var userName = document.createElement("Strong");
+var phoneNumber = document.createElement("strong");
+var sendTime = document.createElement("em");
+
+    messageDiv.className = "sent";
+    text.innerHTML = message;
+    messageDiv.appendChild(text);
+    messageContainerDiv.appendChild(messageDiv);
+}
+//get the error message using ajax
+function submitForm() {
+  var phone = document.getElementById("phone-no").value;
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/Server_Scripts/register.php?phone=" + phone, true);
+  xhr.send();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var response = xhr.responseText;
+      if (response.includes("Phone number already registered.")) {
+        alert(response);
+      }
+    }
+  }
+}
+

@@ -1,8 +1,8 @@
 <?php
- $timestamp = date('Y-m-d H:i:s');
- $sender_id = senderID();
- $message_body = test_input($_POST['message_body']);
- $reciever_id = 0001;
+session_start();
+sendNewMessage();
+
+function sendNewMessage(){
 #function to clean the sent messages to avoid harm
 function test_input($data) {
   $data = trim($data);
@@ -10,22 +10,34 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
-function sendNewMessage($sender_id, $message_body, $reciever_id, $timestamp){
+$message_body = test_input($_POST['message_body']);
+$sender_id = senderID();
     $conn = new mysqli("localhost", "root", "", "wechat_db");
-    $sql = "INSERT INTO messages(sender_id, reciever_id, message_body, send_time)
-            VALUES($sender_id, $message_body, $reciever_id, $timestamp); ";
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }  else{
-        echo"connected successifully";
+        echo"connected successifully <br>"; 
     }
-    if ($conn->query($sql) === TRUE) {
-         echo "New table created successfully<br>";
-    }  else {
-        echo "failed to create table " .$sql . "<br>" . $conn->error;
+    //echo "<br> sender id:".$sender_id;
+    //$sql = "INSERT INTO messages(sender_id, message_body) VALUES(?,?)";
+    $sql = $conn->prepare("INSERT INTO messages(sender_id, message_body) VALUES(?, ?)");
+    $sql->bind_param("is",$sender_id, $message_body);
+    try{
+      if ($sql->execute() === TRUE) {
+        echo "message sent successifully<br>";
+      }
+    }catch(Exception $e){
+      if ($e->getCode() == 1062) {
+        // Handle the exception with error code 123
+        echo "Error 123: " . $e->getMessage();
+      } else {
+        // Handle all other exceptions
+        echo "An error occurred: " . $e->getMessage();
+      }
     }
 $conn->close();
 }
+displayUsersList();
 #function for the db admin to see the messages list
  function displayUsersList(){
   // CONNECTING TO THE DATABASE
@@ -35,7 +47,7 @@ $conn->close();
   $dbpassword = "";
   $dbname = "wechat_db";
   $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-
+  $sender_id = senderID();
   $sql = ("SELECT * fROM messages;");
   $result = mysqli_query($conn, $sql);
 //   // Check for errors
@@ -45,42 +57,53 @@ $conn->close();
 //   // Output the table data
   if(mysqli_num_rows($result) > 0) {
 //     //creating and styling a table to display the data
-    echo "<style>
+    echo "<style >
             table {
               border-collapse: collapse;
               width: 100%;
               margin: 20px 0;
               font-size: 18px;
               color: #333;
+              background-color: lightgrey;
+              color: black;
+              font-family: Verdana, Geneva, Tahoma, sans-serif;
+              font-size: 0.8em;
             }
-            
             th, td {
               text-align: left;
               padding: 8px;
+              border: solid 1px;
+              border-color: green; 
             }
-            
             th {
               background-color: #f2f2f2;
               color: #555;
               font-weight: bold;
+              boder-width: 0.3em;
             }
-            
             td {
               border-bottom: 1px solid #ddd;
+              border: solid 1px;
+              border-color: green; 
+              padding: 0.5em;
             }
-            
             tbody tr:nth-child(even) {
               background-color: #f2f2f2;
+              color: black;
             }
-            
           </style>
-          <table>";
+          <table>
+          <tr><th>MESSAGE ID</th>
+          <th>SENDER ID</th>
+          <th>MESSAGE BODY</th>
+          <th>SEND TIME</th>
+          </tr>";
     while($row = mysqli_fetch_assoc($result)) {
-          echo "<tr><td>" .  $row["id"].
-                    "</td><td>" . $row["user_id"].
-                    "</td><td>" . $row[""]. 
-                    "</td><td>" . $row["password"]. 
-                    "</td><td>" . $row["registration_date"].
+          echo "
+          <tr><td>" . "M". $row["message_id"].
+                    "</td><td>" ."U". $row["sender_id"].
+                    "</td><td>"  . $row["message_body"]. 
+                    "</td><td>" . $row["send_time"].
                "</td></tr>";
     }
     echo "</table>";
@@ -90,7 +113,6 @@ $conn->close();
 }
 //GETTING THE SESSION USER ID(this id will be embeded to the messages table as the sender id).
 function senderID(){
-  session_start();
   $phone_number = $_SESSION['phone_number'];
   $conn = mysqli_connect('localhost', 'root', '', 'wechat_db');
   if (!$conn) {
@@ -107,5 +129,4 @@ function senderID(){
   mysqli_close($conn);
   return  $user_id;
 }
-
 ?>

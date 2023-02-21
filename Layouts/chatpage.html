@@ -79,8 +79,8 @@
     </h1>
         <div class="enter-text">
           <form action="/Server_Scripts/messages.php" method="post">
-            <input type="text" id="message-body" name="message-body">
-            <button type="submit" name="send" id="send-button">
+            <input type="text" id="message-body" name="message_body" autocomplete="off">
+            <button type="submit" onclick="sendMessage();" name="send" id="send-button">
                 <img id="send-img" src="Files/send-img.svg" 
                 alt="">
             </button>

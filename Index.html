@@ -9,8 +9,8 @@
     <link rel="icon" href="Layouts/Files/myfavicon-img.svg" type="image/x-icon">
     <script src="/Layouts/script.js" defer></script>
     <title>Welcome to Wechat</title>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-      <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 </head>
 <body bgcolor="000000">
     <!-- SECURITY AND LOGIN PART -->
@@ -21,7 +21,7 @@
         <div class="form">
             <!-- the registration form  -->
             <!-- submit usig PHP -->
-            <form action="/Server_Scripts/register.php" method="post" id="myForm">
+            <form action="/Server_Scripts/register.php" onsubmit="submitForm(); return false;" method="post" id="myForm">
                <div class="inputs">
                   <label for="user-name">Username:</label>
                   <input name="user_name" type="text" id="user-name" placeholder="eg: Alidante Peter" maxlength="50"><i>*</i><br>
@@ -38,7 +38,7 @@
                   <p id="password-error-message" class="error"></p>
                </div>
                <div class="inputs">
-                  <button type="submit"  id="submitButton" name="Validate" onclick="registeredSuccessifully()">Create Account </button>
+                  <button type="submit"  id="submitButton" name="Validate">Create Account </button>
                 </div>
             </form>
         </div>

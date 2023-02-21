@@ -1,6 +1,28 @@
 
  <?php 
  //this fuction validates the values
+ // Check if the phone number is already registered
+ function isPhoneRegistered($phone_number){
+      $conn = new mysqli("localhost", "root", "", "wechat_db");
+        if ($conn->connect_error) {
+            die("error verifying phone number:  -" . $conn->connect_error);
+        }
+        $stmt = $conn->prepare("SELECT password FROM users_data WHERE phone_number = ?");
+        $stmt->bind_param("s", $phone_number);
+        $stmt->execute();
+        $stmt->store_result();
+        if ($stmt->num_rows === 1) {
+          echo"phone number is already registered";
+          return true;
+    }
+    $stmt->close();
+    $conn->close();
+    return false;
+ }
+$phone_number = $_GET["phone_no"];
+if (isPhoneRegistered($phone_number)) {
+  echo "Phone number already registered.";
+}
  function test_input($data) {
         $data = trim($data);
         $data = stripslashes($data);
@@ -16,6 +38,7 @@ try {
   //errorcode '1062' is used to catch duplicate values in this case phone number
   if($e->getCode() == 1062) {
     echo "Error: Duplicate value found for unique column.";
+    
   } else {
     echo "Error another error occured: " . $e->getMessage();
   }
@@ -55,74 +78,74 @@ function addNewUser(){
 }
 //retrieve data from the database
 #function for the db admin to see the users list
- //function displayUsersList(){
+function displayUsersList(){
   // CONNECTING TO THE DATABASE
   #Check connection
-//   $servername = "localhost";
-//   $dbusername = "root";
-//   $dbpassword = "";
-//   $dbname = "wechat_db";
-//   $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+  $servername = "localhost";
+  $dbusername = "root";
+  $dbpassword = "";
+  $dbname = "wechat_db";
+  $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
 
-//   $sql = ("SELECT * fROM users_data;");
-//   $result = mysqli_query($conn, $sql);
-//   // Check for errors
-//   if(!$result) {
-//     die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));
-//   }
+  $sql = ("SELECT * fROM users_data;");
+  $result = mysqli_query($conn, $sql);
+   // Check for errors
+  if(!$result) {
+    die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));
+  }
 //   // Output the table data
-//   if(mysqli_num_rows($result) > 0) {
-//     //creating and styling a table to display the data
-//     echo "<style>
-//             table {
-//               border-collapse: collapse;
-//               width: 100%;
-//               margin: 20px 0;
-//               font-size: 18px;
-//               color: #333;
-//             }
+  if(mysqli_num_rows($result) > 0) {
+    //creating and styling a table to display the data
+    echo "<style>
+            table {
+              border-collapse: collapse;
+              width: 100%;
+              margin: 20px 0;
+              font-size: 18px;
+              color: #333;
+            }
             
-//             th, td {
-//               text-align: left;
-//               padding: 8px;
-//             }
+            th, td {
+              text-align: left;
+              padding: 8px;
+            }
             
-//             th {
-//               background-color: #f2f2f2;
-//               color: #555;
-//               font-weight: bold;
-//             }
+            th {
+              background-color: #f2f2f2;
+              color: #555;
+              font-weight: bold;
+            }
             
-//             td {
-//               border-bottom: 1px solid #ddd;
-//             }
+            td {
+              border-bottom: 1px solid #ddd;
+            }
             
-//             tbody tr:nth-child(even) {
-//               background-color: #f2f2f2;
-//             }
+            tbody tr:nth-child(even) {
+              background-color: #f2f2f2;
+            }
             
-//           </style>
-//           <table>";
-//     while($row = mysqli_fetch_assoc($result)) {
-//           echo "<tr><td>" .  $row["id"].
-//                     "</td><td>" . $row["user_name"].
-//                     "</td><td>" . $row["phone_number"]. 
-//                     "</td><td>" . $row["password"]. 
-//                     "</td><td>" . $row["registration_date"].
-//                "</td></tr>";
-//     }
-//     echo "</table>";
-//   } else {
-//     echo "0 results";
-//   }
-// // clearing the table
-// // $sql = "TRUNCATE TABLE users_data; ALTER TABLE users_data AUTO_INCREMENT = 1;";
-// // if ($conn->multi_query($sql) === TRUE) {
-// //     echo "Table cleared successfully";
-// // }  else {
-// //     echo "Error clearing table: " . $conn->error;
-// // }
-// $conn->close();
-// }
+          </style>
+          <table>";
+    while($row = mysqli_fetch_assoc($result)) {
+          echo "<tr><td>" .  $row["id"].
+                    "</td><td>" . $row["user_name"].
+                    "</td><td>" . $row["phone_number"]. 
+                    "</td><td>" . $row["password"]. 
+                    "</td><td>" . $row["registration_date"].
+               "</td></tr>";
+    }
+    echo "</table>";
+  } else {
+    echo "0 results";
+  }
+ // clearing the table
+ // $sql = "TRUNCATE TABLE users_data; ALTER TABLE users_data AUTO_INCREMENT = 1;";
+ // if ($conn->multi_query($sql) === TRUE) {
+ //     echo "Table cleared successfully";
+ // }  else {
+ //     echo "Error clearing table: " . $conn->error;
+ // }
+ $conn->close();
+}
 
 ?>

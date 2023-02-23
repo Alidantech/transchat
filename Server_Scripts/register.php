@@ -1,41 +1,38 @@
-
- <?php 
- //this fuction validates the values
- // Check if the phone number is already registered
- function isPhoneRegistered($phone_number){
-      $conn = new mysqli("localhost", "root", "", "wechat_db");
-        if ($conn->connect_error) {
-            die("error verifying phone number:  -" . $conn->connect_error);
-        }
-        $stmt = $conn->prepare("SELECT password FROM users_data WHERE phone_number = ?");
-        $stmt->bind_param("s", $phone_number);
-        $stmt->execute();
-        $stmt->store_result();
-        if ($stmt->num_rows === 1) {
-          echo"phone number is already registered";
-          return true;
-    }
-    $stmt->close();
-    $conn->close();
-    return false;
- }
-$phone_number = $_GET["phone_no"];
-if (isPhoneRegistered($phone_number)) {
-  echo "Phone number already registered.";
-}
+<?php 
  function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-      }
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+# check that the phone number is not registered.
+$host = 'localhost';
+$user = 'root';
+$password = '';
+$dbname = 'wechat_db';
+# create connection
+$conn = new mysqli($host, $user, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$phone_number = $_POST['phone_number'];
+$sql = "SELECT * FROM users_data WHERE phone_number = '$phone_number'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $response = array('exists' => true);
+} else {
+    $response = array('exists' => false);
+}
+$conn->close();
+header('Content-Type: application/json');
+echo json_encode($response);
 
 #insert the data and catch the exception
 try {
   addNewUser();
   //displayUsersList();
 } catch (mysqli_sql_exception $e) {
-  //errorcode '1062' is used to catch duplicate values in this case phone number
   if($e->getCode() == 1062) {
     echo "Error: Duplicate value found for unique column.";
     
@@ -43,10 +40,9 @@ try {
     echo "Error another error occured: " . $e->getMessage();
   }
 }
- 
  #function for all the time a user registers
 function addNewUser(){
-  #getting the values that the user entered validating them and testing them for safety.
+  # getting the values that the user entered validating them and testing them for safety.
     $name = $phone = $password = "";
     $name = test_input($_POST["user_name"]);
     $phone = test_input($_POST["phone_no"]);
@@ -54,17 +50,13 @@ function addNewUser(){
     $timestamp = date('Y-m-d H:i:s');
   # CONNECTING TO THE DATABASE
     #Check connection
-    $servername = "localhost";
-    $dbusername = "root";
-    $dbpassword = "";
-    $dbname = "wechat_db";
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-  if($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  } else{
-    echo"connected successifully";
-  }
+    $conn = new mysqli('localhost', "root", "", 'wechat_db');
+    if($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    } else{
+      echo"connected successifully";
+    }
     #insert the user's data to the database
     $sql = "INSERT INTO users_data (user_name, phone_number, password, registration_date) 
             VALUES ('$name', '$phone', '$password_hash', '$timestamp')";
@@ -79,21 +71,13 @@ function addNewUser(){
 //retrieve data from the database
 #function for the db admin to see the users list
 function displayUsersList(){
-  // CONNECTING TO THE DATABASE
-  #Check connection
-  $servername = "localhost";
-  $dbusername = "root";
-  $dbpassword = "";
-  $dbname = "wechat_db";
-  $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-
+  $conn = new mysqli("localhost", "root", "", "wechat_db");
   $sql = ("SELECT * fROM users_data;");
   $result = mysqli_query($conn, $sql);
-   // Check for errors
   if(!$result) {
     die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));
   }
-//   // Output the table data
+# Output the table data
   if(mysqli_num_rows($result) > 0) {
     //creating and styling a table to display the data
     echo "<style>
@@ -138,14 +122,19 @@ function displayUsersList(){
   } else {
     echo "0 results";
   }
- // clearing the table
- // $sql = "TRUNCATE TABLE users_data; ALTER TABLE users_data AUTO_INCREMENT = 1;";
- // if ($conn->multi_query($sql) === TRUE) {
- //     echo "Table cleared successfully";
- // }  else {
- //     echo "Error clearing table: " . $conn->error;
- // }
- $conn->close();
+  $conn->close();
+}
+
+# clearing the table
+function clearData(){
+  $conn = new mysqli("localhost", "root", "", "wechat_db");
+  $sql = "TRUNCATE TABLE users_data; ALTER TABLE users_data AUTO_INCREMENT = 1;";
+  if ($conn->multi_query($sql) === TRUE) {
+      echo "Table cleared successfully";
+  }  else {
+      echo "Error clearing table: " . $conn->error;
+  }
+  $conn->close();
 }
 
 ?>

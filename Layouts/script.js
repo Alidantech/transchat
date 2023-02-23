@@ -19,7 +19,6 @@ submitButton.addEventListener('click', function(event) {
     const namePattern = /^[a-zA-Z ]+$/;
     const phonePattern = /^\d+$/;
     const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[@$!%*#?&])[a-zA-Z\d@$!%*#?&]{8,}$/;
-  
     //check that the fields are not empty
     if (name.trim() === "" && phone.trim() === "" && password.trim() === "") {
         alert("Please fill in all fields.");
@@ -78,6 +77,24 @@ submitButton.addEventListener('click', function(event) {
 function registeredSuccessifully(){
     document.getElementById('login-page').style.display = 'block';
     document.getElementById('register-page').style.display = 'none';
+}
+//get the error message using ajax
+function ajax(){
+  var phone_number = document.getElementById('phone-no').value;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          var response = JSON.parse(this.responseText);
+          if (response.exists) {
+              alert('Phone number already exists in the database!');
+          } else {
+              alert('Phone number does not exist in the database.');
+          }
+      }
+  };
+  xhttp.open('POST', '/Server_Scripts/register.php', true);
+  xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhttp.send('phone_number=' + phone_number);
 }
 
 /**
@@ -205,19 +222,5 @@ var sendTime = document.createElement("em");
     messageDiv.appendChild(text);
     messageContainerDiv.appendChild(messageDiv);
 }
-//get the error message using ajax
-function submitForm() {
-  var phone = document.getElementById("phone-no").value;
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/Server_Scripts/register.php?phone=" + phone, true);
-  xhr.send();
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      var response = xhr.responseText;
-      if (response.includes("Phone number already registered.")) {
-        alert(response);
-      }
-    }
-  }
-}
+
 

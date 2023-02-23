@@ -1,42 +1,63 @@
 <?php
 session_start();
 sendNewMessage();
-
-function sendNewMessage(){
-#function to clean the sent messages to avoid harm
+#function to clean the sent messages to avoid harm.
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
 }
-$message_body = test_input($_POST['message_body']);
-$sender_id = senderID();
-    $conn = new mysqli("localhost", "root", "", "wechat_db");
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }  else{
-        echo"connected successifully <br>"; 
-    }
-    //echo "<br> sender id:".$sender_id;
-    //$sql = "INSERT INTO messages(sender_id, message_body) VALUES(?,?)";
-    $sql = $conn->prepare("INSERT INTO messages(sender_id, message_body) VALUES(?, ?)");
-    $sql->bind_param("is",$sender_id, $message_body);
-    try{
-      if ($sql->execute() === TRUE) {
-        echo "message sent successifully<br>";
-      }
-    }catch(Exception $e){
-      if ($e->getCode() == 1062) {
-        // Handle the exception with error code 123
-        echo "Error 123: " . $e->getMessage();
-      } else {
-        // Handle all other exceptions
-        echo "An error occurred: " . $e->getMessage();
-      }
-    }
-$conn->close();
+//GETTING THE SESSION USER ID(this id will be embeded to the messages table as the sender id).
+function getSenderID(){
+  $phone_number = $_SESSION['phone_number'];
+  $conn = mysqli_connect('localhost', 'root', '', 'wechat_db');
+  if (!$conn) {
+      die('Connection failed: ' . mysqli_connect_error());
+  }
+  $sql = "SELECT id FROM users_data WHERE phone_number = '$phone_number'";
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+      $row = mysqli_fetch_assoc($result);
+      $user_id = $row['id'];
+  } else {
+      echo "Error: No user found with phone number $phone_number";
+  }
+  mysqli_close($conn);
+  return  $user_id;
 }
+
+
+
+function sendNewMessage(){
+  $message_body = test_input($_POST['message_body']);
+  $sender_id = getSenderID()();
+  $conn = new mysqli("localhost", "root", "", "wechat_db");
+      if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+      }  else{
+          echo"connected successifully <br>"; 
+      }
+      //echo "<br> sender id:".$sender_id;
+      //$sql = "INSERT INTO messages(sender_id, message_body) VALUES(?,?)";
+      $sql = $conn->prepare("INSERT INTO messages(sender_id, message_body) VALUES(?, ?)");
+      $sql->bind_param("is",$sender_id, $message_body);
+      try{
+        if ($sql->execute() === TRUE) {
+          echo "message sent successifully<br>";
+        }
+      } catch(Exception $e){
+        if ($e->getCode() == 1062) {
+          // Handle the exception with error code 123
+          echo "Error 123: " . $e->getMessage();
+        } else {
+          // Handle all other exceptions
+          echo "An error occurred: " . $e->getMessage();
+        }
+      }
+  $conn->close();
+}
+
 displayUsersList();
 #function for the db admin to see the messages list
  function displayUsersList(){
@@ -47,7 +68,7 @@ displayUsersList();
   $dbpassword = "";
   $dbname = "wechat_db";
   $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-  $sender_id = senderID();
+  $sender_id = getSenderID()();
   $sql = ("SELECT * fROM messages;");
   $result = mysqli_query($conn, $sql);
 //   // Check for errors
@@ -111,22 +132,6 @@ displayUsersList();
     echo "0 results";
   }
 }
-//GETTING THE SESSION USER ID(this id will be embeded to the messages table as the sender id).
-function senderID(){
-  $phone_number = $_SESSION['phone_number'];
-  $conn = mysqli_connect('localhost', 'root', '', 'wechat_db');
-  if (!$conn) {
-      die('Connection failed: ' . mysqli_connect_error());
-  }
-  $sql = "SELECT id FROM users_data WHERE phone_number = '$phone_number'";
-  $result = mysqli_query($conn, $sql);
-  if (mysqli_num_rows($result) > 0) {
-      $row = mysqli_fetch_assoc($result);
-      $user_id = $row['id'];
-  } else {
-      echo "Error: No user found with phone number $phone_number";
-  }
-  mysqli_close($conn);
-  return  $user_id;
-}
+
+
 ?>

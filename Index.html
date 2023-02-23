@@ -16,33 +16,34 @@
     <!-- SECURITY AND LOGIN PART -->
   
          <!-- REGISTER PAGE FRAGMENT -->
-    <div id="register-page">
-        <h1>Welcome to WeChat .....</h1>
-        <div class="form">
-            <!-- the registration form  -->
-            <!-- submit usig PHP -->
-            <form action="/Server_Scripts/register.php" onsubmit="submitForm(); return false;" method="post" id="myForm">
-               <div class="inputs">
-                  <label for="user-name">Username:</label>
-                  <input name="user_name" type="text" id="user-name" placeholder="eg: Alidante Peter" maxlength="50"><i>*</i><br>
-                  <p id="name-error-message" class="error"></p>
-               </div> 
-               <div class="inputs">
-                  <label for="phone-no">Phone NO:</label>
-                  <input name="phone_no" type="text" id="phone-no" placeholder="eg: 0746977253 or 254746977253" maxlength="13"><i>*</i><br>
-                  <p id="phone-error-message" class="error"></p>
-               </div>
-               <div class="inputs">
-                  <label for="password">Password:</label>
-                  <input name="password" type="password" id="password" placeholder="eg: HguFGH!45" maxlength="30"><i>*</i><br>
-                  <p id="password-error-message" class="error"></p>
-               </div>
-               <div class="inputs">
-                  <button type="submit"  id="submitButton" name="Validate">Create Account </button>
-                </div>
-            </form>
-        </div>
-    </div>
+<div id="register-page">
+<h1>Welcome to WeChat .....</h1>
+<div class="form">
+<!-- the registration form  -->
+<!-- submit usig PHP -->
+<form action="/Server_Scripts/register.php"  method="post" id="myForm">
+   <div class="inputs">
+      <label for="user-name">Username:</label>
+      <input name="user_name" type="text" id="user-name" placeholder="eg: Alidante Peter" maxlength="50"><i>*</i><br>
+      <p id="name-error-message" class="error"></p>
+   </div> 
+   <div class="inputs">
+      <label for="phone-no">Phone NO:</label>
+      <input name="phone_no" type="text" id="phone-no" placeholder="eg: 0746977253 or 254746977253" maxlength="13"><i>*</i><br>
+      <p id="phone-error-message" class="error"></p>
+   </div>
+   <div class="inputs">
+      <label for="password">Password:</label>
+      <input name="password" type="password" id="password" placeholder="eg: HguFGH!45" maxlength="30"><i>*</i><br>
+      <p id="password-error-message" class="error"></p>
+   </div>
+   <div class="inputs">
+      <button type="submit"   id="submitButton" name="Validate">Create Account</button>
+      </div>
+</form>
+<button type="button" onclick="ajax();" id="test">TEST AJAX</button>
+</div>
+</div>
 
     <!-- LOGIN PAGE FRAGMENT -->
     <div id="login-page">

@@ -1,4 +1,6 @@
 <?php
+echo"heyy there";
+displayUsersList();
 session_start();
 sendNewMessage();
 #function to clean the sent messages to avoid harm.
@@ -15,7 +17,7 @@ function getSenderID(){
   if (!$conn) {
       die('Connection failed: ' . mysqli_connect_error());
   }
-  $sql = "SELECT id FROM users_data WHERE phone_number = '$phone_number'";
+  $sql = "SELECT user_id FROM users_data WHERE phone_number = '$phone_number'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
       $row = mysqli_fetch_assoc($result);
@@ -58,7 +60,6 @@ function sendNewMessage(){
   $conn->close();
 }
 
-displayUsersList();
 #function for the db admin to see the messages list
  function displayUsersList(){
   // CONNECTING TO THE DATABASE

@@ -1,4 +1,17 @@
 <?php 
+
+$value = $_POST['value'];
+echo $value; echo "  yes yes";
+
+
+
+
+
+
+
+
+
+
  function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -6,40 +19,40 @@
   return $data;
 }
 
-# check that the phone number is not registered.
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$dbname = 'wechat_db';
-# create connection
-$conn = new mysqli($host, $user, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$phone_number = $_POST['phone_number'];
-$sql = "SELECT * FROM users_data WHERE phone_number = '$phone_number'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    $response = array('exists' => true);
-} else {
-    $response = array('exists' => false);
-}
-$conn->close();
-header('Content-Type: application/json');
-echo json_encode($response);
+// # check that the phone number is not registered.
+// $host = 'localhost';
+// $user = 'root';
+// $password = '';
+// $dbname = 'wechat_db';
+// # create connection
+// $conn = new mysqli($host, $user, $password, $dbname);
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
+// $phone_number = $_POST['phone_number'];
+// $sql = "SELECT * FROM users_data WHERE phone_number = '$phone_number'";
+// $result = $conn->query($sql);
+// if ($result->num_rows > 0) {
+//     $response = array('exists' => true);
+// } else {
+//     $response = array('exists' => false);
+// }
+// $conn->close();
+// header('Content-Type: application/json');
+// echo json_encode($response);
 
 #insert the data and catch the exception
-try {
-  addNewUser();
-  //displayUsersList();
-} catch (mysqli_sql_exception $e) {
-  if($e->getCode() == 1062) {
-    echo "Error: Duplicate value found for unique column.";
+// try {
+//   addNewUser();
+//   displayUsersList();
+// } catch (mysqli_sql_exception $e) {
+//   if($e->getCode() == 1062) {
+//     echo "Error: Duplicate value found for unique column.";
     
-  } else {
-    echo "Error another error occured: " . $e->getMessage();
-  }
-}
+//   } else {
+//     echo "Error another error occured: " . $e->getMessage();
+//   }
+// }
  #function for all the time a user registers
 function addNewUser(){
   # getting the values that the user entered validating them and testing them for safety.
@@ -81,12 +94,16 @@ function displayUsersList(){
   if(mysqli_num_rows($result) > 0) {
     //creating and styling a table to display the data
     echo "<style>
+            html, body {
+              background-color: black;
+              color: white;
+            }
             table {
               border-collapse: collapse;
               width: 100%;
               margin: 20px 0;
               font-size: 18px;
-              color: #333;
+              color: green;
             }
             
             th, td {
@@ -95,8 +112,7 @@ function displayUsersList(){
             }
             
             th {
-              background-color: #f2f2f2;
-              color: #555;
+              
               font-weight: bold;
             }
             
@@ -105,13 +121,13 @@ function displayUsersList(){
             }
             
             tbody tr:nth-child(even) {
-              background-color: #f2f2f2;
+             
             }
             
           </style>
           <table>";
     while($row = mysqli_fetch_assoc($result)) {
-          echo "<tr><td>" .  $row["id"].
+          echo "<tr><td>" .  $row["user_id"].
                     "</td><td>" . $row["user_name"].
                     "</td><td>" . $row["phone_number"]. 
                     "</td><td>" . $row["password"]. 
@@ -123,6 +139,7 @@ function displayUsersList(){
     echo "0 results";
   }
   $conn->close();
+  #clearData();
 }
 
 # clearing the table

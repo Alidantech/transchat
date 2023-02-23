@@ -79,23 +79,19 @@ function registeredSuccessifully(){
     document.getElementById('register-page').style.display = 'none';
 }
 //get the error message using ajax
-function ajax(){
-  var phone_number = document.getElementById('phone-no').value;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          var response = JSON.parse(this.responseText);
-          if (response.exists) {
-              alert('Phone number already exists in the database!');
-          } else {
-              alert('Phone number does not exist in the database.');
-          }
-      }
-  };
-  xhttp.open('POST', '/Server_Scripts/register.php', true);
-  xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  xhttp.send('phone_number=' + phone_number);
-}
+var xhr = new XMLHttpRequest();
+value = "yes baby";
+var data = "value=" + value; 
+//xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+        document.getElementById("phone-error-message").innerHTML = xhr.responseText;
+    }
+};
+
+xhr.open("POST", "/Server_Scripts/register.php", true);
+xhr.send(data);
+
 
 /**
  * LOG IN FORM VALIDATION (same logic as the registration form)

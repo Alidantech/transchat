@@ -21,7 +21,7 @@
 i {
     color: red;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 0.8em;
 }
 
   /* MAIN */
@@ -54,12 +54,15 @@ html, body {
 }
 #register-page h1 {
     text-align: center;
-    color: rgb(2, 26, 12);
-    font-size: 1em;
+    color:#cde9d8;
+    background: linear-gradient(to right, #055c2969, #2d546b81);
+    padding: 0.4em;
+    font-size: 1.2em;
+    border-radius: 0.5em;
 }
 div.form label {
-    color: rgb(0, 2, 1);
-    font-weight: bold;
+    color: rgb(189, 233, 197);
+    font-weight: normal;
     font-size: smaller;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-left: 6vw;
@@ -67,7 +70,7 @@ div.form label {
 }
 div.inputs {
     width: 100%;
-    background-color: #023b1500;
+    background-color: #d4f5df00;
     margin: 1vw;
     margin-top: 1vw;
     padding: 1vw;
@@ -79,13 +82,14 @@ div.form input{
     max-width: 400px;
     padding: 0.7em;
     font-size: 1em;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(187, 224, 238);
+    color: rgb(255, 255, 255);
     border-style: solid;
-    border-color: rgb(0, 149, 248);
-    background-color: rgba(0, 0, 0, 0.678);
-    border-radius: 0.3em;
-    border-width: 0.1em;
+    border-color: rgb(27, 159, 177);
+    background-color: #00130818;
+    border-radius: .3em;
+    border-width: 0em;
+    text-indent: 8vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 div.form button {
     width: fit-content;

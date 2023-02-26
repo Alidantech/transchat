@@ -1,33 +1,10 @@
-<?php 
-
-// $value = $_POST['value'];
-// echo $value; echo "  yes yes";
+<?php
  function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
 }
-
-// # check that the phone number is not registered.
-$host = 'localhost';
-$user = 'root';
-$password = '';
-$dbname = 'wechat_db';
-// # create connection
-$conn = new mysqli($host, $user, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-$phone_number = $_POST['phone_no'];
-$sql = "SELECT * FROM users_data WHERE phone_number = '$phone_number'";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    $response = array('exists' => true);
-} else {
-    $response = array('exists' => false);
-}
-$conn->close();
 
 #insert the data and catch the exception
 try {

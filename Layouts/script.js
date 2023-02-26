@@ -78,19 +78,50 @@ function registeredSuccessifully(){
     document.getElementById('login-page').style.display = 'block';
     document.getElementById('register-page').style.display = 'none';
 }
-//get the error message using ajax
-var xhr = new XMLHttpRequest();
-value = "yes baby";
-var data = "value=" + value; 
-//xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-        document.getElementById("phone-error-message").innerHTML = xhr.responseText;
-    }
-};
 
-xhr.open("POST", "/Server_Scripts/register.php", true);
-xhr.send(data);
+
+
+
+
+
+
+
+
+
+function checkPhoneNumber(){
+
+  //get the error message using ajax
+  var phone_number = document.getElementById('phone-no').value;
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+          document.getElementById("phone-error-message").innerHTML = xhr.responseText;
+      }
+  };
+  xhr.open("POST", "/Server_Scripts/checkPhone.php", true);
+  //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send(phone_number);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**

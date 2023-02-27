@@ -79,15 +79,6 @@ function registeredSuccessifully(){
     document.getElementById('register-page').style.display = 'none';
 }
 
-
-
-
-
-
-
-
-
-
 function checkPhoneNumber(){
 
   //get the error message using ajax

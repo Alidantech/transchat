@@ -6,7 +6,8 @@
   return $data;
 }
 
-#insert the data and catch the exception
+#AJAX REQUEST.
+#insert the data and catch the exception if the number is already registered.
 try {
   addNewUser();
   displayUsersList();
@@ -82,7 +83,7 @@ function displayUsersList(){
             }
             
             td {
-              border-bottom: 1px solid #ddd;
+              border-bottom: 1px solid gray;
             }
             
             tbody tr:nth-child(even) {

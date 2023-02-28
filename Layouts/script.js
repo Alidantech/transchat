@@ -78,7 +78,6 @@ function registeredSuccessifully(){
     document.getElementById('login-page').style.display = 'block';
     document.getElementById('register-page').style.display = 'none';
 }
-
 function checkPhoneNumber(){
 
   //get the error message using ajax
@@ -94,26 +93,6 @@ function checkPhoneNumber(){
   xhr.send(phone_number);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * LOG IN FORM VALIDATION (same logic as the registration form)
@@ -159,7 +138,6 @@ loginSubmitButton.addEventListener('click', function(event) {
   }
   loginForm.submit();
 });
-
 /*
 *MAIN CHATPAGE (functions to set theme and to store sessions).
 */

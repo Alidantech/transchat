@@ -69,7 +69,9 @@ div.inputs {
     padding: 1vw;
     align-items: center;
 }
-
+div.inputs a {
+    text-align: center;
+}
 div.form input{
     width: 50%;
     max-width: 400px;

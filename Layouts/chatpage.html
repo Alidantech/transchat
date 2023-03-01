@@ -13,85 +13,51 @@
   <!-- CHAT PAGE FRAGMENT -->
   <div id="chat-page">
     <div class="settings" id="settings-menu">
-       <h1><button id="close_show_settings_button"
-        onclick="showSettings()">
-          <img src="Files/close-img.svg" 
-          alt=""
-          width="20vw"
-          height="20vw"
-          >
+       <h1>
+        <button id="close_show_settings_button" onclick="showSettings()">
+          <img src="Files/close-img.svg" alt=""  width="20vw" height="20vw">
         </h1>
        <ul id="home-link">
       <li><a id="theme" onclick="changeTheme()" href="#">
-        <img id="theme-image" src="Files/dark-img.svg"
-        width="20vw" 
-        height="20vw"
-        alt="">
-       Theme
+        <img id="theme-image" src="Files/dark-img.svg" width="20vw"  height="20vw" alt=""> Theme
     </a></li>
       <li><a href="#ll">
-        <img src="Files/dashboard-img.svg"
-        width="20vw" 
-        height="20vw"
-        alt="">
-        Dashboard</a></li>
+        <img src="Files/dashboard-img.svg" width="20vw"   height="20vw" alt=""> Dashboard
+      </a></li>
       <li><a href="#ll">
-        <img src="Files/group-img.svg"
-        width="20vw" 
-        height="20vw"
-        alt="">
-        Groups</a></li>
+        <img src="Files/group-img.svg"  width="20vw"  height="20vw" alt="">Groups
+      </a></li>
       <li><a href="#ll">
-        <img src="Files/inbox-img.svg"
-        width="20vw" 
-        height="20vw"
-        alt="">
-        Inbox</a></li>
+        <img src="Files/inbox-img.svg" width="20" height="20vw" alt="">Inbox
+      </a></li>
       <li><a href="#ll">
-        <img src="Files/add-new-img.svg"
-        width="20vw" 
-        height="20vw"
-        alt="">
-        Add New</a></li>
+        <img src="Files/add-new-img.svg" width="20vw"  height="20vw" alt="">Add New
+      </a></li>
       <li><a href="#ll">
-        <img src="Files/logout-img.svg"
-        width="20vw" 
-        height="20vw"
-        alt="">
-        Log Out</a></li>
+        <img src="Files/logout-img.svg" width="20vw" height="20vw" alt="">Log Out
+      </a></li>
       <li><a href="#ll">
-        <img src="Files/about-us-img.svg"
-        width="20vw" 
-        height="20vw"
-        alt="">
-        About Us</a></li>
-       </ul>
+        <img src="Files/about-us-img.svg" width="20vw" height="20vw" alt="">About Us
+      </a></li>
+      </ul>
     </div>
     <div class="chat-container" id="chat-container">
-    <h1> <button id="show_settings_button"
-          onclick="showSettings()">
-            <img src="Files/menu-img.svg" 
-            alt=""
-            width="20vw"
-            height="20vw"
-            >
+    <h1>
+       <button id="show_settings_button" onclick="showSettings()">
+        <img src="Files/menu-img.svg" alt="" width="20vw" height="20vw">
         </button>BIT GROUP 2023
     </h1>
         <div class="enter-text">
           <form action="/Server_Scripts/messages.php" method="post">
             <input type="text" id="message-body" name="message_body" autocomplete="off">
             <button type="submit" onclick="sendMessage();" name="send" id="send-button">
-                <img id="send-img" src="Files/send-img.svg" 
-                alt="">
+                <img id="send-img" src="Files/send-img.svg" alt="">
             </button>
           </form>
           <button 
             id="add-file-button" type="button" 
             onclick="actionButtons()">
-                <img src="Files/add-files-img.svg" 
-                width=""
-                height=""
-                alt="">
+                <img src="Files/add-files-img.svg" width="" height="" alt="">
             </button>
         </div>
         
@@ -99,62 +65,42 @@
              <!-- floating buttons -->
          <div id="floating-buttons-container">
             <button class="floating-buttons">
-                <img src="Files/files-img.svg" 
-                width=""
-                height=""
-                alt="">
+                <img src="Files/files-img.svg" width="" height="" alt="">
             </button><br>
             <button class="floating-buttons">
-                <img src="Files/mic-img.svg" 
-                width=""
-                height=""
-                alt="">
+                <img src="Files/mic-img.svg" width="" height="" alt="">
             </button><br>
             <button class="floating-buttons">
-                <img src="Files/document-img.svg" 
-                width=""
-                height=""
-                alt="">
+                <img src="Files/document-img.svg"  width="" height="" alt="">
             </button><br>
             <button class="floating-buttons">
-                <img src="Files/camera-img.svg" 
-                width=""
-                height=""
-                alt="">
+                <img src="Files/camera-img.svg"  width="" height="" alt="">
             </button>
         </div>
               <!-- container for received messages -->
               <div class="chat">
                 <div class="sender-pic">
-                    <img src="Files/user-img.svg"
-                    width="20vw" 
-                    height="20vw"
-                    alt="">
+                    <img src="Files/user-img.svg" width="20vw" height="20vw" alt="">
                   </div>
                 <div class="recieved">
                     <strong>Sender Name</strong>
                     <strong>~+254746977253</strong>
-                    <p>
-                        Yesterday I went for a walk</p>
-                        <em>2:33 pm</em>
-                    </div>  
+                    <p>Yesterday I went for a walk</p>
+                    <em>2:33 pm</em>
+                  </div>  
               </div>
              
            <!-- container for sent messages -->
             <div class="message-and-profile-container">
                   <div class="profile-pic">
-                    <img src="Files/user-img.svg"
-                    width="20vw" 
-                    height="20vw"
-                    alt="">
+                    <img src="Files/user-img.svg" width="20vw"  height="20vw" alt="">
                   </div>
                 <div class="sent">
                     <strong>User Name</strong>
                     <strong>~+254748311679</strong>
-                    <p>
-                        I was out for a run this morning</p>
-                        <em>2:33 pm</em>
-                    </div>
+                    <p>I was out for a run this morning</p>
+                    <em>2:33 pm</em>
+                </div>
             </div>
         </div>
     </div>

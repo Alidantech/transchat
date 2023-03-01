@@ -1,4 +1,7 @@
   /* setting and resetting */
+  input:focus {
+    all: initial;
+  }
   input{
     all: initial;
     }
@@ -13,14 +16,13 @@
     height: 0;
   }
   .error {
-    color: red;
-    font-size: 0.6em;
+    color: rgb(243, 71, 3);
+    font-size: 0.8em;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-family: monospace;
 }
 i {
-    color: red;
+    color: rgba(252, 82, 3, 0.877);
     font-weight: bold;
     font-size: 0.8em;
 }
@@ -49,21 +51,21 @@ html, body {
     height: auto;
     margin: 2VW 25% 0 25%;
     padding: 2em;
-    background-color: rgba(35, 97, 141, 0.432);
-    overflow: hidden;
+    background: linear-gradient(to right, #021100b7, #5f260681);
+    overflow: visible;
     border-radius: 1em;
 }
 #register-page h1 {
     text-align: center;
     color:#cde9d8;
-    background: linear-gradient(to right, #055c2969, #2d546b81);
+    background: linear-gradient(to right, #3509f746, #3d04422f);
     padding: 0.4em;
     font-size: 1.2em;
     border-radius: 0.5em;
 }
 div.form label {
-    color: rgb(189, 233, 197);
-    font-weight: normal;
+    color: rgb(193, 143, 240);
+    font-weight: bold;
     font-size: smaller;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin-left: 6vw;
@@ -71,24 +73,32 @@ div.form label {
 }
 div.inputs {
     width: 100%;
-    background-color: #d4f5df00;
-    margin: 1vw;
+    margin: 0.4vw;
     margin-top: 1vw;
     padding: 1vw;
     align-items: center;
 }
-
+h6 {
+    text-align: center;
+}
+#loginlink {
+    color: rgb(87, 165, 134);
+    text-align: center;
+}
+#loginlink:hover {
+    color: #28ad7a;
+}
 div.form input{
     width: 50%;
     max-width: 400px;
     padding: 0.7em;
     font-size: 1em;
-    color: rgba(0, 0, 0, 0.911);
+    color: rgba(0, 255, 234, 0.911);
     border-style: solid;
-    border-color: rgb(27, 159, 177);
-    background-color: #fdfffe8c;
+    border-color: rgb(15, 89, 99);
+    background-color: #010e078c;
     border-radius: .3em;
-    border-width: 0em;
+    border-width: 0.1em;
     text-indent: 8vw;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -102,7 +112,7 @@ div.form button {
     border-radius: 3em;
     color: rgb(196, 211, 205);
     font-size: 0.8em;
-   background: linear-gradient(to right, #055c29, #2d546b);
+   background: linear-gradient(to right, #1f055c, #2d546b);
 }
 .form button:hover {
     background: linear-gradient(to right, #254e4c,  #023b15);

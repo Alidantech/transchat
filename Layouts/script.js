@@ -74,10 +74,64 @@ submitButton.addEventListener('click', function(event) {
     form.submit();
 });
 // function to enable login for a registered user.
-function registeredSuccessifully(){
-    document.getElementById('login-page').style.display = 'block';
-    document.getElementById('register-page').style.display = 'none';
+function openAcountActionPage(){
+  loginPage =  document.getElementById('login-page');
+  createAccPage =  document.getElementById('register-page');
+  if(loginPage.style.display === 'none' && createAccPage.style.display === 'block'){
+    loginPage.style.display = "block";
+    createAccPage.style.display = "none";
+  }else{
+    loginPage.style.display = "none";
+    createAccPage.style.display = "block";
+  }
 }
+
+//JQUERY code to incoporate with ajax.
+//this function checks for a number that is already registered
+//SERVER file== /Server_Scripts/checkPhone.php
+$(document).ready(function(){
+
+$("#phone-no").on("blur", function() {
+  var number = $(this).val();
+  if(number==""){
+    $("#phone-error-message").text("Phone number cannot be empty!");
+    disableSubmitButton();
+  }else{
+  $.ajax({
+    url: "/Server_Scripts/checkPhone.php",
+    method: "POST",
+    data: { number: number },
+    dataType: "json",
+    success: function(response) {
+      if (response.error) {
+        $("#phone-error-message").text(response.error);
+        disableSubmitButton();
+      } else {
+        $("#phone-error-message").text("");
+        enableSubmitButton();
+      }
+    },
+    error: function() {
+      $("#phone-error-message").text("Error checking number. Please try again later.");
+      disableSubmitButton();
+    }
+  });
+}
+});
+function enableSubmitButton() {
+  if ($("#phone-error-message").text() == "") {
+    $("#submitButton").attr("disabled", false);
+  }
+}
+function disableSubmitButton() {
+  if( $("#submitButton").attr("disabled", false)){
+    $("#submitButton").attr("disabled", true);
+  }
+}
+
+});
+
+
 function checkPhoneNumber(){
 
   //get the error message using ajax

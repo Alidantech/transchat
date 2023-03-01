@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/Layouts/style.css" id="stylesheet">
     <link rel="icon" href="Layouts/Files/myfavicon-img.svg" type="image/x-icon">
     <script src="/Layouts/script.js" defer></script>
+    <script src="Layouts/jqueryCompressed.js"></script>
     <title>Welcome to Wechat</title>
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -23,12 +24,12 @@
 <form action="/Server_Scripts/register.php"  method="post" id="myForm">
    <div class="inputs">
       <label for="user-name">Username:</label>
-      <input name="user_name" type="text" id="user-name" placeholder="Alidante Peter" maxlength="50"><i>*</i><br>
+      <input name="user_name" type="text" id="user-name" placeholder="Alidante Peter" maxlength="50" autocomplete="off"><i>*</i><br>
       <p id="name-error-message" class="error"></p>
    </div> 
    <div class="inputs">
       <label for="phone-no">Phone NO:</label>
-      <input name="phone_no" type="text" id="phone-no" placeholder="0746977253" maxlength="13"><i>*</i><br>
+      <input name="phone_no" type="text" id="phone-no" placeholder="0746977253" maxlength="13" autocomplete="off"><i>*</i><br>
       <p id="phone-error-message" class="error"></p>
    </div>
    <div class="inputs">
@@ -37,8 +38,9 @@
       <p id="password-error-message" class="error"></p>
    </div>
    <div class="inputs">
-      <button type="submit"   id="submitButton" name="Validate">Create Account</button>
-      </div>
+      <button type="submit"   id="submitButton" name="Validate" disabled>Create Account</button><br>
+     <h6> <a href="#" id="loginlink" onclick="openAcountActionPage();">already have an Account? Log in.</a> </h6>
+   </div>
 </form>
 </div>
 </div>
@@ -60,10 +62,7 @@
        </div>
        <div class="inputs">
           <button type="submit"  id="loginSubmitButton" name="Validate">Log In</button>
-        </div>
-      </form>
-      </div>
-    </div>
- 
+          <h6> <a href="#" id="loginlink" onclick="openAcountActionPage();">Don't have an Account? Create account.</a> </h6>
+          </div>
 </body>
 </html>

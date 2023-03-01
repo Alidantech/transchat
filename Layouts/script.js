@@ -74,7 +74,7 @@ submitButton.addEventListener('click', function(event) {
     form.submit();
 });
 // function to enable login for a registered user.
-function openAcountActionPage(){
+function openAccountActionPage(){
   loginPage =  document.getElementById('login-page');
   createAccPage =  document.getElementById('register-page');
   if(loginPage.style.display === 'none' && createAccPage.style.display === 'block'){
@@ -85,7 +85,6 @@ function openAcountActionPage(){
     createAccPage.style.display = "block";
   }
 }
-
 //JQUERY code to incoporate with ajax.
 //this function checks for a number that is already registered
 //SERVER file== /Server_Scripts/checkPhone.php
@@ -130,8 +129,6 @@ function disableSubmitButton() {
 }
 
 });
-
-
 function checkPhoneNumber(){
 
   //get the error message using ajax
@@ -192,6 +189,52 @@ loginSubmitButton.addEventListener('click', function(event) {
   }
   loginForm.submit();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * THE MESSAGE SENDING PART
+ */
+function clearInput() {
+  document.getElementById("message-body").value = "";
+}
+//on send
+function sendMessage() {
+//div that contains messages.
+  var parentDiv = document.getElementById("messages");
+//div that contains the whole chat part.
+var messageContainerDiv = document.createElement("div");
+    messageContainerDiv.className = "message-and-profile-container";
+    parentDiv.appendChild(messageContainerDiv);
+    messageDiv.className = "message-and-profile-container";
+//div that contains the profile pic.
+var profileDiv = document.createElement("div");
+    profileDiv.className = "message-and-profile-container";
+    messageContainerDiv.appendChild(profileDiv);
+    messageDiv.className = "profile-pic";
+//div that contains the message.
+var message = document.getElementById("message-body").value;
+var messageDiv = document.createElement("div");
+var text = document.createElement("p");
+var userName = document.createElement("Strong");
+var phoneNumber = document.createElement("strong");
+var sendTime = document.createElement("em");
+
+    messageDiv.className = "sent";
+    text.innerHTML = message;
+    messageDiv.appendChild(text);
+    messageContainerDiv.appendChild(messageDiv);
+}
+
 /*
 *MAIN CHATPAGE (functions to set theme and to store sessions).
 */
@@ -236,41 +279,6 @@ function showSettings() {
        settingsMenu.style.display = "none";
     }
 /** adding an on ignore functionality*/
-}
-
-/**
- * THE MESSAGE SENDING PART
- */
-function clearInput() {
-  document.getElementById("message-body").value = "";
-}
-
-//on send
-function sendMessage() {
-//div that contains messages.
-  var parentDiv = document.getElementById("messages");
-//div that contains the whole chat part.
-var messageContainerDiv = document.createElement("div");
-    messageContainerDiv.className = "message-and-profile-container";
-    parentDiv.appendChild(messageContainerDiv);
-    messageDiv.className = "message-and-profile-container";
-//div that contains the profile pic.
-var profileDiv = document.createElement("div");
-    profileDiv.className = "message-and-profile-container";
-    messageContainerDiv.appendChild(profileDiv);
-    messageDiv.className = "profile-pic";
-//div that contains the message.
-var message = document.getElementById("message-body").value;
-var messageDiv = document.createElement("div");
-var text = document.createElement("p");
-var userName = document.createElement("Strong");
-var phoneNumber = document.createElement("strong");
-var sendTime = document.createElement("em");
-
-    messageDiv.className = "sent";
-    text.innerHTML = message;
-    messageDiv.appendChild(text);
-    messageContainerDiv.appendChild(messageDiv);
 }
 
 

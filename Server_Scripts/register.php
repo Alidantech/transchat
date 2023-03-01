@@ -10,7 +10,12 @@
 #insert the data and catch the exception if the number is already registered.
 try {
   addNewUser();
-  displayUsersList();
+  #displayUsersList();
+  session_start();
+  $phone_number = test_input($_POST["phone_no"]);
+  $_SESSION["phone_number"] = $phone_number;
+  $_SESSION["logged_in"] = true;
+  header("Location: /Layouts/chatpage.html");
 } catch (mysqli_sql_exception $e) {
   if($e->getCode() == 1062) {
     echo "Error: Duplicate value found for unique column.";
@@ -34,13 +39,13 @@ function addNewUser(){
     if($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     } else{
-      echo"connected successifully";
+      #echo"connected successifully";
     }
     #insert the user's data to the database
     $sql = "INSERT INTO users_data (user_name, phone_number, password, registration_date) 
             VALUES ('$name', '$phone', '$password_hash', '$timestamp')";
   if($conn->query($sql) === TRUE) {
-    echo "New record created successfully<br>";
+    #echo "New record created successfully<br>";
   } else {
     echo "Error: You cannot register at the moment, try again. <br>
     If the problem persists contact your admin<br> " .$sql . "<br>" . $conn->error;

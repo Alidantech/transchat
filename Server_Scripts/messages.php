@@ -1,8 +1,13 @@
 <?php
-echo"heyy there";
-displayUsersList();
 session_start();
+echo "<style>
+html, body {
+  background-color: gray;
+}
+</style>";
 sendNewMessage();
+//echo isset($_SESSION['phone_number']);
+
 #function to clean the sent messages to avoid harm.
 function test_input($data) {
   $data = trim($data);
@@ -17,7 +22,7 @@ function getSenderID(){
   if (!$conn) {
       die('Connection failed: ' . mysqli_connect_error());
   }
-  $sql = "SELECT user_id FROM users_data WHERE phone_number = '$phone_number'";
+  $sql = "SELECT id FROM users_data WHERE phone_number = '$phone_number'";
   $result = mysqli_query($conn, $sql);
   if (mysqli_num_rows($result) > 0) {
       $row = mysqli_fetch_assoc($result);
@@ -28,40 +33,51 @@ function getSenderID(){
   mysqli_close($conn);
   return  $user_id;
 }
-
-
-
+#this funtion checks if a message is clean then sends it else warns the sender if its not.
 function sendNewMessage(){
   $message_body = test_input($_POST['message_body']);
-  $sender_id = getSenderID()();
+  $sender_id = getSenderID();
   $conn = new mysqli("localhost", "root", "", "wechat_db");
       if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
       }  else{
           echo"connected successifully <br>"; 
       }
-      //echo "<br> sender id:".$sender_id;
-      //$sql = "INSERT INTO messages(sender_id, message_body) VALUES(?,?)";
-      $sql = $conn->prepare("INSERT INTO messages(sender_id, message_body) VALUES(?, ?)");
-      $sql->bind_param("is",$sender_id, $message_body);
-      try{
-        if ($sql->execute() === TRUE) {
-          echo "message sent successifully<br>";
-        }
-      } catch(Exception $e){
-        if ($e->getCode() == 1062) {
-          // Handle the exception with error code 123
-          echo "Error 123: " . $e->getMessage();
-        } else {
-          // Handle all other exceptions
-          echo "An error occurred: " . $e->getMessage();
-        }
+      #check if the message contains vulgar words.
+      $bad_message = false;
+      $vulgar_word = array(); 
+      $bad_words = file('vulgar_words.txt', FILE_IGNORE_NEW_LINES);
+      foreach ($bad_words as $bad_word) {
+          if(strpos(strtolower($message_body), $bad_word)){
+            $bad_message = true;
+            $vulgar_word = $bad_word;
+            echo $vulgar_word."<br>";
+          }
       }
+      if($bad_message){# if the message is bad warn the user.
+          echo "you are using bad words in this group and you might get yourself removed.";
+          echo $message_body;
+          
+      }else{ #if the message is fine add it to messages
+          $sql = $conn->prepare("INSERT INTO messages(sender_id, message_body) VALUES(?, ?)");
+          $sql->bind_param("is",$sender_id, $message_body);
+          try{
+            if ($sql->execute() === TRUE) {
+              echo "message sent successifully<br>";
+            }
+          } catch(Exception $e){
+            if ($e->getCode() == 1062) {
+              echo "Error 123: " . $e->getMessage();
+            } else {
+              echo "An error occurred: " . $e->getMessage();
+            }
+          }
+          displayMessagesList();
+    }
   $conn->close();
 }
-
 #function for the db admin to see the messages list
- function displayUsersList(){
+ function displayMessagesList(){
   // CONNECTING TO THE DATABASE
   #Check connection
   $servername = "localhost";
@@ -69,7 +85,7 @@ function sendNewMessage(){
   $dbpassword = "";
   $dbname = "wechat_db";
   $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
-  $sender_id = getSenderID()();
+  #$sender_id = getSenderID()();
   $sql = ("SELECT * fROM messages;");
   $result = mysqli_query($conn, $sql);
 //   // Check for errors
@@ -133,6 +149,4 @@ function sendNewMessage(){
     echo "0 results";
   }
 }
-
-
 ?>

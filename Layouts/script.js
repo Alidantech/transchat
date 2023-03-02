@@ -129,77 +129,54 @@ function disableSubmitButton() {
 }
 
 });
-function checkPhoneNumber(){
-
-  //get the error message using ajax
-  var phone_number = document.getElementById('phone-no').value;
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-          document.getElementById("phone-error-message").innerHTML = xhr.responseText;
-      }
-  };
-  xhr.open("POST", "/Server_Scripts/checkPhone.php", true);
-  //xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.send(phone_number);
-
-}
 
 /**
  * LOG IN FORM VALIDATION (same logic as the registration form)
  */
-const loginForm = document.querySelector('#loginForm');
-const loginSubmitButton = document.querySelector('#loginSubmitButton');
-loginSubmitButton.addEventListener('click', function(event) {
-  event.preventDefault();
-  const phone = document.getElementById("login-phone-no").value;
-  const password = document.getElementById("login-password").value;
-  var phoneError = document.getElementById('login-phone-error-message');
-  var passwordError = document.getElementById('login-password-error-message');
-  const phonePattern = /^\d+$/;
-  const passwordPattern = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[@$!%*#?&])[a-zA-Z\d@$!%*#?&]{8,}$/;
-  if (phone.trim() === "" && password.trim() === "") {
-    alert("Please fill in both phone number and password fields.");
-    return false;
-  } else {
-    if (phone.trim() === "") {
-      phoneError.innerHTML = "Please enter your phone Number.";
-      document.getElementById('login-phone-no').style.borderColor = "red";
-      return false;
-    } else if (!phone.match(phonePattern)) {
-      phoneError.innerHTML = "Phone number should contain only numbers.";
-      document.getElementById('login-phone-no').style.borderColor = "red";
-      return false;
-    } else {
-      phoneError.innerHTML = "";
-      document.getElementById('login-phone-no').style.borderColor = "green";
+$(document).ready(function() {
+  
+
+ //check the phone number
+  $('#login-phone-no').on("blur", function(){
+    var no = $(this).val();
+    var pass = $('#login-password').val();
+    if(no==""){
+      $("#login-phone-error-message").text("Please enter a phone number!");
+      disableLoginSubmitButton();
+    }else if(pass==""){
+      $('#login-password').on("blur", function(){
+      $("#login-password-error-message").text("Please enter a password!");
+      disableLoginSubmitButton();
+      });
+    } else{
+      $("#login-password-error-message").text("");
+          $.ajax({
+            type: "POST",
+            url: "/Server_Scripts/login.php",
+            data: { phone_no: no, password: pass},
+            dataType: "json",
+            success: function(response) {
+              if (response.error) {
+                $("#login-phone-error-message").text(response.error);
+                disableLoginSubmitButton();
+              } else {
+                $("#login-phone-error-message").text("");
+                enableLoginSubmitButton();              }
+            },
+            error: function(xhr, status, error) {
+            $('#login-phone-error-message').html = "cannot login at the moment, try again later!";
+            disableLoginSubmitButton();
+            }
+        });
     }
-    if (password.trim() === "") {
-      passwordError.innerHTML = "Please enter your password.";
-      document.getElementById('login-password').style.borderColor = "red";
-      return false;
-    } else if (!password.match(passwordPattern)) {
-      document.getElementById('login-password').style.borderColor = "red";
-      passwordError.innerHTML = "Password should contain at least one letter, one number, and one special character and be at least 8 characters long.";
-      return false;
-    } else {
-      passwordError.innerHTML = "";
-      document.getElementById('login-password').style.borderColor = "green";
-    }
-  }
-  loginForm.submit();
+  });
 });
-
-
-
-
-
-
-
-
-
-
-
+function enableLoginSubmitButton() {
+    $("#loginSubmitButton").attr("disabled", false);
+}
+function disableLoginSubmitButton() {
+    $("#loginSubmitButton").attr("disabled", true);
+}
 
 /**
  * THE MESSAGE SENDING PART

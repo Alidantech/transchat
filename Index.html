@@ -39,30 +39,31 @@
    </div>
    <div class="inputs">
       <button type="submit"   id="submitButton" name="Validate">Create Account</button><br>
-     <h6> <a href="#" id="loginlink" onclick="openAcountActionPage();">already have an Account? Log in.</a> </h6>
+     <h6> <a href="#" id="loginlink" onclick="openAccountActionPage();">already have an Account? Log in.</a> </h6>
    </div>
 </form>
 </div>
 </div>
 
     <!-- LOGIN PAGE FRAGMENT -->
-    <div id="login-page">
-        <h1>Welcome back to WeChat .....</h1>
+   <div id="login-page">
+      <h1>Welcome back to WeChat .....</h1>
       <div class="form">
-        <form action="/Server_Scripts/login.php" method="post" id="loginForm">
-        <div class="inputs">
+      <form action="/Server_Scripts/login.php" method="post" id="loginForm">
+      <div class="inputs">
           <label for="phone-no">Phone NO:</label>
-          <input name="phone_no" type="text" id="login-phone-no" placeholder="eg: 0746977253 or 254746977253" maxlength="13"><i>*</i><br>
+          <input name="phone_no" type="text" id="login-phone-no" placeholder="eg: 0746977253" maxlength="13"><i>*</i><br>
           <p id="login-phone-error-message" class="error"></p>
-       </div>
-       <div class="inputs">
+      </div>
+      <div class="inputs">
           <label for="password">Password:</label>
           <input name="password" type="password" id="login-password" placeholder="eg: HguFGH!45" maxlength="30"><i>*</i><br>
           <p id="login-password-error-message" class="error"></p>
-       </div>
-       <div class="inputs">
+      </div>
+      <div class="inputs">
           <button type="submit"  id="loginSubmitButton" name="Validate">Log In</button>
-          <h6> <a href="#" id="loginlink" onclick="openAcountActionPage();">Don't have an Account? Create account.</a> </h6>
-          </div>
+          <h6> <a href="#" id="loginlink" onclick="openAccountActionPage();">Don't have an Account? Create account.</a> </h6>
+      </div>
+   </div>
 </body>
 </html>

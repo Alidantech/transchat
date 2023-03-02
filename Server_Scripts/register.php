@@ -1,4 +1,5 @@
 <?php
+session_start();
  function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -8,10 +9,10 @@
 
 #AJAX REQUEST.
 #insert the data and catch the exception if the number is already registered.
+
 try {
   addNewUser();
   #displayUsersList();
-  session_start();
   $phone_number = test_input($_POST["phone_no"]);
   $_SESSION["phone_number"] = $phone_number;
   $_SESSION["logged_in"] = true;

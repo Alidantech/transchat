@@ -1,48 +1,30 @@
-<?php  
-#function to log in a user who is already registered.
-function login($phone_number, $password) {
-    $conn = new mysqli("localhost", "root", "", "wechat_db");
-    if ($conn->connect_error) {
-        die("cannot login, please try again:  -" . $conn->connect_error);
+<?php
+session_start();
+// Code to connect to the database goes here
+$phoneNumber = $_POST['phone_no'];
+$password = $_POST['password'];
+$mysqli = new mysqli("localhost", "root", "", "wechat_db");
+// Query the database for the user with the specified username
+$stmt = $mysqli->prepare("SELECT * FROM users_data WHERE phone_number = ?");
+$stmt->bind_param("s", $phoneNumber);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows == 1) {
+    $user = $result->fetch_assoc();
+    if (password_verify($password, $user['password'])) {
+        // Login successful
+        echo json_encode(array("success" => true));
+        $_SESSION["phone_number"] = $phoneNumber;
+        $_SESSION["logged_in"] = true;
+        header("Location: /Layouts/chatpage.html");
+    } else {
+        // Incorrect password
+        echo json_encode(array("success" => false, "message" => "Incorrect password"));
     }
-    $stmt = $conn->prepare("SELECT password FROM users_data WHERE phone_number = ?");
-    $stmt->bind_param("s", $phone_number);
-    $stmt->execute();
-    $stmt->store_result();
-    if ($stmt->num_rows === 1) {
-        $stmt->bind_result($password_hash);
-        $stmt->fetch();
-        if (password_verify($password, $password_hash)) {
-            session_start();
-            $_SESSION["phone_number"] = $phone_number;
-            $_SESSION["logged_in"] = true;
-            header("Location: /Layouts/chatpage.html");
-            exit();
-        }  else {
-            echo "You have entered an incorrect password.";
-        }
-    }   else {
-        echo "The phone number you entered is not registerd.";
-    }
-    $stmt->close();
-    $conn->close();
+} else {
+    // User not found
+    echo json_encode(array("success" => false, "message" => "phone number not found"));
 }
-  //calling the login function
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $phone_number = test_input($_POST["phone_no"]);
-    $password = test_input($_POST["password"]);
-    if( $phone_number==""){
-        echo"you did not enter a phone number";
-    } else if($password==""){
-        echo"you did not enter a password";
-    }else{
-        login($phone_number, $password);
-      } 
-  } 
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-      }
+$stmt->close();
+$mysqli->close();
 ?>

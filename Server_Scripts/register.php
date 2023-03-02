@@ -1,4 +1,5 @@
 <?php
+ 
 session_start();
  function test_input($data) {
   $data = trim($data);
@@ -9,7 +10,6 @@ session_start();
 
 #AJAX REQUEST.
 #insert the data and catch the exception if the number is already registered.
-
 try {
   addNewUser();
   #displayUsersList();
@@ -19,8 +19,8 @@ try {
   header("Location: /Layouts/chatpage.html");
 } catch (mysqli_sql_exception $e) {
   if($e->getCode() == 1062) {
-    echo "Error: Duplicate value found for unique column.";
-    
+    echo "<h3 align=center>Error: The form has already been submitted please refresh and start again.</h3>";
+    echo "<style>html, body { background: linear-gradient(to right, #021100b7, #5f260681); color: lightgreen;}<style>";
   } else {
     echo "Error another error occured: " . $e->getMessage();
   }

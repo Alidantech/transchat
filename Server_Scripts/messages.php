@@ -6,6 +6,7 @@ html, body {
 }
 </style>";
 sendNewMessage();
+
 //echo isset($_SESSION['phone_number']);
 
 #function to clean the sent messages to avoid harm.
@@ -55,10 +56,25 @@ function sendNewMessage(){
           }
       }
       if($bad_message){# if the message is bad warn the user.
-          echo "you are using bad words in this group and you might get yourself removed.";
+          echo "you are using bad words in this group and you might get yourself removed.<BR>";
           echo $message_body;
           
-      }else{ #if the message is fine add it to messages
+          $sql = $conn->prepare("INSERT INTO junk_messages(sender_id, junk_words, message_body) VALUES(?, ?, ?)");
+        $sql->bind_param("iss",$sender_id, $vulgar_word, $message_body);
+          try{
+            if ($sql->execute() === TRUE) {
+              echo "message sent successifully<br>";
+            }
+          } catch(Exception $e){
+            if ($e->getCode() == 1062) {
+              echo "Error 123: " . $e->getMessage();
+            } else {
+              echo "An error occurred: " . $e->getMessage();
+            }
+          }
+          displayJunkMessagesList();
+                                                        
+      } else{ #if the message is fine add it to messages
           $sql = $conn->prepare("INSERT INTO messages(sender_id, message_body) VALUES(?, ?)");
           $sql->bind_param("is",$sender_id, $message_body);
           try{
@@ -76,6 +92,7 @@ function sendNewMessage(){
     }
   $conn->close();
 }
+
 #function for the db admin to see the messages list
  function displayMessagesList(){
   // CONNECTING TO THE DATABASE
@@ -86,12 +103,13 @@ function sendNewMessage(){
   $dbname = "wechat_db";
   $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
   #$sender_id = getSenderID()();
-  $sql = ("SELECT * fROM messages;");
+  $sql = ("SELECT * fROM messages JOIN users_data ON messages.sender_id = users_data.id;");
   $result = mysqli_query($conn, $sql);
 //   // Check for errors
   if(!$result) {
     die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));
   }
+ 
 //   // Output the table data
   if(mysqli_num_rows($result) > 0) {
 //     //creating and styling a table to display the data
@@ -132,21 +150,140 @@ function sendNewMessage(){
           </style>
           <table>
           <tr><th>MESSAGE ID</th>
-          <th>SENDER ID</th>
+          <th>PHONE NUMBER</th>
+          <th>USER NAME</th>
           <th>MESSAGE BODY</th>
           <th>SEND TIME</th>
           </tr>";
     while($row = mysqli_fetch_assoc($result)) {
           echo "
           <tr><td>" . "M". $row["message_id"].
-                    "</td><td>" ."U". $row["sender_id"].
+          "</td><td>" . $row["phone_number"].
+          "</td><td>" . $row["user_name"].
+          "</td><td>"  . $row["message_body"]. 
+          "</td><td>" . $row["send_time"].
+          "</td></tr>";
+}
+echo "</table>";
+} else {
+echo "0 results";
+}
+$conn->close();
+}
+function displayJunkMessagesList(){
+  // CONNECTING TO THE DATABASE
+  #Check connection
+  $servername = "localhost";
+  $dbusername = "root";
+  $dbpassword = "";
+  $dbname = "wechat_db";
+  $conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+  #$sender_id = getSenderID()();
+  $sql = ("SELECT * fROM junk_messages JOIN users_data ON junk_messages.sender_id = users_data.id;");
+  $result = mysqli_query($conn, $sql);
+  if(!$result) {
+    die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));
+  }
+//   // Output the table data
+  if(mysqli_num_rows($result) > 0) {
+//     //creating and styling a table to display the data
+    echo "<style >
+            table {
+              border-collapse: collapse;
+              width: 100%;
+              margin: 20px 0;
+              font-size: 18px;
+              color: #333;
+              background-color: lightgrey;
+              color: black;
+              font-family: Verdana, Geneva, Tahoma, sans-serif;
+              font-size: 0.8em;
+            }
+            th, td {
+              text-align: left;
+              padding: 8px;
+              border: solid 1px;
+              border-color: red; 
+            }
+            th {
+              background-color: #f2f2f2;
+              color: #555;
+              font-weight: bold;
+              boder-width: 0.3em;
+            }
+            td {
+              border-bottom: 1px solid #ddd;
+              border: solid 1px;
+              border-color: red; 
+              padding: 0.5em;
+            }
+            tbody tr:nth-child(even) {
+              background-color: #f2f2f2;
+              color: black;
+            }
+          </style>
+          <table>
+          <tr><th>MESSAGE ID</th>
+          <th>SENDER PHONE</th>
+          <th>USER NAME</th>
+          <th>MESSAGE BODY</th>
+          <th>SEND TIME</th>
+          <th>JUNK WORDS</th>
+          </tr>";
+    while($row = mysqli_fetch_assoc($result)) {
+          echo "
+          <tr><td>" . "M". $row["junk_id"].
+          "</td><td>" . $row["phone_number"].
+          "</td><td>" . $row["user_name"].
                     "</td><td>"  . $row["message_body"]. 
                     "</td><td>" . $row["send_time"].
+                    "</td><td>" . $row["junk_words"].
                "</td></tr>";
     }
     echo "</table>";
   } else {
     echo "0 results";
   }
+}
+
+getMessages();
+#READ THE MESSAGES DATA AND PUT IT INSIDE AN XML FILE
+function getMessages(){
+   // Create a new XML document to store all the messages
+   $dom = new DOMDocument('1.0', 'UTF-8');
+   // Create the root element
+   $root = $dom->createElement('messages');
+   $dom->appendChild($root);
+  $conn = new mysqli("localhost", "root", "", "wechat_db");
+  $sql = "SELECT * fROM messages JOIN users_data ON messages.sender_id = users_data.id;";
+  $result = mysqli_query($conn, $sql);
+  if(!$result) {
+    die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));
+  }
+  if(mysqli_num_rows($result) > 0) {
+    
+    // Iterate through the result set and add each row to the array as key-value pairs
+    while($row = mysqli_fetch_assoc($result)) {
+       // Create a message element
+       $message = $dom->createElement('message');
+       $root->appendChild($message);
+        // Add message details
+        $message_id = $dom->createElement('message_id', $row["message_id"]);
+        $message->appendChild($message_id);
+        $user_name = $dom->createElement('user_name', $row['user_name']);
+        $message->appendChild($user_name);
+        $phone_number = $dom->createElement('phone_number', $row['phone_number']);
+        $message->appendChild($phone_number);
+        $message_body = $dom->createElement('message_body', $row['message_body']);
+        $message->appendChild($message_body);
+        $send_time = $dom->createElement('send_time', $row['send_time']);
+        $message->appendChild($send_time);
+    }
+  }
+ // Set the content type to text/xml and save the XML document to a file
+ //header('Content-type: text/xml');
+ $dom->formatOutput = true;
+ $dom->save('messages.xml');
+ $conn->close();
 }
 ?>

@@ -19,7 +19,7 @@ if ($row) {
   echo json_encode(array("error" => "Number already registered."));
 } else {
   // Number doesn't exist in database
-  echo json_encode(array("success" => "Number available."));
+  echo json_encode(array("success" => "Number not registered."));
 }
 $conn->close();
 ?>

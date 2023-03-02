@@ -29,15 +29,14 @@ i {
 
   /* MAIN */
 html, body {
-    background-color: rgb(38, 54, 18);
     padding: 0;
     margin: 0;
     font-style: normal;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1em;
     color: rgb(170, 233, 212);
-    overflow: hidden;
-    background: linear-gradient(to bottom, #5e07079d, #023b15);
+    overflow: visible;
+    background: linear-gradient(to bottom, #3644539d, #153a22);
     background-image: url(Files/background.jpg);
     background-position: center;
     background-size: cover;
@@ -176,14 +175,16 @@ div.form button {
     height: auto;
     margin: 2VW 25% 0 25%;
     padding: 2em;
-    background-color: rgba(80, 99, 114, 0.884);
+    background: linear-gradient(to right, #021100b7, #5f260681);
     overflow: hidden;
     border-radius: 1em;
 }
 #login-page h1 {
     text-align: center;
+    padding: 1vw;
     color: rgb(9, 194, 65);
     font-size:smaller;
+    background: linear-gradient(to right, #3509f746, #3d04422f);
 }
 #login-page button {
     width: 15%;

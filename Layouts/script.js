@@ -72,6 +72,7 @@ submitButton.addEventListener('click', function(event) {
     phoneError.innerHTML = "";
     passwordError.innerHTML = "";
     form.submit();
+    disableSubmitButton();
 });
 // function to enable login for a registered user.
 function openAccountActionPage(){
@@ -89,7 +90,6 @@ function openAccountActionPage(){
 //this function checks for a number that is already registered
 //SERVER file== /Server_Scripts/checkPhone.php
 $(document).ready(function(){
-
 $("#phone-no").on("blur", function() {
   var number = $(this).val();
   if(number==""){
@@ -128,55 +128,77 @@ function disableSubmitButton() {
   }
 }
 
-});
+});//END REGISTRATION
 
 /**
  * LOG IN FORM VALIDATION (same logic as the registration form)
  */
-$(document).ready(function() {
-  
-
- //check the phone number
-  $('#login-phone-no').on("blur", function(){
-    var no = $(this).val();
-    var pass = $('#login-password').val();
-    if(no==""){
-      $("#login-phone-error-message").text("Please enter a phone number!");
-      disableLoginSubmitButton();
-    }else if(pass==""){
-      $('#login-password').on("blur", function(){
-      $("#login-password-error-message").text("Please enter a password!");
-      disableLoginSubmitButton();
+ $(document).ready(function() {
+  const loginform = document.querySelector('#loginForm');
+  const loginsubmitbutton = document.querySelector('#loginSubmitButton');
+  loginsubmitbutton.addEventListener('click', function(event) {
+    event.preventDefault();
+     let loginphone = $('#login-phone-no').val();
+     let loginpassword = $('#login-password').val();
+     let loginphoneerror = $('#login-phone-error-message');
+     let loginpassworderror = $('#login-password-error-message');
+     //confirm there is no empty field.
+     if(loginphone.trim() === ""){
+      loginphoneerror.text("please enter your phone number");
+     }else {
+      loginphoneerror.text("");
+      $.ajax({
+        url: "/Server_Scripts/checkPhone.php",
+        method: "POST",
+        data: { number: loginphone },
+        dataType: "json",
+        success: function(response) {
+          if (response.success) {//response success is when the number is not registered
+            loginphoneerror.text(response.success);
+          } else {
+            loginphoneerror.text("");
+            //when the phone number is okay check the password
+            if(loginpassword.trim() === ""){
+              loginpassworderror.text("please enter your password");
+             }else{//submit the data to check if password is valid on the database.
+              $.ajax({
+                url: "/Server_Scripts/login.php",
+                method: "POST",
+                data: { phone_no: loginphone, password : loginpassword },
+                dataType: "json",
+                success: function(response) {
+                  if (response.success) {
+                    loginpassworderror.text(response.success);//to do fix a bug here
+                    loginform.submit();
+                  } else {
+                    loginpassworderror.text(response.error);
+                  }
+                },//for password
+                error: function() {//to do fix a bug here
+                  loginpassworderror.text("");
+                  loginform.submit();
+                  disableLoginSubmitButton();
+                }
+              });
+             }
+          }
+        },//for phone number
+        error: function() {
+          $("#login-phone-error-message").text("Error checking number. Please try again later.");
+          disableLoginSubmitButton();
+        }
       });
-    } else{
-      $("#login-password-error-message").text("");
-          $.ajax({
-            type: "POST",
-            url: "/Server_Scripts/login.php",
-            data: { phone_no: no, password: pass},
-            dataType: "json",
-            success: function(response) {
-              if (response.error) {
-                $("#login-phone-error-message").text(response.error);
-                disableLoginSubmitButton();
-              } else {
-                $("#login-phone-error-message").text("");
-                enableLoginSubmitButton();              }
-            },
-            error: function(xhr, status, error) {
-            $('#login-phone-error-message').html = "cannot login at the moment, try again later!";
-            disableLoginSubmitButton();
-            }
-        });
-    }
+     }
   });
-});
 function enableLoginSubmitButton() {
     $("#loginSubmitButton").attr("disabled", false);
 }
 function disableLoginSubmitButton() {
     $("#loginSubmitButton").attr("disabled", true);
 }
+
+});//END LOGIN
+
 
 /**
  * THE MESSAGE SENDING PART
@@ -212,8 +234,33 @@ var sendTime = document.createElement("em");
     messageContainerDiv.appendChild(messageDiv);
 }
 
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {myFunction(this);}
+  xhttp.open("POST", "/Server_Scripts/messages.xml");
+  xhttp.send();
+}
+function myFunction(xml) {
+  const xmlDoc = xml.responseXML;
+  const x = xmlDoc.getElementsByTagName("message");
+  let table="<tr><th>message_id</th><th>phone_number</th><th>user_name</th><th>message_body</th><th>send_time</th></tr>";
+  for (let i = 0; i <x.length; i++) {
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("message_id")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("user_name")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("phone_number")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("message_body")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("send_time")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
 /*
-*MAIN CHATPAGE (functions to set theme and to store sessions).
+*MAIN PAGE (functions to set theme and to store sessions).
 */
 //changing the theme
 var light = true;

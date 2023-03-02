@@ -19,11 +19,11 @@ if ($result->num_rows == 1) {
         header("Location: /Layouts/chatpage.html");
     } else {
         // Incorrect password
-        echo json_encode(array("success" => false, "message" => "Incorrect password"));
+        echo json_encode(array("error" => "Incorrect password"));
     }
 } else {
     // User not found
-    echo json_encode(array("success" => false, "message" => "phone number not found"));
+    echo json_encode(array("error" => "phone number not found"));
 }
 $stmt->close();
 $mysqli->close();

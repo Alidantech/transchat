@@ -34,7 +34,7 @@ html, body {
     font-style: normal;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1em;
-    color: rgb(170, 233, 212);
+    color: rgba(170, 233, 212, 0.151);
     overflow: visible;
     background: linear-gradient(to bottom, #3644539d, #153a22);
     background-image: url(Files/background.jpg);
@@ -251,7 +251,7 @@ div.form button {
     top: 0;
     width: 100%;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.856);
+    background-color: rgba(0, 0, 0, 0);
     overflow: auto;
 }
 
@@ -262,7 +262,7 @@ div.settings {
    width: 25%;
    padding: 0;
     margin: 0;
-    background-color: #ffffffc2;
+    background-color: #323b33c2;
     position: fixed;
     overflow: auto;
     height: 100vh;
@@ -282,12 +282,12 @@ div.settings a {
    text-decoration: none;
    width: 100%;
    padding: 0.5em;
-   color: #000000;
+   color: #f4f5f5;
    font-size: larger;
    font-weight: 0.2em;
    border-style: solid;
    border-radius: 3em;
-   border-color: #044739;
+   border-color: #02b420;
    border-width: 0.1vw;
 }
 div.settings li {
@@ -301,7 +301,7 @@ div.settings li {
 div.settings a:hover {
    border-width: 0.2vw;
     border-radius: 3em;
-    background-color: #b8afaf;
+    background-color: #07000060;
 }
 #home-link {
     margin-top: 3em;
@@ -312,10 +312,13 @@ div.settings a:hover {
 #close_show_settings_button {
     display: none;
 }
+
+
+
 /* the chatting part */
 div.chat-container {
     overflow: auto;
-    background-color: rgba(255, 255, 255, 0.918);
+    background-color: rgba(192, 180, 180, 0.116);
     width: 75%;
     padding-bottom: 10%;
     padding: 0;
@@ -338,7 +341,7 @@ div.chat-container h1>button {
 }
 
 div.messages {
-    overflow: auto;
+    overflow: visible;
     margin-top: 3vw;
     margin-bottom: 10%;
 }
@@ -369,13 +372,13 @@ div.enter-text input {
     border-style: solid;
     border-color: rgb(2, 25, 34);
     color: rgb(96, 132, 161);
-    background-color: rgba(130, 134, 122, 0.247);
+    background-color: rgba(95, 114, 56, 0.247);
     font-size: 1.3em;
     position: relative;
 }
 div.enter-text input:focus {
-    background-color: rgb(133, 133, 133);
-    color: rgb(3, 38, 66);
+    background-color: rgb(255, 255, 255);
+    color: rgb(1, 20, 36);
     border-color: #044e3e;
 }
 div.enter-text button {
@@ -402,16 +405,21 @@ div.enter-text img {
 
 
 /* the received messages part */
-.message-and-profile-container {
+div.recieved-container {
+    margin-left: 3vw;
     overflow: hidden;
-    clear: both;
+    clear: right;
+    background-color: #04473800;
+    width: auto;
+    height: fit-content;
 }
 div.recieved {
     width: fit-content;
     max-width: 50%;
-    background-color: rgba(116, 255, 202, 0.349);
-    margin: 1em 1em 1em 1em;
-    border-radius: 2.5em;
+    min-width: 30%;
+    background-color: rgb(24, 58, 29);
+    margin: 0em 1em 1em 1em;
+    border-radius: 1em;
     padding: 0.2vw;
     border-style: solid;
     border-color: rgba(127, 139, 18, 0);
@@ -423,16 +431,18 @@ div.recieved {
     font-size: 0.7em;
 }
 div.recieved strong {
-    color: rgb(5, 105, 105);
+    color: rgb(26, 205, 218);
     font-size: 0.7em;
-    margin: 0 3vw 0 4vw;
+    margin-left: 1vw;
+    margin-right: 1em;
 }
 div.recieved p {
-    color: rgb(1, 14, 22);
-    padding: 1.5vw 1vw 0 1vw;
-    font-size: 1.2em;
+    color: rgb(180, 214, 199);
+    padding: 1em;
+    font-size: 1em;
     margin: 0;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
 .sender-pic {
     float: left;
@@ -441,14 +451,27 @@ div.recieved p {
     border-radius: 3vw;
     margin-left: 0.5vw;
 }
+.sender-pic img {
+    width: 1.5vw;
+    height: 1.5vw;
+}
 /* the sent messages part */
+.sent-container {
+    overflow: hidden;
+    clear: right;
+    background-color: #2a6b5d00;
+    width: auto;
+    height: fit-content;
+    margin-right: 3vw;
+}
 div.sent {
     overflow: hidden;
     width: fit-content;
     max-width: 50%;
-    background-color: rgba(33, 126, 248, 0.171);
-    margin: 1em;
-    border-radius: 2em;
+    min-width: 30%;
+    background-color: rgba(26, 65, 50, 0.973);
+    margin: 0em 1em 1em 1em;
+    border-radius: 1em;
     border-style: solid;
     border-color: rgba(18, 139, 139, 0);
     border-width: 0.1vw;
@@ -462,28 +485,31 @@ div.sent {
     float: right;
     background-color: rgba(203, 221, 202, 0.74);
     padding: 0.1vw;
-    border-radius: 3vw;
+    border-radius: 1vw;
     margin-right: 0.5vw;
 }
+.profile-pic img {
+    width: 1.5vw;
+    height: 1.5vw;
+}
 div.sent strong {
-    color: rgb(2, 66, 50);
+    color: rgb(23, 182, 194);
     font-size: 0.7em;
-    margin: 0 3vw 0 5vw;
-   
+    margin-left: 1em;
+    margin-right: 1vw;
 }
 div.sent p {
-    color: rgb(0, 0, 0);
-    padding: 1.5vw 1vw 0 1vw;
-    margin: 0;
-    font-size: 1.2em;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: rgb(170, 211, 170);
+    padding: 1em;
+    font-size: 1em;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
 em {
     float: right;
     font-size: 0.7em;
-    margin: 0.6vw 2.5vw 0.6vw 0.6vw;
-    color: rgb(0, 3, 3);
+    margin-right: 1em;
+    color: rgb(106, 150, 153);
     font-style: normal;
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
@@ -505,7 +531,7 @@ em {
         z-index: 100; 
         position: fixed;
         top: 0;
-        left: 0;
+        left: 0;   
         margin-top: 0.5vw;
         margin-left: 0.5vw;
     }
@@ -537,9 +563,19 @@ em {
     }
     div.sent {
         max-width: 70%;
+        min-width: 50%;
+    }
+    .profile-pic img {
+        width: 5vw;
+        height: 5vw;
     }
     div.recieved {
         max-width: 70%;
+        min-width: 50%;
+    }
+    .sender-pic img {
+        width: 5vw;
+        height: 5vw;
     }
     div.settings {
         display: none;

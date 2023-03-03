@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" id="stylesheet">
     <link rel="icon" href="Files/myfavicon-img.svg" type="image/x-icon">
-    <script src="script.js" defer></script>
+    <script src="chat.js" defer></script>
     <title>Wechat </title>
 </head>
 <body>
@@ -52,9 +52,9 @@
     <div class="enter-text">
         <form action="/Server_Scripts/messages.php" method="post" id="message-form">
             <input type="text" id="message-body" name="message_body" autocomplete="off">
-            <button type="submit" onclick="loadDoc();" name="send" id="send-button"><img id="send-img" src="Files/send-img.svg" alt=""></button>
+            <button type="submit" onclick="clearInput();" name="send" id="send-button"><img id="send-img" src="Files/send-img.svg" alt=""></button>
         </form>
-        <button id="add-file-button" type="button" onclick="actionButtons()"><img src="Files/add-files-img.svg" width="" height="" alt=""></button>
+        <button id="add-file-button" type="button" onclick="actionButtons();"><img src="Files/add-files-img.svg" width="" height="" alt=""></button>
     </div>
         
     <div class="messages">
@@ -75,11 +75,11 @@
         </div>
         <!-- MESSAGES CONTAINER BODIES -->
           <!-- container for received messages -->
-            <div class="chat">
-              <div class="sender-pic">
+            <div class="recieved-container">
+               <div class="sender-pic">
                   <img src="Files/user-img.svg" width="20vw" height="20vw" alt="">
                 </div>
-              <div class="recieved">
+                <div class="recieved">
                   <strong>Sender Name</strong>
                   <strong>~+254746977253</strong>
                   <p>Yesterday I went for a walk</p>
@@ -87,10 +87,10 @@
                 </div>  
             </div>
           <!-- container for sent messages -->
-            <div class="message-and-profile-container">
-                  <div class="profile-pic">
+            <div class="sent-container">
+                <div class="profile-pic">
                     <img src="Files/user-img.svg" width="20vw"  height="20vw" alt="">
-                  </div>
+                </div>
                 <div class="sent">
                     <strong>User Name</strong>
                     <strong>~+254748311679</strong>
@@ -98,17 +98,7 @@
                     <em>2:33 pm</em>
                 </div>
             </div>
-            <style>
-              table,th,td {
-                border : 1px solid black;
-                border-collapse: collapse;
-                color:black;
-              }
-              th,td {
-                padding: 5px;
-              }
-              </style>
-            <table id="demo"></table>
+           
     </div>
   </div>
   </div>

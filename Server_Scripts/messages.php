@@ -286,4 +286,5 @@ function getMessages(){
  $dom->save('messages.xml');
  $conn->close();
 }
+
 ?>

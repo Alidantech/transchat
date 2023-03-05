@@ -344,6 +344,7 @@ div.messages {
     overflow: visible;
     margin-top: 3vw;
     margin-bottom: 10%;
+    
 }
 /* the text entering part */
 div.enter-text {
@@ -366,12 +367,12 @@ div.enter-text input {
     padding-top: 0.5vw;
     padding-bottom: 0.5vw;
     text-indent: 3em;
-    border-radius: 2em;
+    border-radius: 0.5em;
     width: 95%;
     border-width: 0.2vw;
     border-style: solid;
     border-color: rgb(2, 25, 34);
-    color: rgb(96, 132, 161);
+    color: rgb(13, 185, 50);
     background-color: rgba(95, 114, 56, 0.247);
     font-size: 1.3em;
     position: relative;

@@ -1,33 +1,51 @@
 /**
  * THE MESSAGE SENDING PART
  */
-
-
-
-function clearInput() {
-    const myForm = document.getElementById("message-form");
-    const myInput = document.getElementById("message-body");
+// function clearInput() {
+//     const myForm = document.getElementById("message-form");
+//     const myInput = document.getElementById("message-body");
     
-    // Add an event listener for when the form is submitted
-    myForm.addEventListener("submit", function(event) {
-      // Prevent the form from actually submitting
-      event.preventDefault();
+//     // Add an event listener for when the form is submitted
+//     myForm.addEventListener("submit", function(event) {
+//       // Prevent the form from actually submitting
+//       event.preventDefault();
       
-      // Clear the value of the input field
+//       // Clear the value of the input field
       
-      myForm.submit();
-      myInput.value = "";
-    });
-  }
+//       myForm.submit();
+//       myInput.value = "";
+//     });
+//   }
+
+
+//Get the session number from the server in order to display messages sent by the current user on the right.
+var sessionPhoneNumber;
+
+function getSessionPhoneNumber() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/Server_Scripts/getSessionNum.php');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      sessionPhoneNumber = response.phoneNumber;
+      console.log("Phone number: " + sessionPhoneNumber);
+    }
+  };
+  xhr.send();
+}
+// Call the function when the page loads or when the user logs in
+getSessionPhoneNumber();
+//load the messages from the server using an ajax request  
 loadDoc();
 function loadDoc() {
   const xhttp = new XMLHttpRequest();
-  xhttp.onload = function() {myFunction(this);}
+  xhttp.onload = function() {loadMessagesFunction(this);}
   xhttp.open("POST", "/Server_Scripts/messages.xml");
   xhttp.send();
 }
-function myFunction(xml) {
-  const sessionNumber = "1";
+//Display the messages on the page by loading the xml document returned from the server.
+function loadMessagesFunction(xml) {
+  const sessionNumber = sessionPhoneNumber;
   const xmlDoc = xml.responseXML;
   const messages = xmlDoc.getElementsByTagName("message");
   for (let i = 0; i < messages.length; i++) {
@@ -44,6 +62,7 @@ function myFunction(xml) {
             const messagesDiv = document.querySelector(".messages");
             //div that contains the whole message-part.profile and content
             var conntent_and_profileDiv = document.createElement("div");
+                conntent_and_profileDiv.id = messageId;
                 messagesDiv.appendChild(conntent_and_profileDiv);
                 //div that contains the profile pic.
                 var profileDiv = document.createElement("div");
@@ -81,13 +100,18 @@ function myFunction(xml) {
                     profileDiv.className = "sender-pic";
                     contentDiv.className = "recieved";
                   }
+                 //put the current message into view
+                 var currrenMessage = document.getElementById(messageId);
+                 if (currrenMessage) {
+                   currrenMessage.scrollIntoView();
+                 }
   }
   //document.appendChild(messagesDiv)
 }
   //on send
   function displayMessages() {
   //div that contains messages.
-    var messagesDiv = document.getElementById("messages");
+    var messagesDiv = document.getElementsByClassName("messages");
         //div that contains the whole message-part.profile and content
         var conntent_and_profileDiv = document.createElement("div");
             conntent_and_profileDiv.className = "recieved-container";
@@ -164,6 +188,5 @@ function myFunction(xml) {
       }
   /** adding an on ignore functionality*/
   }
-  
   
   

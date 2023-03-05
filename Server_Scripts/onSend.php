@@ -1,38 +1,49 @@
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
+
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use Ratchet\Server\IoServer;
+use Ratchet\Http\HttpServer;
+use Ratchet\WebSocket\WsServer;
 
-class MyWebSocketServer implements MessageComponentInterface {
-  protected $clients;
+class ChatServer implements MessageComponentInterface {
+    protected $clients;
 
-  public function __construct() {
-    $this->clients = new \SplObjectStorage;
-  }
-
-  public function onOpen(ConnectionInterface $conn) {
-    $this->clients->attach($conn);
-    echo 'WebSocket connection established.' . PHP_EOL;
-  }
-
-  public function onMessage(ConnectionInterface $from, $msg) {
-    foreach ($this->clients as $client) {
-      if ($client !== $from) {
-        $client->send($msg);
-      }
+    public function __construct() {
+        $this->clients = new \SplObjectStorage;
     }
-  }
 
-  public function onClose(ConnectionInterface $conn) {
-    $this->clients->detach($conn);
-    echo 'WebSocket connection closed.' . PHP_EOL;
-  }
+    public function onOpen(ConnectionInterface $conn) {
+        $this->clients->attach($conn);
+    }
+    public function onMessage(ConnectionInterface $from, $msg) {
+        foreach ($this->clients as $client) {
+            if ($client !== $from) {
+                $client->send($msg);
+            }
+        }
+    }
 
-  public function onError(ConnectionInterface $conn, \Exception $e) {
-    echo 'WebSocket error: ' . $e->getMessage() . PHP_EOL;
-  }
+    public function onClose(ConnectionInterface $conn) {
+        $this->clients->detach($conn);
+    }
+
+    public function onError(ConnectionInterface $conn, \Exception $e) {
+        echo "An error has occurred: {$e->getMessage()}\n";
+        $conn->close();
+    }
 }
 
-$server = new \Ratchet\App('example.com', 8080);
-$server->route('/', new MyWebSocketServer);
+$server = IoServer::factory(
+    new HttpServer(
+        new WsServer(
+            new ChatServer()
+        )
+    ),
+    8080
+);
+
+echo "WebSocket server running on port 8080...\n";
 $server->run();
 ?>

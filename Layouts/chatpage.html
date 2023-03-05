@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css" id="stylesheet">
     <link rel="icon" href="Files/myfavicon-img.svg" type="image/x-icon">
     <script src="chat.js" defer></script>
-    <script src="send-receive.js"></script>
+    <script src="send-receive.js" defer></script>
     <title>Wechat </title>
 </head>
 <body>
@@ -51,11 +51,11 @@
 
     <!-- SEND A MESSAGE PART -->
     <div class="enter-text">
-        <form action="/Server_Scripts/messages.php" method="post" id="message-form">
-            <input type="text" id="message-body" name="message_body" autocomplete="off">
-            <button type="submit" onclick="clearInput();" name="send" id="send-button"><img id="send-img" src="Files/send-img.svg" alt=""></button>
-        </form>
-        <button id="add-file-button" type="button" onclick="actionButtons();"><img src="Files/add-files-img.svg" width="" height="" alt=""></button>
+        <!-- <form action="/Server_Scripts/messages.php" method="post" id="message-form"> -->
+      <input type="text" id="message-body" name="message_body" autocomplete="off" placeholder="Type your message here...">
+      <button type="submit" name="send" id="send-button"><img id="send-img" src="Files/send-img.svg" alt=""></button>
+        <!-- </form> -->
+      <button id="add-file-button" type="button" onclick="actionButtons();"><img src="Files/add-files-img.svg" width="" height="" alt=""></button>
     </div>
         
     <div class="messages">
@@ -99,7 +99,6 @@
                     <em>2:33 pm</em>
                 </div>
             </div> -->
-           
     </div>
   </div>
   </div>

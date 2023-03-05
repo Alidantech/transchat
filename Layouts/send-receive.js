@@ -1,18 +1,26 @@
-//create a web socket and refference to the desired server-socket.
-var socket = new WebSocket('ws://example.com:8080');
+const socket = new WebSocket('ws://localhost:8080');
 
-socket.onopen = function() {
-  console.log('WebSocket connection established.');
-};
+socket.addEventListener('open', function (event) {
+    console.log('WebSocket connection established.');
+});
 
-socket.onmessage = function(event) {
-  console.log('Received message: ' + event.data);
-};
+socket.addEventListener('message', function (event) {
+    const message = event.data;
+    console.log('Received message:', message);
+    // TODO: Update chat UI with received message
+     
+});
 
-socket.onerror = function(error) {
-  console.log('WebSocket error: ' + error);
-};
+function sendMessage(message) {
+    socket.send(message);
+}
 
-socket.onclose = function(event) {
-  console.log('WebSocket connection closed with code ' + event.code + ', reason: ' + event.reason);
-};
+//send a message
+const sendButton = document.getElementById('send-button');
+sendButton.addEventListener('click', function () {
+    const messageInput = document.getElementById('message-body');
+    const message = messageInput.value;
+    sendMessage(message);
+    console.log(message);
+    messageInput.value = ''; // Clear input field
+});

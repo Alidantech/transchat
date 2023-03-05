@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 echo "<style>
 html, body {
   background-color: gray;
@@ -7,7 +8,6 @@ html, body {
 </style>";
 sendNewMessage();
 
-//echo isset($_SESSION['phone_number']);
 
 #function to clean the sent messages to avoid harm.
 function test_input($data) {

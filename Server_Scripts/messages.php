@@ -1,15 +1,5 @@
 <?php
-session_start();
 
-echo "<style>
-html, body {
-  background-color: gray;
-}
-</style>";
-sendNewMessage();
-
-
-#function to clean the sent messages to avoid harm.
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
@@ -17,27 +7,9 @@ function test_input($data) {
   return $data;
 }
 //GETTING THE SESSION USER ID(this id will be embeded to the messages table as the sender id).
-function getSenderID(){
-  $phone_number = $_SESSION['phone_number'];
-  $conn = mysqli_connect('localhost', 'root', '', 'wechat_db');
-  if (!$conn) {
-      die('Connection failed: ' . mysqli_connect_error());
-  }
-  $sql = "SELECT id FROM users_data WHERE phone_number = '$phone_number'";
-  $result = mysqli_query($conn, $sql);
-  if (mysqli_num_rows($result) > 0) {
-      $row = mysqli_fetch_assoc($result);
-      $user_id = $row['id'];
-  } else {
-      echo "Error: No user found with phone number $phone_number";
-  }
-  mysqli_close($conn);
-  return  $user_id;
-}
+
 #this funtion checks if a message is clean then sends it else warns the sender if its not.
-function sendNewMessage(){
-  $message_body = test_input($_POST['message_body']);
-  $sender_id = getSenderID();
+function sendNewMessage($sender_id, $message_body){
   $conn = new mysqli("localhost", "root", "", "wechat_db");
       if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
@@ -47,7 +19,7 @@ function sendNewMessage(){
       #check if the message contains vulgar words.
       $bad_message = false;
       $vulgar_word = array(); 
-      $bad_words = file('vulgar_words.txt', FILE_IGNORE_NEW_LINES);
+      $bad_words = file('Server_Scripts/vulgar_words.txt', FILE_IGNORE_NEW_LINES);
       foreach ($bad_words as $bad_word) {
           if(strpos(strtolower($message_body), $bad_word)){
             $bad_message = true;
@@ -72,14 +44,14 @@ function sendNewMessage(){
               echo "An error occurred: " . $e->getMessage();
             }
           }
-          displayJunkMessagesList();
-                                                        
+                
       } else{ #if the message is fine add it to messages
           $sql = $conn->prepare("INSERT INTO messages(sender_id, message_body) VALUES(?, ?)");
           $sql->bind_param("is",$sender_id, $message_body);
           try{
             if ($sql->execute() === TRUE) {
               echo "message sent successifully<br>";
+              createMessagesXML();
             }
           } catch(Exception $e){
             if ($e->getCode() == 1062) {
@@ -88,14 +60,13 @@ function sendNewMessage(){
               echo "An error occurred: " . $e->getMessage();
             }
           }
-          displayMessagesList();
-    }
+        }
   $conn->close();
 }
-
 #function for the db admin to see the messages list
  function displayMessagesList(){
   // CONNECTING TO THE DATABASE
+  echo "<style>html, body {background-color: gray;}</style>";
   #Check connection
   $servername = "localhost";
   $dbusername = "root";
@@ -109,10 +80,9 @@ function sendNewMessage(){
   if(!$result) {
     die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));
   }
- 
-//   // Output the table data
+//Output the table data
   if(mysqli_num_rows($result) > 0) {
-//     //creating and styling a table to display the data
+//creating and styling a table to display the data
     echo "<style >
             table {
               border-collapse: collapse;
@@ -163,7 +133,7 @@ function sendNewMessage(){
           "</td><td>"  . $row["message_body"]. 
           "</td><td>" . $row["send_time"].
           "</td></tr>";
-}
+    }
 echo "</table>";
 } else {
 echo "0 results";
@@ -172,6 +142,7 @@ $conn->close();
 }
 function displayJunkMessagesList(){
   // CONNECTING TO THE DATABASE
+  echo "<style>html, body {background-color: gray;}</style>";
   #Check connection
   $servername = "localhost";
   $dbusername = "root";
@@ -246,9 +217,9 @@ function displayJunkMessagesList(){
   }
 }
 
-getMessages();
 #READ THE MESSAGES DATA AND PUT IT INSIDE AN XML FILE
-function getMessages(){
+function createMessagesXML(){
+  echo "created xml successifully";
    // Create a new XML document to store all the messages
    $dom = new DOMDocument('1.0', 'UTF-8');
    // Create the root element
@@ -283,8 +254,7 @@ function getMessages(){
  // Set the content type to text/xml and save the XML document to a file
  //header('Content-type: text/xml');
  $dom->formatOutput = true;
- $dom->save('messages.xml');
+ $dom->save('Server_Scripts\messages.xml');
  $conn->close();
 }
-
 ?>

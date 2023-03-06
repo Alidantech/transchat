@@ -53,7 +53,7 @@
     <div class="enter-text">
         <!-- <form action="/Server_Scripts/messages.php" method="post" id="message-form"> -->
       <input type="text" id="message-body" name="message_body" autocomplete="off" placeholder="Type your message here...">
-      <button type="submit" name="send" id="send-button"><img id="send-img" src="Files/send-img.svg" alt=""></button>
+      <button id="send-button" onclick="submitMessage();"><img id="send-img" src="Files/send-img.svg" alt=""></button>
         <!-- </form> -->
       <button id="add-file-button" type="button" onclick="actionButtons();"><img src="Files/add-files-img.svg" width="" height="" alt=""></button>
     </div>
@@ -76,29 +76,27 @@
         </div>
         <!-- MESSAGES CONTAINER BODIES -->
           <!-- container for received messages -->
-            <!-- <div class="recieved-container">
+            <div class="recieved-container">
                <div class="sender-pic">
-                  <img src="Files/user-img.svg" width="20vw" height="20vw" alt="">
+                  <img>
                 </div>
                 <div class="recieved">
-                  <strong>Sender Name</strong>
-                  <strong>~+254746977253</strong>
-                  <p>Yesterday I went for a walk</p>
-                  <em>2:33 pm</em>
+                  <strong></strong>
+                  <strong></strong>
+                  <p></p>
+                  <em></em>
                 </div>  
-            </div> -->
+            </div> 
           <!-- container for sent messages -->
-            <!-- <div class="sent-container">
+             <div class="sent-container">
                 <div class="profile-pic">
-                    <img src="Files/user-img.svg" width="20vw"  height="20vw" alt="">
+                  <img>
                 </div>
                 <div class="sent">
-                    <strong>User Name</strong>
-                    <strong>~+254748311679</strong>
-                    <p>I was out for a run this morning</p>
-                    <em>2:33 pm</em>
+                    <p></p>
+                    <em></em>
                 </div>
-            </div> -->
+            </div>
     </div>
   </div>
   </div>

@@ -1,49 +1,53 @@
 <?php
-
-require_once __DIR__ . '/vendor/autoload.php';
-require_once 'Server_Scripts\messages.php';
+session_start();
+require_once 'vendor/autoload.php';
+require_once 'messages.php';
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
+echo isset($_SESSION["phone_number"]);
 
 class ChatServer implements MessageComponentInterface {
     protected $clients;
-
     public function __construct() {
         $this->clients = new \SplObjectStorage;
     }
-
     public function onOpen(ConnectionInterface $conn) {
         $this->clients->attach($conn);
-        echo "connection establishe({$conn->resourceId})\n";
+        echo "connection established ({$conn->resourceId})\n";
     }
-
     public function onMessage(ConnectionInterface $from, $msg) {
         echo "message recieved: {$msg}\n";
          $recievedmsg = "{$msg}";
-         $sender_id = "200";   
+         $sender_id = getSenderID();   
          #TODO: make the message has all its details by getting them from the database. parse it to the client as json format.                                   
-         sendNewMessage($sender_id, $recievedmsg);
+    if(sendNewMessage($sender_id, $recievedmsg)){
         foreach ($this->clients as $client) {
             if ($client !== $from) {                                                                
                 $client->send($msg);
             }
         }
+    }else{#when the message contains vulgar words.
+        foreach ($this->clients as $client) {
+            if ($client !== $from) {                                                                
+                $client->send("message contains immoral words");
+            }else{
+                $client->send("you are using a bad language!!");
+            }
+        }    
     }
-
+    }
     public function onClose(ConnectionInterface $conn) {
         $this->clients->detach($conn);
         echo "connection closed \n";
     }
-
     public function onError(ConnectionInterface $conn, \Exception $e) {
         echo "An error has occurred: {$e->getMessage()}\n";
         $conn->close();
     }
 }
-session_start();
 function getSenderID(){
     $phone_number = $_SESSION["phone_number"];
     $conn = mysqli_connect('localhost', 'root', '', 'wechat_db');
@@ -69,7 +73,6 @@ $server = IoServer::factory(
     ),
     8080
 );
-
 echo "WebSocket server running on port 8080...\n";
 $server->run();
 ?>

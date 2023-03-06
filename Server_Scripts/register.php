@@ -1,5 +1,4 @@
 <?php
- 
 session_start();
  function test_input($data) {
   $data = trim($data);
@@ -8,23 +7,25 @@ session_start();
   return $data;
 }
 
-#AJAX REQUEST.
 #insert the data and catch the exception if the number is already registered.
-try {
-  addNewUser();
-  #displayUsersList();
-  $phone_number = test_input($_POST["phone_no"]);
-  $_SESSION["phone_number"] = $phone_number;
-  $_SESSION["logged_in"] = true;
-  header("Location: /Layouts/chatpage.html");
-} catch (mysqli_sql_exception $e) {
-  if($e->getCode() == 1062) {
-    echo "<h3 align=center>Error: The form has already been submitted please refresh and start again.</h3>";
-    echo "<style>html, body { background: linear-gradient(to right, #021100b7, #5f260681); color: lightgreen;}<style>";
-  } else {
-    echo "Error another error occured: " . $e->getMessage();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  try {
+    addNewUser();
+    #displayUsersList();
+    $phone_number = test_input($_POST["phone_no"]);
+    $_SESSION["phone_number"] = $phone_number;
+    $_SESSION["logged_in"] = true;
+    header("Location: /Layouts/chatpage.html");
+  } catch (mysqli_sql_exception $e) {
+    if($e->getCode() == 1062) {
+      echo "<h3 align=center>Error: The form has already been submitted please refresh and start again.</h3>";
+      echo "<style>html, body { background: linear-gradient(to right, #021100b7, #5f260681); color: lightgreen;}<style>";
+    } else {
+      echo "Error another error occured: " . $e->getMessage();
+    }
   }
 }
+
  #function for all the time a user registers
 function addNewUser(){
   # getting the values that the user entered validating them and testing them for safety.

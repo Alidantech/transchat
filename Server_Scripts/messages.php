@@ -1,13 +1,5 @@
 <?php
-
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
 //GETTING THE SESSION USER ID(this id will be embeded to the messages table as the sender id).
-
 #this funtion checks if a message is clean then sends it else warns the sender if its not.
 function sendNewMessage($sender_id, $message_body){
   $conn = new mysqli("localhost", "root", "", "wechat_db");
@@ -44,7 +36,7 @@ function sendNewMessage($sender_id, $message_body){
               echo "An error occurred: " . $e->getMessage();
             }
           }
-                
+          return false;      
       } else{ #if the message is fine add it to messages
           $sql = $conn->prepare("INSERT INTO messages(sender_id, message_body) VALUES(?, ?)");
           $sql->bind_param("is",$sender_id, $message_body);
@@ -60,8 +52,10 @@ function sendNewMessage($sender_id, $message_body){
               echo "An error occurred: " . $e->getMessage();
             }
           }
+          
         }
   $conn->close();
+  return true;
 }
 #function for the db admin to see the messages list
  function displayMessagesList(){

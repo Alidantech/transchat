@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once 'vendor/autoload.php';
 require_once 'messages.php';
 use Ratchet\MessageComponentInterface;
@@ -7,7 +6,6 @@ use Ratchet\ConnectionInterface;
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-echo isset($_SESSION["phone_number"]);
 
 class ChatServer implements MessageComponentInterface {
     protected $clients;
@@ -20,25 +18,49 @@ class ChatServer implements MessageComponentInterface {
     }
     public function onMessage(ConnectionInterface $from, $msg) {
         echo "message recieved: {$msg}\n";
-         $recievedmsg = "{$msg}";
-         $sender_id = getSenderID();   
+        $data = json_decode($msg);
+        $phoneNumber = $data->phone_number;
+        $message = $data->message;
+        //get the sender id from the database.
+         $conn = new mysqli("localhost", "root", "", "wechat_db");
+         $sql = $conn->prepare("SELECT * FROM users_data WHERE phone_number = ?");
+         $sql->bind_param("s", $phoneNumber);
+         $sql->execute();
+         $result = $sql->get_result();         
+         if(!$result){
+            die("failed to connect to database". $sql . "<br>" . mysqli_error($conn));
+         }
+          $sender = $result->fetch_assoc();
+          $sender_id = $sender["id"];
+          $userName = $sender["user_name"];
+          $data->user_name = $userName;
+          $new_msg = json_encode($data);
+        
          #TODO: make the message has all its details by getting them from the database. parse it to the client as json format.                                   
-    if(sendNewMessage($sender_id, $recievedmsg)){
+    if(sendNewMessage($sender_id, $message)){
         foreach ($this->clients as $client) {
             if ($client !== $from) {                                                                
-                $client->send($msg);
+                $client->send($new_msg);
             }
         }
     }else{#when the message contains vulgar words.
+        //TODO: add a functionality to remove a user who misbehaves
         foreach ($this->clients as $client) {
             if ($client !== $from) {                                                                
-                $client->send("message contains immoral words");
+                $client->send("<style>#bad{
+                    color:red;
+                    background: rgba(29, 39, 29, 0.74);
+                }</style><p id=\"bad\">message contains bad words!!</p>");
             }else{
-                $client->send("you are using a bad language!!");
+                $client->send("<style>#bad{
+                    color:red;
+                    background: black;
+                }</style><p id=\"bad\">you are using a bad language!!</p>");
             }
         }    
     }
     }
+    //when someone disconects from the web socket.
     public function onClose(ConnectionInterface $conn) {
         $this->clients->detach($conn);
         echo "connection closed \n";
@@ -48,23 +70,7 @@ class ChatServer implements MessageComponentInterface {
         $conn->close();
     }
 }
-function getSenderID(){
-    $phone_number = $_SESSION["phone_number"];
-    $conn = mysqli_connect('localhost', 'root', '', 'wechat_db');
-    if (!$conn) {
-        die('Connection failed: ' . mysqli_connect_error());
-    }
-    $sql = "SELECT id FROM users_data WHERE phone_number = '$phone_number'";
-    $result = mysqli_query($conn, $sql);
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $user_id = $row['id'];
-    } else {
-        echo "Error: No user found with phone number $phone_number";
-    }
-    mysqli_close($conn);
-    return  $user_id;
-  }
+//creating the server socket
 $server = IoServer::factory(
     new HttpServer(
         new WsServer(

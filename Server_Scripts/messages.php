@@ -246,7 +246,7 @@ function createMessagesXML(){
     }
   }
  // Set the content type to text/xml and save the XML document to a file
- //header('Content-type: text/xml');
+ #header('Content-type: text/xml');
  $dom->formatOutput = true;
  $dom->save('Server_Scripts\messages.xml');
  $conn->close();

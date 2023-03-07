@@ -1,3 +1,20 @@
+//get the session phone number
+let sessionUserPhoneNumber;
+function getSessionPhoneNumber() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/Server_Scripts/getSessionNum.php');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var response = JSON.parse(xhr.responseText);
+      sessionUserPhoneNumber = response.phoneNumber;
+      console.log("Phone number: " + sessionUserPhoneNumber);
+    }
+  };
+  xhr.send();
+}
+getSessionPhoneNumber();
+
+//connect to the websocket
 const socket = new WebSocket('ws://localhost:8080');
 
 socket.addEventListener('open', function (event) {
@@ -5,8 +22,14 @@ socket.addEventListener('open', function (event) {
 });
 
 socket.addEventListener('message', function (event) {
-    const message = event.data;//TODO: after making the data carry a json format parse it to javascript using json.parse().
+    const message = JSON.parse(event.data);
+    //TODO: after making the data carry a json format parse it to javascript using json.parse().
     console.log('Received message:', message);
+    var jsonuserName = message.user_name;
+    var jsonphoneNumber = message.phone_number;
+    var jsonmessageText = message.message;
+
+
   // TODO: Update chat UI with received message, create div elements to show the new messages.
   const messagesDiv = document.querySelector(".messages");
   //div that contains the whole message-part.profile and content
@@ -31,13 +54,13 @@ socket.addEventListener('message', function (event) {
           conntent_and_profileDiv.appendChild(contentDiv);
       //create the elements to contain the message_body, username, phone, and send time
         var userName = document.createElement("Strong");
-            userName.innerHTML = "username";
+            userName.innerHTML = jsonuserName;
             contentDiv.appendChild(userName);
         var phoneNumber = document.createElement("strong");
-            phoneNumber.innerHTML = "~phone"
+            phoneNumber.innerHTML = "~"+jsonphoneNumber;
             contentDiv.appendChild(phoneNumber);
         var messageText = document.createElement("p");
-            messageText.innerHTML = message;
+            messageText.innerHTML = jsonmessageText;
             contentDiv.appendChild(messageText);
         var sendTime = document.createElement("em");
             sendTime.innerHTML = getCurrentTime();
@@ -93,12 +116,18 @@ function submitMessage(){
               contentDiv.appendChild(sendTime);
         //put the current message into view
         conntent_and_profileDiv.scrollIntoView();
-        sendMessage(message);
+        sendMessage(sessionUserPhoneNumber, message);
         messagebox.value = "";
         messagebox.style.borderColor = "";
       } 
 }
-function sendMessage(message) {
-    socket.send(message);
+function sendMessage(phoneNumber, message) {
+  var data = {
+      phone_number: phoneNumber,
+      message: message
+  };
+  var messageData = JSON.stringify(data);
+  socket.send(messageData);
 }
+
 

@@ -10,12 +10,10 @@ function getSessionPhoneNumber() {
     if (xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
       sessionPhoneNumber = response.phoneNumber;
-      console.log("Phone number: " + sessionPhoneNumber);
     }
   };
   xhr.send();
 }
-
 // Call the function when the page loads or when the user logs in
 getSessionPhoneNumber();
 //load the messages from the server using an ajax request  
@@ -25,9 +23,11 @@ function loadDoc() {
   xhttp.onload = function() {loadMessagesFunction(this);}
   xhttp.open("POST", "/Server_Scripts/messages.xml");
   xhttp.send();
-}//Display the messages on the page by loading the xml document returned from the server.
+}
+//Display the messages on the page by loading the xml document returned from the server.
 function loadMessagesFunction(xml) {
   const sessionNumber = sessionPhoneNumber;
+  console.log(sessionPhoneNumber);
   const xmlDoc = xml.responseXML;
   const messages = xmlDoc.getElementsByTagName("message");
   for (let i = 0; i < messages.length; i++) {
@@ -39,47 +39,76 @@ function loadMessagesFunction(xml) {
     const xmlsendTime = message.getElementsByTagName("send_time")[0].textContent;
     // Display the message information on a web page.
     //display messages sent by curent user differently.
-  //select the div that contains messages.
-  const messagesDiv = document.querySelector(".messages");
-  //div that contains the whole message-part.profile and content
-  var conntent_and_profileDiv = document.createElement("div");
-    conntent_and_profileDiv.id = messageId;
-    messagesDiv.appendChild(conntent_and_profileDiv);
-    //div that contains the profile pic.
-    var profileDiv = document.createElement("div");
-      conntent_and_profileDiv.appendChild(profileDiv);
-      //create an element to contain the profile pic.
-      var profilePhoto = document.createElement("img");
-            profilePhoto.width = "";
-            profilePhoto.height = "";
-            profilePhoto.src = "Files/user-img.svg";
-            profilePhoto.alt = "";
-            profileDiv.appendChild(profilePhoto);
-      //div that contains the message.
-      var contentDiv = document.createElement("div");
-          conntent_and_profileDiv.appendChild(contentDiv);
-      //create the elements to contain the message_body, username, phone, and send time
-        var userName = document.createElement("Strong");
-            userName.innerHTML = xmluserName;
-            contentDiv.appendChild(userName);
-        var phoneNumber = document.createElement("strong");
-            phoneNumber.innerHTML = "~"+xmlphoneNumber
-            contentDiv.appendChild(phoneNumber);
-        var messageText = document.createElement("p");
-            messageText.innerHTML = xmlmessageBody;
-            contentDiv.appendChild(messageText);
-        var sendTime = document.createElement("em");
-            sendTime.innerHTML = xmlsendTime;
-            contentDiv.appendChild(sendTime);
       console.log(messageId);
-      if(xmlphoneNumber ===sessionNumber){
-        conntent_and_profileDiv.className = "sent-container";
-        profileDiv.className = "profile-pic";
-        contentDiv.className = "sent";
-      }else {
-        conntent_and_profileDiv.className = "recieved-container";
-        profileDiv.className = "sender-pic";
-        contentDiv.className = "recieved";
+      if(xmlphoneNumber ===sessionNumber){//when message was sent by me
+         //select the div that contains messages.
+            const messagesDiv = document.querySelector(".messages");
+            //div that contains the whole message-part.profile and content
+            var conntent_and_profileDiv = document.createElement("div");
+              conntent_and_profileDiv.id = messageId;
+              messagesDiv.appendChild(conntent_and_profileDiv);
+              //div that contains the profile pic.
+              var profileDiv = document.createElement("div");
+                conntent_and_profileDiv.appendChild(profileDiv);
+                //create an element to contain the profile pic.
+                var profilePhoto = document.createElement("img");
+                      profilePhoto.width = "";
+                      profilePhoto.height = "";
+                      profilePhoto.src = "Files/user-img.svg";
+                      profilePhoto.alt = "";
+                      profileDiv.appendChild(profilePhoto);
+                //div that contains the message.
+                var contentDiv = document.createElement("div");
+                    conntent_and_profileDiv.appendChild(contentDiv);
+                //create the elements to contain the message_body, username, phone, and send time
+                  var messageText = document.createElement("p");
+                      messageText.innerHTML = xmlmessageBody;
+                      contentDiv.appendChild(messageText);
+                  var sendTime = document.createElement("em");
+                      sendTime.innerHTML = xmlsendTime;
+                      contentDiv.appendChild(sendTime);
+
+              conntent_and_profileDiv.className = "sent-container";
+              profileDiv.className = "profile-pic";
+              contentDiv.className = "sent";
+
+      }else {//when message was sent by others
+            //select the div that contains messages.
+            const messagesDiv = document.querySelector(".messages");
+            //div that contains the whole message-part.profile and content
+            var conntent_and_profileDiv = document.createElement("div");
+              conntent_and_profileDiv.id = messageId;
+              messagesDiv.appendChild(conntent_and_profileDiv);
+              //div that contains the profile pic.
+              var profileDiv = document.createElement("div");
+                conntent_and_profileDiv.appendChild(profileDiv);
+                //create an element to contain the profile pic.
+                var profilePhoto = document.createElement("img");
+                      profilePhoto.width = "";
+                      profilePhoto.height = "";
+                      profilePhoto.src = "Files/user-img.svg";
+                      profilePhoto.alt = "";
+                      profileDiv.appendChild(profilePhoto);
+                //div that contains the message.
+                var contentDiv = document.createElement("div");
+                    conntent_and_profileDiv.appendChild(contentDiv);
+                //create the elements to contain the message_body, username, phone, and send time
+                  var userName = document.createElement("Strong");
+                      userName.innerHTML = xmluserName;
+                      contentDiv.appendChild(userName);
+                  var phoneNumber = document.createElement("strong");
+                      phoneNumber.innerHTML = "~"+xmlphoneNumber
+                      contentDiv.appendChild(phoneNumber);
+                  var messageText = document.createElement("p");
+                      messageText.innerHTML = xmlmessageBody;
+                      contentDiv.appendChild(messageText);
+                  var sendTime = document.createElement("em");
+                      sendTime.innerHTML = xmlsendTime;
+                      contentDiv.appendChild(sendTime);
+
+                      conntent_and_profileDiv.className = "recieved-container";
+                      profileDiv.className = "sender-pic";
+                      contentDiv.className = "recieved";
       }
       //put the current message into view
       var currrenMessage = document.getElementById(messageId);

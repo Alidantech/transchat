@@ -256,6 +256,7 @@ div.recieved p {
     width: auto;
     height: fit-content;
     margin-right: 3vw  ;
+    margin-bottom: 1vw;
 }
 div.sent {
     overflow: hidden;

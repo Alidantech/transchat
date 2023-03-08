@@ -164,16 +164,16 @@ div.enter-text input {
     width: 95%;
     border-width: 0.2vw;
     border-style: solid;
-    border-color: rgb(2, 25, 34);
+    border-color: rgb(4, 78, 48);
     color: rgb(96, 132, 161);
-    background-color: rgba(130, 134, 122, 0.247);
+    background-color: rgba(71, 163, 155, 0.123);
     font-size: 1.3em;
     position: relative;
 }
 div.enter-text input:focus {
-    background-color: rgb(133, 133, 133);
+    background-color: rgb(166, 197, 197);
     color: rgb(3, 38, 66);
-    border-color: #044e3e;
+    border-color: #013613;
 }
 div.enter-text button {
     background-color: rgba(255, 255, 255, 0);
@@ -213,8 +213,9 @@ div.recieved {
     min-width: 30%;
     background-color: rgba(40, 48, 48, 0.897);
     margin: 0em 1em 1em 1em;
+    margin-bottom: 3vw;
     border-radius: 1em;
-    padding: 0.2vw;
+    padding: 0.5vw;
     border-style: solid;
     border-color: rgba(127, 139, 18, 0);
     border-width: 0.1vw;
@@ -239,8 +240,8 @@ div.recieved p {
 }
 .sender-pic {
     float: left;
-    background-color: rgba(212, 164, 164, 0.685);
-    padding: 0.1vw;
+    background-color: rgba(44, 43, 43, 0.685);
+    padding: 0.5vw;
     border-radius: 3vw;
     margin-left: 0.5vw;
 }
@@ -277,8 +278,8 @@ div.sent {
 }
 .profile-pic {
     float: right;
-    background-color: rgba(203, 221, 202, 0.74);
-    padding: 0.1vw;
+    background-color: rgba(27, 29, 27, 0.74);
+    padding: 0.5vw;
     border-radius: 1vw;
     margin-right: 0.5vw;
 }
@@ -308,6 +309,40 @@ em {
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
 }
+/*Container for updates and warning*/
+div.update-container {
+    color: red;
+    text-align: center;
+    width: 100%;
+   }
+   div.warning {
+     background-color: #02173300;
+     color: rgb(192, 64, 64);
+   }
+   div.warning p{ 
+       width: 30%;
+       margin-left: 35%;
+       margin-right: 35%;
+       background-color: #748b0b27;
+       border-radius: 0.5vw;
+       padding: 0.4vw;
+       font-size: 0.7em;
+       font-weight: bold;
+   }
+   div.update {
+       background-color: #25584700;
+       color: rgb(84, 116, 148);
+   }
+   div.update p{ 
+       width: 30%;
+       margin-left: 35%;
+       margin-right: 35%;
+        background-color: #2ac71213;
+        border-radius: 0.5vw;
+        padding: 0.4vw;
+        font-weight: bold;
+        font-size: 0.7em;
+   }
 /* for smaller screens */
 @media (max-width: 1200px) {
     div.settings {

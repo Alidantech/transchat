@@ -15,6 +15,11 @@ class ChatServer implements MessageComponentInterface {
     public function onOpen(ConnectionInterface $conn) {
         $this->clients->attach($conn);
         echo "connection established ({$conn->resourceId})\n";
+        $query = $conn->httpRequest->getUri()->getQuery();
+        parse_str($query, $params);
+    
+        $phone_number = $params['phone_number'];
+    
     }
     public function onMessage(ConnectionInterface $from, $msg) {
         echo "message recieved: {$msg}\n";
@@ -34,28 +39,29 @@ class ChatServer implements MessageComponentInterface {
           $sender_id = $sender["id"];
           $userName = $sender["user_name"];
           $data->user_name = $userName;
-          $new_msg = json_encode($data);
-        
          #TODO: make the message has all its details by getting them from the database. parse it to the client as json format.                                   
     if(sendNewMessage($sender_id, $message)){
+        $data->good_message = true;
+        $new_msg = json_encode($data);
         foreach ($this->clients as $client) {
-            if ($client !== $from) {                                                                
+            if ($client !== $from) {                                                              
                 $client->send($new_msg);
             }
         }
     }else{#when the message contains vulgar words.
         //TODO: add a functionality to remove a user who misbehaves
+        $data->good_message = false;
         foreach ($this->clients as $client) {
-            if ($client !== $from) {                                                                
-                $client->send("<style>#bad{
-                    color:red;
-                    background: rgba(29, 39, 29, 0.74);
-                }</style><p id=\"bad\">message contains bad words!!</p>");
+            if ($client !== $from) {      
+                $data->message = "this message can't be displayed! It contains bad words;";
+                $bad_msg = json_encode($data);                                                         
+                $client->send($bad_msg);
             }else{
-                $client->send("<style>#bad{
-                    color:red;
-                    background: black;
-                }</style><p id=\"bad\">you are using a bad language!!</p>");
+                $data->phone_number = "100";
+                $data->user_name = "ADMIN";
+                $data->message = "Warning! you are using bad language!";
+                $warn_msg = json_encode($data);  
+                $client->send($warn_msg);
             }
         }    
     }

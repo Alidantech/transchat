@@ -220,7 +220,10 @@ function createMessagesXML(){
    $root = $dom->createElement('messages');
    $dom->appendChild($root);
   $conn = new mysqli("localhost", "root", "", "wechat_db");
-  $sql = "SELECT * fROM messages JOIN users_data ON messages.sender_id = users_data.id;";
+  $sql = "SELECT *
+          FROM messages
+          JOIN users_data ON messages.sender_id = users_data.id
+          ORDER BY message_id ASC;";
   $result = mysqli_query($conn, $sql);
   if(!$result) {
     die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));

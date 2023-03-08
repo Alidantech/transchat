@@ -251,7 +251,7 @@ div.form button {
     top: 0;
     width: 100%;
     height: auto;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(142, 158, 170, 0.616);
     overflow: auto;
 }
 
@@ -262,7 +262,7 @@ div.settings {
    width: 25%;
    padding: 0;
     margin: 0;
-    background-color: #323b33c2;
+    background-color: #1a756d60;
     position: fixed;
     overflow: auto;
     height: 100vh;
@@ -272,7 +272,7 @@ width: 100%;
 font-size: 1.8em;
 text-decoration: underline;
 margin: 0;
-color: #000000;
+color: #060450;
 background: linear-gradient(to left, #08704d49, #fdfdfd);
 position: fixed;
 top: 0;
@@ -282,12 +282,12 @@ div.settings a {
    text-decoration: none;
    width: 100%;
    padding: 0.5em;
-   color: #f4f5f5;
+   color: #e7e7e7;
    font-size: larger;
    font-weight: 0.2em;
    border-style: solid;
    border-radius: 3em;
-   border-color: #02b420;
+   border-color: #02331f;
    border-width: 0.1vw;
 }
 div.settings li {
@@ -301,7 +301,8 @@ div.settings li {
 div.settings a:hover {
    border-width: 0.2vw;
     border-radius: 3em;
-    background-color: #07000060;
+    background-color: #07000010;
+    color: #bae4ee;
 }
 #home-link {
     margin-top: 3em;
@@ -418,10 +419,10 @@ div.recieved {
     width: fit-content;
     max-width: 50%;
     min-width: 30%;
-    background-color: rgb(24, 58, 29);
-    margin: 0em 1em 1em 1em;
-    border-radius: 1em;
-    padding: 0.2vw;
+    background-color: rgba(50, 126, 134, 0.897);
+    margin: 0em 1em 2em 1em;
+    border-radius: 0em 0.7em 0.7em 0.7em;
+    padding: 0.5vw;
     border-style: solid;
     border-color: rgba(127, 139, 18, 0);
     border-width: 0.1vw;
@@ -432,13 +433,13 @@ div.recieved {
     font-size: 0.7em;
 }
 div.recieved strong {
-    color: rgb(26, 205, 218);
+    color: rgb(57, 231, 13);
     font-size: 0.7em;
     margin-left: 1vw;
     margin-right: 1em;
 }
 div.recieved p {
-    color: rgb(180, 214, 199);
+    color: rgb(242, 248, 245);
     padding: 1em;
     font-size: 1em;
     margin: 0;
@@ -447,8 +448,8 @@ div.recieved p {
 }
 .sender-pic {
     float: left;
-    background-color: rgba(212, 164, 164, 0.685);
-    padding: 0.1vw;
+    background-color: rgba(21, 85, 110, 0.685);
+    padding: 0.2vw;
     border-radius: 3vw;
     margin-left: 0.5vw;
 }
@@ -470,22 +471,22 @@ div.sent {
     width: fit-content;
     max-width: 50%;
     min-width: 30%;
-    background-color: rgba(26, 65, 50, 0.973);
+    background-color: rgba(34, 131, 85, 0.719);
     margin: 0em 1em 1em 1em;
-    border-radius: 1em;
+    border-radius: 2em 0em 1em 2em;
     border-style: solid;
     border-color: rgba(18, 139, 139, 0);
     border-width: 0.1vw;
     right: 0;
     float: right;
-    padding: 0.2vw;
+    padding: 0vw;
     clear: left;
     font-size: 0.7em;
 }
 .profile-pic {
     float: right;
-    background-color: rgba(203, 221, 202, 0.74);
-    padding: 0.1vw;
+    background-color: rgba(82, 185, 77, 0.527);
+    padding: 0.2vw;
     border-radius: 1vw;
     margin-right: 0.5vw;
 }
@@ -494,14 +495,14 @@ div.sent {
     height: 1.5vw;
 }
 div.sent strong {
-    color: rgb(23, 182, 194);
+    color: rgb(6, 70, 12);
     font-size: 0.7em;
     margin-left: 1em;
     margin-right: 1vw;
 }
 div.sent p {
-    color: rgb(170, 211, 170);
-    padding: 1em;
+    color: rgb(253, 253, 253);
+    padding: 0.5em;
     font-size: 1em;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -510,10 +511,44 @@ em {
     float: right;
     font-size: 0.7em;
     margin-right: 1em;
-    color: rgb(106, 150, 153);
+    color: rgb(2, 38, 41);
     font-style: normal;
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
+}
+/*container for warnings and updates*/
+div.update-container {
+ color: red;
+ text-align: center;
+ width: 100%;
+}
+div.warning {
+  background-color: #02173300;
+  color: rgb(167, 8, 8);
+}
+div.warning p{ 
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    background-color: #0720012d;
+    border-radius: 1vw;
+    padding: 0.2vw;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+div.update {
+    background-color: #060f0c00;
+    color: rgb(5, 28, 51);
+}
+div.update p{ 
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+     background-color: #2338203b;
+     border-radius: 1vw;
+     padding: 0.2vw;
+     font-weight: bold;
+     font-size: 0.7em;
 }
 /* for smaller screens */
 @media (max-width: 1200px) {

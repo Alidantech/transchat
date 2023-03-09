@@ -1,21 +1,14 @@
-  /* setting and resetting */
-  input:focus {
-    all: initial;
-  }
-  input{
-    all: initial;
-    }
-   button {
-    all: initial;
-  }
-  button:hover {
-    cursor: pointer;
-  }
-  ::-webkit-scrollbar {
-     width: 0; 
+/* setting and resetting html default*/
+input {all: initial; }
+textarea {all:initial;}
+button {all: initial;}
+select {all:initial;}
+button:hover { cursor: pointer;}
+::-webkit-scrollbar {
+    width: 0; 
     height: 0;
-  }
-  .error {
+}
+.error {
     color: rgb(243, 71, 3);
     font-size: 0.8em;
     text-align: center;
@@ -190,7 +183,6 @@ div.form button {
     width: 15%;
     text-align: center;
 }
-
 /* tablet */
 @media (max-width: 1300px) {
 
@@ -255,28 +247,46 @@ div.form button {
     overflow: auto;
 }
 
-/* the settings part */
+/* SETTINGS PART DASHBOARD */
+/*dashboard*/
 div.settings {
     display: block;
-   float: left;
-   width: 25%;
-   padding: 0;
+    float: left;
+    width: 30%;
+    padding: 0;
     margin: 0;
     background-color: #1a756d60;
     position: fixed;
     overflow: auto;
     height: 100vh;
 }
-div.settings h1 {
-width: 100%;
-font-size: 1.8em;
-text-decoration: underline;
-margin: 0;
-color: #060450;
-background: linear-gradient(to left, #08704d49, #fdfdfd);
-position: fixed;
-top: 0;
-left: 0;
+div.settings h2 {
+    font-size: 1.8em;
+    margin: 0em;
+    color: #11cebe;
+    background: linear-gradient(to left, #08704d1a, #fdfdfd17);
+    top: 0;
+    left: 0;
+    padding-bottom: 0.3em;
+    padding-left: 0.3em;
+    padding-top: 0.3em;
+    overflow: hidden;
+    position: fixed;
+    width: 28%;
+}
+h2  img {
+    padding: 0.2em;
+    float: left;
+}
+#goBack {
+    float: right;
+    padding: 0.2em;
+}
+#goBack:hover {
+    cursor: pointer;
+}
+div.frames {
+    margin-top: 4em;
 }
 div.settings a {
    text-decoration: none;
@@ -290,11 +300,16 @@ div.settings a {
    border-color: #02331f;
    border-width: 0.1vw;
 }
+div.settings ul {
+    margin: 0;
+    padding: 0;
+}
 div.settings li {
+    margin: 2em;
     list-style-type: none;
    padding: 0;
-   margin-top: 2em;
-   margin-bottom: 5em;
+   margin-top: 4em;
+   margin-bottom: 1em;
    top: 0;
    left: 0;
 }
@@ -313,21 +328,280 @@ div.settings a:hover {
 #close_show_settings_button {
     display: none;
 }
+/* dashboard part */
+div.dashboard {
+    display: block;
+}
 
-
-
-/* the chatting part */
+/*div containig a list of all inboxes*/
+div.inbox {
+    background-color: #0fa0aa79;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+div.inbox-details {
+    background-color: #0118170e;
+    color: #011817;
+    margin: 0;
+    padding: 0;
+}
+div.inbox-details p{
+    color: rgb(159, 193, 194);
+    margin-left: 5em;
+    overflow: hidden;
+    font-size: smaller;
+    text-overflow: ellipsis;
+    max-height: 2.7em; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-right: 0.3em;
+}
+div.inbox-details:hover {
+    background-color: #01180a46;
+    cursor: pointer;
+}
+div.inbox-details strong{
+    color: #8ed4d1;
+    margin-left: 1em;
+    margin-top: 0.5em;
+    font-size: smaller;
+}
+div.inbox-details img{
+    background-color: #2b4736;
+    border-radius: 2em;
+    padding: 0.2em;
+    margin-top: 0.5em;
+    float: left;
+    margin-left: 1em;
+}
+mark {
+    color: #17492b;
+    float: right;
+    margin-right: 0.3em;
+    background-color: rgba(23, 23, 134, 0);
+}
+/*option add a new group */
+div.addnew {
+    overflow: visible;
+    background-color: #0fa0aa79;
+    color: #011817;
+    height: 100vh;
+    padding: 0.2em;
+    border-style: solid;
+    border-color: #02250e27;
+    display: none;
+}
+div.addnew button{
+    border-style: solid;
+    border-color: #033a15;
+    text-align: center;
+    padding: 0.5vw;
+    width: 20%;
+    border-radius: 0.5em;
+    margin-left: 20%;
+    color: #02270b;
+    font-size: 1.2em;
+}
+div.addnew button:hover{
+    background-color: #01180a;
+    color: #faeeee;
+}
+div.addnew textarea{
+    background-color: #6ecfa800;
+    margin: 0.2em;
+    width: 95%;
+    min-width: 95%;
+    max-width: 97%;
+    border-color: #033021;
+    border-style: solid;
+    border-width: 0.1em;
+    color: #faeeee;
+    padding: 0.2em;
+}
+div.addnew input {
+    padding: 0.7em;
+    border-style: solid;
+    box-shadow: none;
+    border-color: #083602;
+    border-width: 0.1em;
+    width: 90%;
+    color: #faeeee;
+    padding: 0.5vw;
+    margin: 0.2em;
+}
+div.addnew select {
+    background-color: #144934fd;
+    width: 91%;
+    color: #afd9e0;
+    padding: 0.5em;
+    margin: 0.2vw;
+    border-radius: 0.5em;
+    border-style: solid;
+    border-color: #083602;
+    border-width: 0.1em;
+}
+/* the div containing the list of groups */
+div.groups {
+    background-color: #0fa0aa79;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+div.group-details {
+    background-color: #0118170e;
+    color: #011817;
+    margin: 0;
+    padding: 0;
+}
+div.group-details:hover {
+    background-color: #01180a46;
+    cursor: pointer;
+}
+div.group-details p{
+    color: rgb(159, 193, 194);
+    margin-left: 5em;
+    overflow: hidden;
+    font-size: smaller;
+    text-overflow: ellipsis;
+    max-height: 2.4em; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-right: 0.3em;
+}
+div.group-details strong{
+    color: #8ed4d1;
+    margin-left: 1em;
+    margin-top: 0.5em;
+    font-size: smaller;
+}
+div.group-details img{
+    background-color: #2b4736;
+    border-radius: 2em;
+    padding: 0.2em;
+    margin-top: 0.5em;
+    float: left;
+    margin-left: 1em;
+}
+mark {
+    color: #17492b;
+    float: right;
+    margin-right: 0.3em;
+    background-color: rgba(23, 23, 134, 0);
+}
+/* div that contains the account details */
+div.account {
+    display: none;
+    background-color: #0d8da3a2;
+    height: 100vh;
+    color: #ffffff;
+}
+div.account img{
+    background-color: #1db3568f;
+    border-radius: 10em;
+    padding: 0em;
+    margin: 0em;
+    margin-top: 6em;
+}
+div.profile-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #01180a00;
+}
+div.account-username {
+    width: 99%;
+    background-color: #5dd68b00;
+    margin-top: 3vw;
+    padding: 0em;
+    text-align: center;
+    border-style: solid;
+    border-color: #419963a4;
+    border-width: 0.1em;
+}
+div.account-phonenumber {
+    width: 99%;
+    background-color: #20493000;
+    margin-top: 3vw;
+    padding: 0em;
+    text-align: center;
+    border-style: solid;
+    border-color: #4a9e6a6c;
+    border-width: 0.1em;
+}
+div.joindate{
+    width: 99%;
+    background-color: #139b4700;
+    margin-top: 3vw;
+    padding: 0em;
+    text-align: center;
+    padding-top: 0em;
+    border-style: solid;
+    border-color: #4a9e6a54;
+    border-width: 0.1em;
+}
+div.account p{
+ text-align: left;
+ font-size: 0.7em;
+    top: 0;
+    padding-left: 1em;
+    color: #050c4dab;
+    font-weight: bold;
+    padding-bottom: 1em;
+}
+div.account strong {
+    padding: 0.2em;
+    background-color: #01180a00;
+    text-align: center;
+    color: #bcf7d9;
+    font-weight: normal;
+}
+div.account em{
+    float: none;
+    font-size: large;
+    color: #fafafa;
+}
+/* div that contains info about wechat */
+div.about-us {
+    color: #abdbbb;
+    background-color: rgba(44, 82, 97, 0.534);
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    display: none;
+}
+div.about-us p{
+    text-align: start;
+    padding: 0.7em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 0.8em;
+}
+div.about-us a{
+    border: none;
+    color: rgb(0, 183, 255);
+    text-decoration: underline;
+}
+footer p {
+    color: #14d85f;
+    font-style: italic;
+    font-size: 0.8em;
+}
+/*  THE CHATTING PART */
 div.chat-container {
     overflow: auto;
-    background-color: rgba(192, 180, 180, 0.116);
-    width: 75%;
+    background-color: rgba(182, 236, 216, 0);
+    width: 70%;
     padding-bottom: 10%;
     padding: 0;
     height: 100vh;
     float: right;
+    border-style: solid;
+    border-width: 0.1em;
+    border-color: #04fa98;
 }
 div.chat-container h1 {
-    background: linear-gradient(to bottom, #93f0f77a, #ffffff4d);
+    background: linear-gradient(to bottom, #075358b6, #ffffff4d);
     color: #033624;
     font-size: 1em;
     top: 0;
@@ -349,7 +623,7 @@ div.messages {
 }
 /* the text entering part */
 div.enter-text {
-    width: 71%;
+    width: 69.3%;
     height:fit-content;
     position: fixed;
     bottom: 0;
@@ -358,8 +632,7 @@ div.enter-text {
     border-radius: 1em;
     border-color: rgba(15, 15, 100, 0.082);
     border-style: solid;
-    margin: 1.2vw;
-    background-color: rgba(211, 211, 211, 0);
+    background-color: rgba(235, 245, 234, 0.644);
     border-width: 0.4em;
     vertical-align: middle;
 }

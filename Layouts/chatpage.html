@@ -8,40 +8,185 @@
     <link rel="icon" href="Files/myfavicon-img.svg" type="image/x-icon">
     <script src="chat.js" defer></script>
     <script src="send-receive.js" defer></script>
+    <script src="settings.js" defer></script>
     <title>Wechat </title>
 </head>
 <body>
   <!-- CHAT PAGE FRAGMENT -->
   <div id="chat-page">
     <div class="settings" id="settings-menu">
-       <h1>
-        <button id="close_show_settings_button" onclick="showSettings()">
-          <img src="Files/close-img.svg" alt=""  width="20vw" height="20vw">
-        </h1>
-       <ul id="home-link">
-      <li><a id="theme" onclick="changeTheme()" href="#">
-        <img id="theme-image" src="Files/dark-img.svg" width="20vw"  height="20vw" alt=""> Theme
-    </a></li>
-      <li><a href="#ll">
-        <img src="Files/dashboard-img.svg" width="20vw"   height="20vw" alt=""> Dashboard
-      </a></li>
-      <li><a href="#ll">
-        <img src="Files/group-img.svg"  width="20vw"  height="20vw" alt="">Groups
-      </a></li>
-      <li><a href="#ll">
-        <img src="Files/inbox-img.svg" width="20" height="20vw" alt="">Inbox
-      </a></li>
-      <li><a href="#ll">
-        <img src="Files/add-new-img.svg" width="20vw"  height="20vw" alt="">Add New
-      </a></li>
-      <li><a href="#ll">
-        <img src="Files/logout-img.svg" width="20vw" height="20vw" alt="">Account
-      </a></li>
-      <li><a href="#ll">
-        <img src="Files/about-us-img.svg" width="20vw" height="20vw" alt="">About Us
-      </a></li>
-      </ul>
+      <div class="header">
+        <h2><img src="Files/myfavicon-img.svg"  width="30vw"  height="30vw" alt="">Wechat <img src="Files/back-img.svg" id="goBack" onclick="openDashboard()"  width="25vw"  height="25vw" alt=""></h2>
+      </div>
+   <div class="frames">
+    <div class="dashboard">
+      <h1>
+       <button id="close_show_settings_button" onclick="showSettings();">
+         <img src="Files/close-img.svg" alt=""  width="20vw" height="20vw">
+       </h1>
+      <ul id="home-link">
+       <li><a onclick="changeTheme()" href="#"><img id="theme-image" src="Files/dark-img.svg" width="20vw"  height="20vw" alt="">Theme</a></li>
+       <li><a onclick="showInbox();"  href="#ll" ><img src="Files/inbox-img.svg" width="20" height="20vw" alt="">Inbox</a></li>
+       <li><a onclick="showGroups()" href="#ll"><img src="Files/group-img.svg"  width="20vw"  height="20vw" alt="">Groups</a></li>
+       <li><a onclick="showAddnew()" href="#ll"><img src="Files/add-new-img.svg" width="20vw"  height="20vw" alt="">Add New</a></li>
+       <li><a onclick="showAccount()" href="#ll"><img src="Files/logout-img.svg" width="20vw" height="20vw" alt="">Account</a></li>
+       <li><a onclick="showAboutUs()" href="#ll"><img src="Files/about-us-img.svg" width="20vw" height="20vw" alt="">About Us</a></li>
+     </ul>
+     </div>
+     <div class="inbox">
+       <div class="inbox-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>USER NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+       
+       <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>USER NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+       <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>USER NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+       <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>USER NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+     </div>
+     <div class="addnew">
+       <form action="" id="create-group">
+         <label for="group-name">Group Name:</label><br><br>
+         <input type="text" id="group-name" autocomplete="none"><br><br>
+         <label for="group_description">Group Description:</label><br><br>
+         <textarea id="group-description" name="group-description" rows="4" cols="20" maxlength="250"></textarea><br><br>
+         <label for="group-members">Group Members:</label><br><br>
+         <select id="group-members" name="group-members">
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+           <option value="">add: user_name , 09888</option>
+         </select><br><br>
+         <button type="submit" id="create-group">Create</button>
+       </form>
+     </div>
+     <div class="groups">
+
+       <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+       <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+       <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+       <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+       <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+       <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div> <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div> <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div> <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div> <div class="group-details">
+         <img src="Files/user-img.svg" width="35vw" height="35vw" alt="">
+         <strong>GROUP NAME</strong><mark>2/2/2022</mark>
+         <P>the last message that was sent the This is a very long paragraph that should not exceed a certain length last message that was sent</p>
+       </div>
+
+     </div>
+     <div class="account">
+       <div class="profile-image">
+         <img src="Files/user-img.svg" width="200vw" height="200vw" alt="">
+       </div>
+       <div class="account-username">
+         <p>User name:</p>
+         <strong>User Name</strong><br>
+       </div>
+       <div class="account-phonenumber">
+         <p>Phone Number:</p>
+         <strong>0735478532</strong><br>
+       </div>
+       <div class="joindate">
+         <p>Joined on:</p>
+         <em>2/2/2020</em>
+       </div>
+     </div>
+     <div class="about-us">
+       <p>Welcome to our chat app, where people can connect and chat in both direct messages and groups. Our app is designed to provide a safe and enjoyable chatting experience for everyone.</p>
+       <p>We understand that communication is an essential part of our daily lives, and our app aims to make it easier for you to connect with your friends, family, and colleagues. Our chat app allows you to create groups, invite friends, and chat with them in real-time. You can also send direct messages to individuals for more private conversations.</p>
+       <p>We believe in promoting a healthy and respectful environment for our users. Therefore, we have implemented a zero-tolerance policy towards vulgar or dirty language in our groups. We believe that everyone deserves to feel comfortable and respected while using our app.</p>
+       <p>If someone uses inappropriate language in a group, they will be removed immediately to ensure that everyone can continue to enjoy a positive chatting experience. We want to create a space where users can interact without fear of being harassed or bullied.</p>
+       <p>Our team is committed to providing you with the best possible chatting experience. We are constantly updating our app to improve its functionality and user-friendliness. If you have any feedback or suggestions, we would love to hear from you.</p>
+       <p>Thank you for choosing our chat app, and we hope you enjoy using it to connect with your loved ones.</p>    
+       <footer>
+         <p>&copy; 2023 Wechat. All rights reserved.</p>
+         <p><a href="#">Visit our website</a></p>
+       </footer>
+     </div>
+   </div>
     </div>
+
+  </div>
     <div class="chat-container" id="chat-container">
     <h1>
        <button id="show_settings_button" onclick="showSettings()">
@@ -106,7 +251,8 @@
                 </div>
             </div> -->
     </div>
-  </div>
-  </div>
+  
+ 
+  
 </body>
 </html>

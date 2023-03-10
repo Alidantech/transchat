@@ -20,7 +20,9 @@ const socket = new WebSocket('ws://localhost:8080?phone_number='+sessionUserPhon
 socket.addEventListener('open', function (event) {
     console.log('WebSocket connection established.');
 });
+
 let jsongoodMessage;
+
 socket.addEventListener('message', function (event) {
     const message = JSON.parse(event.data);
     //TODO: after making the data carry a json format parse it to javascript using json.parse().

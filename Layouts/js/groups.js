@@ -1,5 +1,5 @@
 // this is to query database for data about the groups.
-loadDoc();
+
 function loadDoc() {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function() {loadGroups(this);}

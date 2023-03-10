@@ -445,7 +445,7 @@ div.groups {
     background-color: #0fa0aa79;
     padding: 0;
     margin: 0;
-    display: none;
+    display: block;
 }
 div.group-details {
     background-color: #0118170e;
@@ -480,6 +480,8 @@ div.group-details img{
     margin-top: 0.5em;
     float: left;
     margin-left: 1em;
+    width: 2vw;
+    height: 2vw;
 }
 mark {
     color: #17492b;

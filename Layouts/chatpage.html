@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" id="stylesheet">
+    <link rel="stylesheet" href="css/style.css" id="stylesheet">
     <link rel="icon" href="Files/myfavicon-img.svg" type="image/x-icon">
-    <script src="chat.js" defer></script>
-    <script src="send-receive.js" defer></script>
-    <script src="settings.js" defer></script>
-    <script src="groups.js" defer></script>
+    <script src="js/chat.js" defer></script>
+    <script src="js/send-receive.js" defer></script>
+    <script src="js/settings.js" defer></script>
+    <script src="js/groups.js" defer></script>
     <title>Wechat </title>
 </head>
 <body>
@@ -28,7 +28,7 @@
       <ul id="home-link">
        <li><a onclick="changeTheme()" href="#"><img id="theme-image" src="Files/dark-img.svg" width="20vw"  height="20vw" alt="">Theme</a></li>
        <li><a onclick="showInbox();"  href="#ll" ><img src="Files/inbox-img.svg" width="20" height="20vw" alt="">Inbox</a></li>
-       <li><a onclick="showGroups()" href="#ll"><img src="Files/group-img.svg"  width="20vw"  height="20vw" alt="">Groups</a></li>
+       <li><a onclick="showGroups();loadDoc();" href="#ll"><img src="Files/group-img.svg"  width="20vw"  height="20vw" alt="">Groups</a></li>
        <li><a onclick="showAddnew()" href="#ll"><img src="Files/add-new-img.svg" width="20vw"  height="20vw" alt="">Add New</a></li>
        <li><a onclick="showAccount()" href="#ll"><img src="Files/logout-img.svg" width="20vw" height="20vw" alt="">Account</a></li>
        <li><a onclick="showAboutUs()" href="#ll"><img src="Files/about-us-img.svg" width="20vw" height="20vw" alt="">About Us</a></li>

@@ -442,10 +442,10 @@ div.addnew select {
 }
 /* the div containing the list of groups */
 div.groups {
-    background-color: #0fa0aa79;
+    background-color: #011113ce;
     padding: 0;
     margin: 0;
-    display: block;
+    display: none;
 }
 div.group-details {
     background-color: #0118170e;
@@ -454,7 +454,7 @@ div.group-details {
     padding: 0;
 }
 div.group-details:hover {
-    background-color: #01180a46;
+    background-color: #0c492346;
     cursor: pointer;
 }
 div.group-details p{

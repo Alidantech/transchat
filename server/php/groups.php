@@ -14,13 +14,13 @@ function createMessagesXML(){
          die("Connection failed: " . $conn->connect_error);
      }
      $sql = "SELECT groups_data.group_id, group_name, message_body, short_time, user_name 
-             FROM groups_data 
-             JOIN group_messages 
-             ON groups_data.group_id = group_messages.group_id
-             JOIN users_data 
-             ON group_messages.sender_id = users_data.id
-             ORDER BY sent_at DESC 
-             LIMIT 1";
+              FROM groups_data 
+              JOIN group_messages 
+              ON groups_data.group_id = group_messages.group_id
+              JOIN users_data 
+              ON group_messages.sender_id = users_data.id
+              GROUP BY groups_data.group_id
+              ORDER BY sent_at DESC";
     $result = mysqli_query($conn, $sql);
     if(!$result) {
       die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));
@@ -47,7 +47,8 @@ function createMessagesXML(){
    // Set the content type to text/xml and save the XML document to a file
    #header('Content-type: text/xml');
    $dom->formatOutput = true;
-   $dom->save('Server_Scripts\groups.xml');
+   $dom->save('server\xml\groups.xml');
    $conn->close();
   }
+  
 ?>

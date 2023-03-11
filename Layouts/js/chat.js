@@ -17,13 +17,12 @@ function getSessionPhoneNumber() {
 // Call the function when the page loads or when the user logs in
 getSessionPhoneNumber();
 //load the messages from the server using an ajax request  
-loadDoc();
-function loadDoc() {
+
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function() {loadMessagesFunction(this);}
-  xhttp.open("POST", "/server/xml/groups.xml");
+  xhttp.open("POST", "/server/xml/messages.xml");
   xhttp.send();
-}
+
 //Display the messages on the page by loading the xml document returned from the server.
 function loadMessagesFunction(xml) {
   const sessionNumber = sessionPhoneNumber;

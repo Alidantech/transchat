@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<group-messages>
+  <group id="1">
+    <message>
+      <message_id>1</message_id>
+      <user_name>Joice Stacy</user_name>
+      <phone_number>1234567890</phone_number>
+      <message_body>Hello everyone welcome to the group.🙋‍♂️</message_body>
+      <sent_at>19:37:00</sent_at>
+    </message>
+    <message>
+      <message_id>2</message_id>
+      <user_name>new one</user_name>
+      <phone_number>717171</phone_number>
+      <message_body>Thanks Joice for the work🙏🫂</message_body>
+      <sent_at>20:41:00</sent_at>
+    </message>
+  </group>
+  <group id="2">
+    <message>
+      <message_id>3</message_id>
+      <user_name>heet</user_name>
+      <phone_number>434241414532</phone_number>
+      <message_body>karibuni kwenye kikundi</message_body>
+      <sent_at>16:22:00</sent_at>
+    </message>
+    <message>
+      <message_id>4</message_id>
+      <user_name>noom</user_name>
+      <phone_number>34567898767</phone_number>
+      <message_body>shukrani</message_body>
+      <sent_at>16:22:00</sent_at>
+    </message>
+    <message>
+      <message_id>5</message_id>
+      <user_name>new man</user_name>
+      <phone_number>098877664412</phone_number>
+      <message_body>asante sana ndugu</message_body>
+      <sent_at>16:22:00</sent_at>
+    </message>
+  </group>
+</group-messages>

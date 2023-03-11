@@ -1,14 +1,13 @@
 // this is to query database for data about the groups.
-
-function loadDoc() {
-  const xhttp = new XMLHttpRequest();
+document.addEventListener("DOMContentLoaded", function() {
+      const xhttp = new XMLHttpRequest();
   xhttp.onload = function() {loadGroups(this);}
-  xhttp.open("POST", "server/xml/groups.xml");
+  xhttp.open("POST", "/server/xml/groups.xml");
   xhttp.send();
-}
+
 function loadGroups(xml) {
       const xmlDoc = xml.responseXML;
-      const groups = xmlDoc.getElementsByTagName("GROUPS");
+      const groups = xmlDoc.getElementsByTagName("group");
       for (let i = 0; i < groups.length; i++) {
         const group = groups[i];
         const groupId = group.getElementsByTagName("group_id")[0].textContent;
@@ -18,9 +17,8 @@ function loadGroups(xml) {
         const sentAt = group.getElementsByTagName("send_at")[0].textContent;
         //DISPLAY THE GROUPS.
         showGroups(groupId, groupName,senderName, lastMessage, sentAt);
-        console.log("happened")
+        console.log("happened");
       }
-      
 }
 // 1. loading all the groups created showing their name and last sent message.
 function showGroups( groupId, groupName, senderName, lastMessage, sentAt) {
@@ -30,6 +28,7 @@ function showGroups( groupId, groupName, senderName, lastMessage, sentAt) {
     const groupDetails = document.createElement("div");
         groupDetails.className = "group-details";
         groupDetails.id = groupId;
+        groupDetails.onclick = "showMessages("+groupId+");";
         groupsContainer.appendChild(groupDetails);
         const img = document.createElement("img");
               img.src = "Files/user-img.svg";
@@ -46,6 +45,8 @@ function showGroups( groupId, groupName, senderName, lastMessage, sentAt) {
         const lastMessageBox = document.createElement("p");
               groupDetails.appendChild(lastMessageBox);
               lastMessageBox.innerHTML = senderName + ": " + lastMessage;
+            //   groupDetails.addEventListener("click", function() {
+                  
+            //     });
 }
-
- 
+});

@@ -60,7 +60,7 @@ function showAddnew() {
     menu.style.display = "none";
 }
 function showGroups() {
-    groups.style.display = "";
+    groups.style.display = "block";
     menu.style.display = "none";
 }
 function showAccount() {

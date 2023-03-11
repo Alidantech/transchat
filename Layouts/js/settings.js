@@ -9,12 +9,12 @@
       // let theme_name = docoment.getElementById('theme');
       if(light){
           theme_image.src = '/Layouts/Files/light-img.svg';
-          changeStyleSheet.href = "dark.css";
+          changeStyleSheet.href = "/Layouts/css/dark.css";
           light = false;
           // theme_name.innerHTML = "Light Mode";
       }   else {
           theme_image.src = '/Layouts/Files/dark-img.svg';
-          changeStyleSheet.href = "style.css"; 
+          changeStyleSheet.href = "/Layouts/css/style.css"; 
           light = true;
           //theme_name.innerHTML = "Dark Mode";
       }

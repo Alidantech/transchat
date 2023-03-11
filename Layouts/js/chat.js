@@ -5,7 +5,7 @@
 var sessionPhoneNumber;
 function getSessionPhoneNumber() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/Server_Scripts/getSessionNum.php');
+  xhr.open('GET', '/server/php/getSessionNum.php');
   xhr.onload = function() {
     if (xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
@@ -21,7 +21,7 @@ loadDoc();
 function loadDoc() {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function() {loadMessagesFunction(this);}
-  xhttp.open("POST", "/Server_Scripts/messages.xml");
+  xhttp.open("POST", "/server/xml/groups.xml");
   xhttp.send();
 }
 //Display the messages on the page by loading the xml document returned from the server.

@@ -3,7 +3,7 @@
 function loadDoc() {
   const xhttp = new XMLHttpRequest();
   xhttp.onload = function() {loadGroups(this);}
-  xhttp.open("POST", "/Server_Scripts/groups.xml");
+  xhttp.open("POST", "server/xml/groups.xml");
   xhttp.send();
 }
 function loadGroups(xml) {

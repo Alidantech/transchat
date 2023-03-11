@@ -97,7 +97,7 @@ $("#phone-no").on("blur", function() {
     disableSubmitButton();
   }else{
   $.ajax({
-    url: "/Server_Scripts/checkPhone.php",
+    url: "/server/php/checkPhone.php",
     method: "POST",
     data: { number: number },
     dataType: "json",
@@ -148,7 +148,7 @@ function disableSubmitButton() {
      }else {
       loginphoneerror.text("");
       $.ajax({
-        url: "/Server_Scripts/checkPhone.php",
+        url: "/server/php/checkPhone.php",
         method: "POST",
         data: { number: loginphone },
         dataType: "json",
@@ -162,7 +162,7 @@ function disableSubmitButton() {
               loginpassworderror.text("please enter your password");
              }else{//submit the data to check if password is valid on the database.
               $.ajax({
-                url: "/Server_Scripts/login.php",
+                url: "/server/php/login.php",
                 method: "POST",
                 data: { phone_no: loginphone, password : loginpassword },
                 dataType: "json",

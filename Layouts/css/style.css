@@ -30,7 +30,7 @@ html, body {
     color: rgba(170, 233, 212, 0.151);
     overflow: visible;
     background: linear-gradient(to bottom, #3644539d, #153a22);
-    background-image: url(Files/background.jpg);
+    /* background-image: url(Files/background.jpg); */
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -255,7 +255,7 @@ div.settings {
     width: 30%;
     padding: 0;
     margin: 0;
-    background-color: #1a756d60;
+    background-color: #011a17dc;
     position: fixed;
     overflow: auto;
     height: 100vh;
@@ -592,7 +592,7 @@ footer p {
 /*  THE CHATTING PART */
 div.chat-container {
     overflow: auto;
-    background-color: rgba(182, 236, 216, 0);
+    background-color: #011a17dc;
     width: 70%;
     padding-bottom: 10%;
     padding: 0;
@@ -622,6 +622,7 @@ div.messages {
     margin-top: 3vw;
     margin-bottom: 10%;
     
+    
 }
 /* the text entering part */
 div.enter-text {
@@ -634,7 +635,7 @@ div.enter-text {
     border-radius: 1em;
     border-color: rgba(15, 15, 100, 0.082);
     border-style: solid;
-    background-color: rgba(235, 245, 234, 0.644);
+    background-color: rgba(20, 70, 16, 0.116);
     border-width: 0.4em;
     vertical-align: middle;
 }
@@ -647,9 +648,9 @@ div.enter-text input {
     width: 95%;
     border-width: 0.2vw;
     border-style: solid;
-    border-color: rgb(2, 25, 34);
+    border-color: rgba(2, 25, 34, 0.692);
     color: rgb(13, 185, 50);
-    background-color: rgba(95, 114, 56, 0.247);
+    background-color: rgba(95, 114, 56, 0.096);
     font-size: 1.3em;
     position: relative;
 }

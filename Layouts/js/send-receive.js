@@ -2,7 +2,7 @@
 let sessionUserPhoneNumber;
 function getSessionPhoneNumber() {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/Server_Scripts/getSessionNum.php');
+  xhr.open('GET', '/server/php/getSessionNum.php');
   xhr.onload = function() {
     if (xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);

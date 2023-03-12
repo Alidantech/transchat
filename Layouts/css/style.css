@@ -619,7 +619,7 @@ div.chat-container h1>button {
 
 div.messages {
     overflow: visible;
-    margin-top: 3vw;
+    margin-top: 7%;
     margin-bottom: 10%;
     
     
@@ -680,8 +680,10 @@ div.enter-text img {
     width:3vw;
     height: 2.5vw;
 }
-
-
+div.currentChat-container {
+    width: 100%;
+    height: auto;
+}
 /* the received messages part */
 div.recieved-container {
     margin-left: 3vw;

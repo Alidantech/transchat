@@ -9,7 +9,7 @@
     <script src="js/send-receive.js" defer></script>
     <script src="js/settings.js" defer></script>
     <script src="js/groups.js" defer></script>
-    <script src="js/navigate.js" defer></script>
+    <script src="js/groupMessages.js" defer></script>
     <title>Wechat </title>
 </head>
 <body>
@@ -93,9 +93,8 @@
     <h1>
        <button id="show_settings_button" onclick="showSettings()">
         <img src="Files/menu-img.svg" alt="" width="20vw" height="20vw">
-       </button>BIT GROUP 2023
+       </button><p  id="group-header">Select Chat</p>
     </h1>
-
     <!-- SEND A MESSAGE PART -->
     <div class="enter-text">
         <!-- <form action="/Server_Scripts/messages.php" method="post" id="message-form"> -->
@@ -104,7 +103,6 @@
         <!-- </form> -->
       <button id="add-file-button" type="button" onclick="actionButtons();"><img src="Files/add-files-img.svg" width="" height="" alt=""></button>
     </div>
-        
     <div class="messages">
         <!-- floating buttons -->
         <div id="floating-buttons-container">
@@ -122,7 +120,7 @@
             </button>
         </div>
         <!-- the class name will represent the CURRENT CHAT PAGE -->
-        <div class="currentchat"> 
+       <div class="currentChat-container"> 
           <!-- MESSAGES CONTAINER BODIES-->
           <!-- container for received messages -->
           <!--  <div class="recieved-container">
@@ -154,7 +152,7 @@
                   <p>In conclusion, physical exercise is crucial for maintaining a healthy and fulfilling life. So let's make a conscious effort to incorporate physical activity into our daily routines and prioritize our health!</p>
                 </div>
             </div> -->
-        </div>
+       </div> 
     </div>
   
  </div>

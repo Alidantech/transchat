@@ -1,12 +1,11 @@
 <?php
 require_once 'vendor/autoload.php';
-require_once 'messages.php';
+require_once 'group_messages.php';
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-
 class ChatServer implements MessageComponentInterface {
     protected $clients;
     public function __construct() {
@@ -17,15 +16,14 @@ class ChatServer implements MessageComponentInterface {
         echo "connection established ({$conn->resourceId})\n";
         $query = $conn->httpRequest->getUri()->getQuery();
         parse_str($query, $params);
-    
         $phone_number = $params['phone_number'];
-    
     }
     public function onMessage(ConnectionInterface $from, $msg) {
         echo "message recieved: {$msg}\n";
         $data = json_decode($msg);
         $phoneNumber = $data->phone_number;
         $message = $data->message;
+        $group_id = $data->group_id;
         //get the sender id from the database.
          $conn = new mysqli("localhost", "root", "", "wechat_db");
          $sql = $conn->prepare("SELECT * FROM users_data WHERE phone_number = ?");
@@ -33,14 +31,14 @@ class ChatServer implements MessageComponentInterface {
          $sql->execute();
          $result = $sql->get_result();         
          if(!$result){
-            die("failed to connect to database". $sql . "<br>" . mysqli_error($conn));
+            die("failed to connect to database". $sql . ", " . mysqli_error($conn));
          }
           $sender = $result->fetch_assoc();
           $sender_id = $sender["id"];
           $userName = $sender["user_name"];
           $data->user_name = $userName;
          #TODO: make the message has all its details by getting them from the database. parse it to the client as json format.                                   
-    if(sendNewMessage($sender_id, $message)){
+    if(sendNewMessage($sender_id, $group_id, $message)){
         $data->good_message = true;
         $new_msg = json_encode($data);
         foreach ($this->clients as $client) {

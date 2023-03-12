@@ -7,18 +7,17 @@ function getSessionPhoneNumber() {
     if (xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
       sessionUserPhoneNumber = response.phoneNumber;
-      console.log("Phone number: " + sessionUserPhoneNumber);
     }
   };
   xhr.send();
+ return sessionUserPhoneNumber;
 }
-getSessionPhoneNumber();
 //connect to the websocket
-const socket = new WebSocket('ws://localhost:8080?phone_number='+sessionUserPhoneNumber);
+const socket = new WebSocket('ws://localhost:8080?phone_number='+getSessionPhoneNumber());
 socket.addEventListener('open', function (event) {
     console.log('WebSocket connection established.');
 });
-let jsongoodMessage;
+let GoodMessage;
 socket.addEventListener('message', function (event) {
     const message = JSON.parse(event.data);
     //TODO: after making the data carry a json format parse it to javascript using json.parse().
@@ -26,7 +25,7 @@ socket.addEventListener('message', function (event) {
     var jsonuserName = message.user_name;
     var jsonphoneNumber = message.phone_number;
     var jsonmessageText = message.message;
-    jsongoodMessage = message.good_message;
+    GoodMessage = message.good_message;
       // TODO: Update chat UI with received message, create div elements to show the new messages.
       showReceivedMessages(jsonuserName, jsonphoneNumber, jsonmessageText);
 });
@@ -41,31 +40,35 @@ function getCurrentTime() {
 //get the message from the user in order to send it.
 function submitMessage(){
     var messagebox = document.getElementById('message-body');
-    var message = messagebox.value; //TODO: make sure a user does not send a blank message. and color the send button accordingly.
+    var groupId = messagebox.className;
+    var message = messagebox.value;
+    var phoneNumber = getSessionPhoneNumber();
+     //TODO: make sure a user does not send a blank message. and color the send button accordingly.
       if(message.trim() === ""){
         messagebox.style.borderColor = "gray";
       }else{
-        sendMessage(sessionUserPhoneNumber, message);
+        sendMessage(phoneNumber, groupId, message);
         //TODO: make the user to see his message by creating a div containing the message. and the current time.
         //show a warning message if the message contains bad words.
-        if(jsongoodMessage){//message is good..
-          showSentMessages(message);
-        } else {//show a warnig message
-          showWarning();
-        }
+        // if(GoodMessage){//message is good..
+        //   showSentMessages(message);
+        // } else {//show a warnig message
+        //   showWarning();
+        // }
         messagebox.value = "";
         messagebox.style.borderColor = "";
       } 
 }
-function sendMessage(phoneNumber, message) {
+function sendMessage(phoneNumber,groupId, message) {
   var data = {
       phone_number: phoneNumber,
-      message: message
+      message: message,
+      group_id: groupId
   };
   var messageData = JSON.stringify(data);
   socket.send(messageData);
 }
-function showReceivedMessages(jsonuserName, jsonphoneNumber, jsonmessageText){
+function showReceivedMessages(jsonuserName, jsonphoneNumber, jsonmessageText, groupId){
   const messagesDiv = document.querySelector(".messages");
   //div that contains the whole message-part.profile and content
   var conntent_and_profileDiv = document.createElement("div");
@@ -101,10 +104,10 @@ function showReceivedMessages(jsonuserName, jsonphoneNumber, jsonmessageText){
             contentDiv.appendChild(sendTime);
       //put the current message into view
   conntent_and_profileDiv.scrollIntoView();
-  console.log(jsongoodMessage);
+  console.log(GoodMessage);
 }
-function showSentMessages(message){
-  console.log(jsongoodMessage);
+function showSentMessages(message, groupId){
+  console.log(GoodMessage);
   const messagesDiv = document.querySelector(".messages");
   //div that contains the whole message-part.profile and content
   var conntent_and_profileDiv = document.createElement("div");
@@ -135,7 +138,7 @@ function showSentMessages(message){
       //put the current message into view
   conntent_and_profileDiv.scrollIntoView();
 }
-function showWarning(){
+function showWarning(groupId){
   const messagesDiv = document.querySelector(".messages");
   //div that contains the whole message-part.profile and content
   var conntent_and_profileDiv = document.createElement("div");

@@ -627,6 +627,7 @@ div.messages {
 /* the text entering part */
 div.enter-text {
     width: 69.3%;
+    display: none;
     height:fit-content;
     position: fixed;
     bottom: 0;

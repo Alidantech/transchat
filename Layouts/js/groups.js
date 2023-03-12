@@ -16,7 +16,6 @@ function loadGroups(xml) {
         const sentAt = group.getElementsByTagName("send_at")[0].textContent;
         //DISPLAY THE GROUPS.
         showGroups(groupId, groupName,senderName, lastMessage, sentAt);
-        console.log(groupId + " group list created");
       }
 }
 // 1. loading all the groups created showing their name and last sent message.
@@ -43,6 +42,9 @@ function showGroups( groupId, groupName, senderName, lastMessage, sentAt) {
         const lastMessageBox = document.createElement("p");
               groupDetails.appendChild(lastMessageBox);
               lastMessageBox.innerHTML = senderName + ": " + lastMessage;
+              groupDetails.addEventListener("click", function(){
+                  document.getElementById("group-header").innerHTML = groupName;
+              });
 }
 function onClicked(){
       groupId = this.id;
@@ -56,6 +58,10 @@ function onClicked(){
       });
       selectedDiv =  document.getElementById("group"+groupId);
       selectedDiv.style.display = "block";
+      const  enterText = document.getElementById("type-here")
+            enterText.style.display = "block";
+      const sendBox = document.getElementById("message-body");
+            sendBox.className = groupId;
 }
 });
 //a variable and a function to get the ssession number of the current user.

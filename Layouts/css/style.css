@@ -29,8 +29,8 @@ html, body {
     font-size: 1em;
     color: rgba(170, 233, 212, 0.151);
     overflow: visible;
-    background: linear-gradient(to bottom, #3644539d, #153a22);
-    /* background-image: url(Files/background.jpg); */
+    /* background-image: url(/Layouts/Files/background.jpg);  */
+    background-color: whitesmoke;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -243,7 +243,6 @@ div.form button {
     top: 0;
     width: 100%;
     height: auto;
-    background-color: rgba(142, 158, 170, 0.616);
     overflow: auto;
 }
 
@@ -255,24 +254,29 @@ div.settings {
     width: 30%;
     padding: 0;
     margin: 0;
-    background-color: #011a17dc;
     position: fixed;
     overflow: auto;
     height: 100vh;
 }
 div.settings h2 {
-    font-size: 1.8em;
     margin: 0em;
-    color: #11cebe;
-    background: linear-gradient(to left, #08704d1a, #fdfdfd17);
+    color: #076d96;
+    background-color: #fffffff6;
     top: 0;
     left: 0;
-    padding-bottom: 0.3em;
-    padding-left: 0.3em;
-    padding-top: 0.3em;
     overflow: hidden;
     position: fixed;
-    width: 28%;
+    width: 30%;
+}
+div.settings h2 p{
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    height: auto;
+    padding-left: 0.3em;
+    padding-top: 0.3em;
+    max-height: none;
+    float: left;
 }
 h2  img {
     padding: 0.2em;
@@ -284,40 +288,51 @@ h2  img {
 }
 #goBack:hover {
     cursor: pointer;
+    background-color: #03331534;
+    border-radius: 1em;
 }
 div.frames {
-    margin-top: 4em;
+    margin: 0;
 }
 div.settings a {
+   margin: 0;
    text-decoration: none;
    width: 100%;
-   padding: 0.5em;
-   color: #e7e7e7;
+   padding: 0;
+   color: #000000;
    font-size: larger;
    font-weight: 0.2em;
-   border-style: solid;
-   border-radius: 3em;
-   border-color: #02331f;
-   border-width: 0.1vw;
 }
 div.settings ul {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100vh;
 }
 div.settings li {
-    margin: 2em;
-    list-style-type: none;
+   list-style-type: none;
    padding: 0;
-   margin-top: 4em;
-   margin-bottom: 1em;
+   padding-top: 1.3em;
+   padding-bottom: 1.3em;
+   padding-left: 0.7em;
+   border-style: solid;
+   border-width: 0.1em;
+   border-top: none;
+   border-color: #00000011;
+   margin: 0;
    top: 0;
    left: 0;
+   width: 100%;
 }
-div.settings a:hover {
-   border-width: 0.2vw;
-    border-radius: 3em;
-    background-color: #07000010;
-    color: #bae4ee;
+div.settings li img {
+    padding: 0;
+    padding-right: 1em;
+    padding-top: 0.1em;
+}
+div.settings li:hover {
+   background-color: #1b18180c;
+   padding-top: 1.5em;
+   padding-bottom: 1.5em;
 }
 #home-link {
     margin-top: 3em;
@@ -335,19 +350,19 @@ div.dashboard {
 
 /*div containig a list of all inboxes*/
 div.inbox {
-    background-color: #0fa0aa79;
     padding: 0;
     margin: 0;
     display: none;
+    margin-top: 3em;
+    height: 100vh;
 }
 div.inbox-details {
-    background-color: #0118170e;
-    color: #011817;
+    color: #000000;
     margin: 0;
-    padding: 0;
+    padding: 0.3em;
 }
 div.inbox-details p{
-    color: rgb(159, 193, 194);
+    color: rgb(0, 0, 0);
     margin-left: 5em;
     overflow: hidden;
     font-size: smaller;
@@ -357,11 +372,11 @@ div.inbox-details p{
     margin-right: 0.3em;
 }
 div.inbox-details:hover {
-    background-color: #01180a46;
+    background-color: #00000009;
     cursor: pointer;
 }
 div.inbox-details strong{
-    color: #8ed4d1;
+    color: #04312f;
     margin-left: 1em;
     margin-top: 0.5em;
     font-size: smaller;
@@ -383,61 +398,60 @@ mark {
 /*option add a new group */
 div.addnew {
     overflow: visible;
-    background-color: #0fa0aa79;
-    color: #011817;
+    color: #086e69;
     height: 100vh;
-    padding: 0.2em;
-    border-style: solid;
-    border-color: #02250e27;
     display: none;
+    margin-top: 3em;
+    padding: 2em;
 }
 div.addnew button{
     border-style: solid;
-    border-color: #033a15;
+    border-width: 0.1em;
     text-align: center;
     padding: 0.5vw;
-    width: 20%;
-    border-radius: 0.5em;
-    margin-left: 20%;
-    color: #02270b;
-    font-size: 1.2em;
+    width: auto;
+    border-radius: 0;
+    border-color: #0c8992;
+    margin-left: 30%;
+    color: #02191f;
+    font-size: 1em;
+    background: linear-gradient(to left, rgba(0, 0, 255, 0.295), rgba(0, 128, 0, 0.199));
+    border-radius: 0.2em;
 }
 div.addnew button:hover{
-    background-color: #01180a;
-    color: #faeeee;
+    background: linear-gradient(to left, rgba(0, 128, 0, 0.158), rgba(0, 0, 255, 0.144));
+    border-radius: 0.5em;
 }
 div.addnew textarea{
     background-color: #6ecfa800;
-    margin: 0.2em;
-    width: 95%;
-    min-width: 95%;
-    max-width: 97%;
-    border-color: #033021;
+    margin: 0;
+    width: 90%;
+    min-width: 90%;
+    max-width: 90%;
+    border-color: #1b970b6e;
     border-style: solid;
     border-width: 0.1em;
-    color: #faeeee;
+    color: #000000;
     padding: 0.2em;
+    overflow: none;
 }
 div.addnew input {
     padding: 0.7em;
+    margin: 0;
     border-style: solid;
     box-shadow: none;
-    border-color: #083602;
+    border-color: #1b970b6e;
     border-width: 0.1em;
-    width: 90%;
-    color: #faeeee;
-    padding: 0.5vw;
-    margin: 0.2em;
+    width: 86%;
+    color: #000000;
 }
 div.addnew select {
-    background-color: #144934fd;
-    width: 91%;
-    color: #afd9e0;
+    width: 86%;
+    color: #000000;
     padding: 0.5em;
     margin: 0.2vw;
-    border-radius: 0.5em;
     border-style: solid;
-    border-color: #083602;
+    border-color: #1b970b6e;
     border-width: 0.1em;
 }
 /* the div containing the list of groups */
@@ -492,32 +506,27 @@ mark {
 /* div that contains the account details */
 div.account {
     display: none;
-    background-color: #0d8da3a2;
     height: 100vh;
-    color: #ffffff;
 }
 div.account img{
-    background-color: #1db3568f;
+    background-color: #01140956;
     border-radius: 10em;
-    padding: 0em;
+    padding: 0.5em;
     margin: 0em;
-    margin-top: 6em;
+    margin-top: 5em;
 }
 div.profile-image {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #01180a00;
+    margin-bottom: 2em;
 }
 div.account-username {
     width: 99%;
     background-color: #5dd68b00;
-    margin-top: 3vw;
     padding: 0em;
     text-align: center;
-    border-style: solid;
-    border-color: #419963a4;
-    border-width: 0.1em;
 }
 div.account-phonenumber {
     width: 99%;
@@ -525,9 +534,6 @@ div.account-phonenumber {
     margin-top: 3vw;
     padding: 0em;
     text-align: center;
-    border-style: solid;
-    border-color: #4a9e6a6c;
-    border-width: 0.1em;
 }
 div.joindate{
     width: 99%;
@@ -536,30 +542,25 @@ div.joindate{
     padding: 0em;
     text-align: center;
     padding-top: 0em;
-    border-style: solid;
-    border-color: #4a9e6a54;
-    border-width: 0.1em;
 }
 div.account p{
- text-align: left;
- font-size: 0.7em;
+    text-align: left;
+     font-size: 0.7em;
     top: 0;
     padding-left: 1em;
     color: #050c4dab;
     font-weight: bold;
-    padding-bottom: 1em;
 }
 div.account strong {
-    padding: 0.2em;
     background-color: #01180a00;
     text-align: center;
-    color: #bcf7d9;
+    color: #021a0d;
     font-weight: normal;
 }
 div.account em{
     float: none;
     font-size: large;
-    color: #fafafa;
+    color: #250101;
 }
 /* div that contains info about wechat */
 div.about-us {
@@ -592,7 +593,6 @@ footer p {
 /*  THE CHATTING PART */
 div.chat-container {
     overflow: auto;
-    background-color: #011a17dc;
     width: 70%;
     padding-bottom: 10%;
     padding: 0;
@@ -603,14 +603,14 @@ div.chat-container {
     border-color: #04fa98;
 }
 div.chat-container h1 {
-    background: linear-gradient(to bottom, #075358b6, #ffffff4d);
-    color: #033624;
-    font-size: 1em;
+    background: linear-gradient(to bottom, #03611a28, #07577723);
+    color: #0a4608;
+    font-size: 0.8em;
     top: 0;
     position: fixed;
     width:75%;
     text-align: center;
-    padding: 0.5vw;
+    padding: 0;
     margin: 0;
 }
 div.chat-container h1>button {
@@ -626,32 +626,28 @@ div.messages {
 }
 /* the text entering part */
 div.enter-text {
-    width: 69.3%;
-    display: none;
+    width: 50%;
+    margin-left: 10%;
+    margin-right: 10%;
+    display: block;
     height:fit-content;
     position: fixed;
     bottom: 0;
-    padding: 0vw;
+    padding: 0;
     overflow: hidden;
-    border-radius: 1em;
-    border-color: rgba(15, 15, 100, 0.082);
-    border-style: solid;
-    background-color: rgba(20, 70, 16, 0.116);
-    border-width: 0.4em;
-    vertical-align: middle;
+    margin-bottom: 1em;
 }
 div.enter-text input {
     padding-right: 3vw;
     padding-top: 0.5vw;
     padding-bottom: 0.5vw;
     text-indent: 3em;
-    border-radius: 0.5em;
-    width: 95%;
+    border-radius: 0.9em;
+    width: 93%;
     border-width: 0.2vw;
     border-style: solid;
     border-color: rgba(2, 25, 34, 0.692);
-    color: rgb(13, 185, 50);
-    background-color: rgba(95, 114, 56, 0.096);
+    color: rgb(0, 0, 0);
     font-size: 1.3em;
     position: relative;
 }

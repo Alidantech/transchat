@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<groups>
+<GROUPS>
   <group>
     <group_id>2</group_id>
     <group_name>School of engineering</group_name>
@@ -14,4 +14,4 @@
     <message_body>Hello everyone welcome to the group.🙋‍♂️</message_body>
     <send_at>19:37:00</send_at>
   </group>
-</groups>
+</GROUPS>

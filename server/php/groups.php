@@ -1,7 +1,6 @@
 <?php 
 #READ THE MESSAGES DATA AND PUT IT INSIDE AN XML FILE   
-createMessagesXML(); 
-function createMessagesXML(){
+function createGroupsListXML(){
     echo "created xml successifully";
      // Create a new XML document to store all the messages
      $dom = new DOMDocument('1.0', 'UTF-8');
@@ -20,7 +19,7 @@ function createMessagesXML(){
               JOIN users_data 
               ON group_messages.sender_id = users_data.id
               GROUP BY groups_data.group_id
-              ORDER BY sent_at DESC";
+              ORDER BY group_messages.sent_at DESC";
     $result = mysqli_query($conn, $sql);
     if(!$result) {
       die("Error retrieving the data!!: " . $sql . "<br>" . mysqli_error($conn));

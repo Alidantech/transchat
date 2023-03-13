@@ -3,56 +3,55 @@ document.addEventListener("DOMContentLoaded", function(){
     xhttp.onload = function() {loadMessagesFunction(this);}
     xhttp.open("POST", "/server/xml/groupmessages.xml");
     xhttp.send();
-//a variable and a function to get the ssession number of the current user.
-let sessionphone;
-function getSessionPhoneNumber() {
+    //a variable and a function to get the ssession number of the current user.
+    //get the session phone number
+function loadMessagesFunction(xml) {
+    var sessionNumber;
+    //get the session number.
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/server/php/getSessionNum.php');
     xhr.onload = function() {
-          if (xhr.status === 200) {
-          var response = JSON.parse(xhr.responseText);
-          sessionphone = response.phoneNumber;
-          }
-    }
-xhr.send();
-return sessionphone;
-}
-function loadMessagesFunction(xml) {
-  const xmlData = xml.responseXML;
-  let sessionNumber = getSessionPhoneNumber();
-  const groups = xmlData.getElementsByTagName("group");
-        // iterate over each group
-        for (let i = 0; i < groups.length; i++) {
-        const groupId = groups[i].getAttribute("id");
-        const mainContainer = document.querySelector(".messages");
-        const container = document.createElement("div");
-        container.id = "group"+groupId;
-        container.className = "currentChat-container";
-        container.style.display = "none";
-        mainContainer.appendChild(container);
-        // get all messages in the group
-        const messages = groups[i].getElementsByTagName("message");
-        // iterate over each message in the group
-        for (let j = 0; j < messages.length; j++) {
-            const messageId = messages[j].getElementsByTagName("message_id")[0].childNodes[0].nodeValue;
-            const userName = messages[j].getElementsByTagName("user_name")[0].childNodes[0].nodeValue;
-            const phoneNumber = messages[j].getElementsByTagName("phone_number")[0].childNodes[0].nodeValue;
-            const messageBody = messages[j].getElementsByTagName("message_body")[0].childNodes[0].nodeValue;
-            const sentAt = messages[j].getElementsByTagName("sent_at")[0].childNodes[0].nodeValue;
-
-            console.log("message id ="+ messageId);
-            if(phoneNumber === sessionNumber){//when message was sent by me
-            displaySentMessages(messageId, messageBody, sentAt, groupId, container);
-            } else {//when message was sent by others
-            showReceivedMessages(messageId, phoneNumber, userName, messageBody, sentAt, container);
-            }
+        if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+            sessionNumber = response.phoneNumber;
+        const xmlData = xml.responseXML;
+        const groups = xmlData.getElementsByTagName("group");
+              // iterate over each group
+              for (let i = 0; i < groups.length; i++) {
+              const groupId = groups[i].getAttribute("id");
+              const mainContainer = document.querySelector(".messages");
+              const container = document.createElement("div");
+              container.id = "group"+groupId;
+              container.className = "currentChat-container";
+              container.style.display = "none";
+              mainContainer.appendChild(container);
+              // get all messages in the group
+              const messages = groups[i].getElementsByTagName("message");
+              // iterate over each message in the group
+              for (let j = 0; j < messages.length; j++) {
+                  const messageId = messages[j].getElementsByTagName("message_id")[0].childNodes[0].nodeValue;
+                  const userName = messages[j].getElementsByTagName("user_name")[0].childNodes[0].nodeValue;
+                  const phoneNumber = messages[j].getElementsByTagName("phone_number")[0].childNodes[0].nodeValue;
+                  const messageBody = messages[j].getElementsByTagName("message_body")[0].childNodes[0].nodeValue;
+                  const sentAt = messages[j].getElementsByTagName("sent_at")[0].childNodes[0].nodeValue;
+                  if(phoneNumber === sessionNumber){//when message was sent by me
+                  displaySentMessages(messageId, messageBody, sentAt, container);
+                  } else {//when message was sent by others
+                  showReceivedMessages(messageId, phoneNumber, userName, messageBody, sentAt, container);
+                  }
+              }
         }
-  }
+        }
+    };
+    xhr.send();
+  
 }
-function displaySentMessages(messageId,xmlmessageBody, xmlsendTime, container) {
- var conntent_and_profileDiv = document.createElement("div");
-   conntent_and_profileDiv.id = "m"+messageId;
-   container.appendChild(conntent_and_profileDiv);
+function displaySentMessages(messageId, xmlmessageBody, xmlsendTime, container) {
+    var conntent_and_profileDiv = document.createElement("div");
+    conntent_and_profileDiv.id = "m"+messageId;
+    container.appendChild(conntent_and_profileDiv);
+   //div that contains the profile pic.
+   var profileDiv = document.createElement("div");
    //div that contains the profile pic.
    var profileDiv = document.createElement("div");
      conntent_and_profileDiv.appendChild(profileDiv);

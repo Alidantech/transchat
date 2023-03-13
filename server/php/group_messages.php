@@ -1,4 +1,5 @@
 <?php 
+require_once "groups.php";
 function createGroupMessagesXML(){
     $conn = new mysqli("localhost", "root", "", "wechat_db");
     if ($conn->connect_error) {
@@ -94,6 +95,7 @@ function sendNewMessage($sender_id, $group_id, $message_body){
                         $message_body = $row["message_body"];
                         $sent_at = $row["short_time"];
                         updateMessagesXML($group_id, $message_id, $user_name, $phone_number, $message_body, $sent_at);
+                        createGroupsListXML();
                     }
                 }
             } catch(Exception $e){

@@ -22,12 +22,13 @@ socket.addEventListener('message', function (event) {
     const message = JSON.parse(event.data);
     //TODO: after making the data carry a json format parse it to javascript using json.parse().
     console.log('Received message:', message);
-    var jsonuserName = message.user_name;
-    var jsonphoneNumber = message.phone_number;
-    var jsonmessageText = message.message;
+    var userName = message.user_name;
+    var phoneNumber = message.phone_number;
+    var messageText = message.message;
+    var groupId = message.group_id;
     GoodMessage = message.good_message;
       // TODO: Update chat UI with received message, create div elements to show the new messages.
-      showReceivedMessages(jsonuserName, jsonphoneNumber, jsonmessageText);
+      showReceivedMessages(userName, phoneNumber, messageText, groupId);
 });
 //get the current time stamp:
 function getCurrentTime() {
@@ -43,6 +44,7 @@ function submitMessage(){
     var groupId = messagebox.className;
     var message = messagebox.value;
     var phoneNumber = getSessionPhoneNumber();
+    console.log("your phone number is : "+ sessionUserPhoneNumber);
      //TODO: make sure a user does not send a blank message. and color the send button accordingly.
       if(message.trim() === ""){
         messagebox.style.borderColor = "gray";
@@ -65,11 +67,12 @@ function sendMessage(phoneNumber,groupId, message) {
       message: message,
       group_id: groupId
   };
+  showSentMessages(message, groupId);
   var messageData = JSON.stringify(data);
   socket.send(messageData);
 }
 function showReceivedMessages(jsonuserName, jsonphoneNumber, jsonmessageText, groupId){
-  const messagesDiv = document.querySelector(".messages");
+  const messagesDiv = document.getElementById("group"+groupId);
   //div that contains the whole message-part.profile and content
   var conntent_and_profileDiv = document.createElement("div");
     messagesDiv.appendChild(conntent_and_profileDiv);
@@ -107,8 +110,8 @@ function showReceivedMessages(jsonuserName, jsonphoneNumber, jsonmessageText, gr
   console.log(GoodMessage);
 }
 function showSentMessages(message, groupId){
-  console.log(GoodMessage);
-  const messagesDiv = document.querySelector(".messages");
+  console.log(groupId);
+  const messagesDiv = document.getElementById("group"+groupId);
   //div that contains the whole message-part.profile and content
   var conntent_and_profileDiv = document.createElement("div");
     messagesDiv.appendChild(conntent_and_profileDiv);
@@ -139,7 +142,7 @@ function showSentMessages(message, groupId){
   conntent_and_profileDiv.scrollIntoView();
 }
 function showWarning(groupId){
-  const messagesDiv = document.querySelector(".messages");
+  const messagesDiv = document.getElementById("group"+groupId);
   //div that contains the whole message-part.profile and content
   var conntent_and_profileDiv = document.createElement("div");
     messagesDiv.appendChild(conntent_and_profileDiv);

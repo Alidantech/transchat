@@ -294,15 +294,6 @@ h2  img {
 div.frames {
     margin: 0;
 }
-div.settings a {
-   margin: 0;
-   text-decoration: none;
-   width: 100%;
-   padding: 0;
-   color: #000000;
-   font-size: larger;
-   font-weight: 0.2em;
-}
 div.settings ul {
     margin: 0;
     padding: 0;
@@ -310,10 +301,17 @@ div.settings ul {
     height: 100vh;
 }
 div.settings li {
+    margin: 0;
+   text-decoration: none;
+   width: 100%;
+   padding: 0;
+   color: #000000;
+   font-size: larger;
+   font-weight: 0.2em;
    list-style-type: none;
    padding: 0;
-   padding-top: 1.3em;
-   padding-bottom: 1.3em;
+   padding-top: 1.8em;
+   padding-bottom: 1.8em;
    padding-left: 0.7em;
    border-style: solid;
    border-width: 0.1em;
@@ -330,9 +328,8 @@ div.settings li img {
     padding-top: 0.1em;
 }
 div.settings li:hover {
-   background-color: #1b18180c;
-   padding-top: 1.5em;
-   padding-bottom: 1.5em;
+   background-color: #0129331e;
+   cursor: pointer;
 }
 #home-link {
     margin-top: 3em;
@@ -456,23 +453,22 @@ div.addnew select {
 }
 /* the div containing the list of groups */
 div.groups {
-    background-color: #011113ce;
-    padding: 0;
     margin: 0;
     display: none;
+    margin-top: 3em;
 }
 div.group-details {
-    background-color: #0118170e;
     color: #011817;
     margin: 0;
-    padding: 0;
+    padding: 1em;
+    padding-left: 0;
 }
 div.group-details:hover {
     background-color: #0c492346;
     cursor: pointer;
 }
 div.group-details p{
-    color: rgb(159, 193, 194);
+    color: rgb(2, 30, 31);
     margin-left: 5em;
     overflow: hidden;
     font-size: smaller;
@@ -482,7 +478,7 @@ div.group-details p{
     margin-right: 0.3em;
 }
 div.group-details strong{
-    color: #8ed4d1;
+    color: #000000;
     margin-left: 1em;
     margin-top: 0.5em;
     font-size: smaller;
@@ -520,13 +516,15 @@ div.profile-image {
     justify-content: center;
     align-items: center;
     background-color: #01180a00;
-    margin-bottom: 2em;
+    margin-bottom: 4em;
 }
 div.account-username {
     width: 99%;
     background-color: #5dd68b00;
     padding: 0em;
     text-align: center;
+    border-bottom:solid 0.1em black;
+    padding-bottom: 1em;
 }
 div.account-phonenumber {
     width: 99%;
@@ -534,6 +532,8 @@ div.account-phonenumber {
     margin-top: 3vw;
     padding: 0em;
     text-align: center;
+    border-bottom:solid 0.1em black;
+    padding-bottom: 1em;
 }
 div.joindate{
     width: 99%;
@@ -542,6 +542,8 @@ div.joindate{
     padding: 0em;
     text-align: center;
     padding-top: 0em;
+    border-bottom:solid 0.1em black;
+    padding-bottom: 1em;
 }
 div.account p{
     text-align: left;
@@ -564,11 +566,11 @@ div.account em{
 }
 /* div that contains info about wechat */
 div.about-us {
-    color: #abdbbb;
-    background-color: rgba(44, 82, 97, 0.534);
+    color: #001106;
     height: 100vh;
     padding: 0;
     margin: 0;
+    margin-top: 3em;
     top: 0;
     display: none;
 }
@@ -694,12 +696,12 @@ div.recieved {
     width: fit-content;
     max-width: 50%;
     min-width: 30%;
-    background-color: rgba(50, 126, 134, 0.897);
     margin: 0em 1em 2em 1em;
     border-radius: 0em 0.7em 0.7em 0.7em;
     padding: 0.5vw;
+    background-color: #06423821;
     border-style: solid;
-    border-color: rgba(127, 139, 18, 0);
+    border-color: rgba(9, 100, 14, 0.582);
     border-width: 0.1vw;
     left: 0;
     flex: 0;
@@ -708,22 +710,24 @@ div.recieved {
     font-size: 0.7em;
 }
 div.recieved strong {
-    color: rgb(57, 231, 13);
+    color: rgb(11, 116, 84);
     font-size: 0.7em;
     margin-left: 1vw;
     margin-right: 1em;
 }
 div.recieved p {
-    color: rgb(242, 248, 245);
+    color: rgb(4, 46, 25);
     padding: 1em;
-    font-size: 1em;
+    font-size: 1.2em;
     margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     
 }
 .sender-pic {
     float: left;
-    background-color: rgba(21, 85, 110, 0.685);
+    border-style: solid;
+    border-color: rgba(9, 100, 14, 0.582);
+    border-width: 0.1vw;
     padding: 0.2vw;
     border-radius: 3vw;
     margin-left: 0.5vw;
@@ -746,11 +750,11 @@ div.sent {
     width: fit-content;
     max-width: 50%;
     min-width: 30%;
-    background-color: rgba(34, 131, 85, 0.719);
+    background-color: rgba(20, 75, 49, 0.185);
     margin: 0em 1em 1em 1em;
-    border-radius: 2em 0em 1em 2em;
+    border-radius: 1em 0em 1em 1em;
     border-style: solid;
-    border-color: rgba(18, 139, 139, 0);
+    border-color: rgba(3, 46, 46, 0.384);
     border-width: 0.1vw;
     right: 0;
     float: right;
@@ -776,7 +780,7 @@ div.sent strong {
     margin-right: 1vw;
 }
 div.sent p {
-    color: rgb(253, 253, 253);
+    color: rgb(0, 0, 0);
     padding: 0.5em;
     font-size: 1em;
     font-family:Verdana, Geneva, Tahoma, sans-serif;

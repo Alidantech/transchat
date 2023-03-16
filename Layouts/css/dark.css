@@ -113,7 +113,7 @@ div.settings li {
     color: #d4c0c0;
     font-size: larger;
     font-weight: 0.2em;
-    border-bottom:solid rgba(5, 37, 78, 0.808) 0.1em;
+    border-bottom:solid rgba(187, 190, 194, 0.808) 0.1em;
 }
 div.settings li:hover {
     background-color: #07070769;

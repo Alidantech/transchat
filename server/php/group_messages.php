@@ -122,6 +122,6 @@ function updateMessagesXML($group_id, $message_id, $user_name, $phone_number, $m
     $newMessage->addChild('message_body', $message_body);
     $newMessage->addChild('sent_at', $sent_at);
     // Save the updated XML document
-$xml->asXML('groupmessages.xml');
+$xml->asXML('server\xml\groupmessages.xml');
 }
 ?>

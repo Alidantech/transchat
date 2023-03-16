@@ -1,3 +1,19 @@
+var sessionNumber;
+//get the session number.
+function getNumber(){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/server/php/getSessionNum.php');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+        var response = JSON.parse(xhr.responseText);
+            sessionNumber = response.phoneNumber;
+        };
+    }
+    xhr.send();
+ return sessionUserPhoneNumber;
+}
+getNumber();
+
 document.addEventListener("DOMContentLoaded", function(){
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {loadMessagesFunction(this);}
@@ -6,14 +22,6 @@ document.addEventListener("DOMContentLoaded", function(){
     //a variable and a function to get the ssession number of the current user.
     //get the session phone number
 function loadMessagesFunction(xml) {
-    var sessionNumber;
-    //get the session number.
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/server/php/getSessionNum.php');
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-            sessionNumber = response.phoneNumber;
         const xmlData = xml.responseXML;
         const groups = xmlData.getElementsByTagName("group");
               // iterate over each group
@@ -42,10 +50,7 @@ function loadMessagesFunction(xml) {
               }
         }
         }
-    };
-    xhr.send();
-  
-}
+    
 function displaySentMessages(messageId, xmlmessageBody, xmlsendTime, container) {
     var conntent_and_profileDiv = document.createElement("div");
     conntent_and_profileDiv.id = "m"+messageId;

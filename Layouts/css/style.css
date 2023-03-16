@@ -829,6 +829,26 @@ div.update p{
      font-weight: bold;
      font-size: 0.7em;
 }
+
+/* container for all warings */
+div.warning-message-container {
+    width: 100%;
+    color: red;
+    clear: both;
+    text-align: center;
+    font-size: 0.7em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.warning-message-container p {
+    background-color: rgba(99, 110, 110, 0.219);
+    width: fit-content;
+    padding: 0.4em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: 1em;
+}
 /* for smaller screens */
 @media (max-width: 1200px) {
     div.settings {

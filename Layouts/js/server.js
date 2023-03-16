@@ -1,5 +1,5 @@
 //get the session phone number
-let sessionUserPhoneNumber;
+var sessionUserPhoneNumber;
 function getSessionPhoneNumber() {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '/server/php/getSessionNum.php');
@@ -12,51 +12,75 @@ function getSessionPhoneNumber() {
   xhr.send();
  return sessionUserPhoneNumber;
 }
+getSessionPhoneNumber();
 //connect to the websocket
-const socket = new WebSocket('ws://localhost:8080?phone_number='+getSessionPhoneNumber());
+const socket = new WebSocket('ws://localhost:8080');
 socket.addEventListener('open', function (event) {
     console.log('WebSocket connection established.');
 });
-let GoodMessage;
-socket.addEventListener('message', function (event) {
+
+  socket.addEventListener('message', function (event) {
     const message = JSON.parse(event.data);
-    //TODO: after making the data carry a json format parse it to javascript using json.parse().
+    //Booleans to handle a blocked message.
+    const blocked = message.blocked;
+    if(blocked){
+      //show a you are blocked message.
+      const information = message.info;
+      showWarning(information);
+
+    }else {//if user is not blocked proceed to next step
+          //when a message meets all the expected terms of use
+          var userName = message.username;
+          var groupId = message.group_id;
+          const GoodMessage = message.good_message;
+          if(GoodMessage){
+            var messageText = message.message;
+            showReceivedMessages(userName, phoneNumber, messageText, groupId)
+          }
+          //when a message voilates terms of use.     
+          const BadMessage = message.bad_message;
+          if(BadMessage){
+              const hasBeenBlocked = message.has_been_blocked;
+              const youWereBlocked = message.you_were_blocked;
+              const cantBeDisplayed = message.cant_be_displayed;
+              const warn = message.warning;
+              var information = message.message;
+              if(hasBeenBlocked){
+                showGroupUpdates(information, userName, groupId);
+              }
+              if(youWereBlocked){
+                showPersonUpdates(information, groupId);
+              }
+              if(cantBeDisplayed){
+                showReceivedMessages(userName, phoneNumber, messageText, groupId)
+              }
+              if(warn){
+                warningsNum = message.warnings;
+                showWarning(information, parseInt(warningsNum), groupId);
+              }
+          }
+    }
     console.log('Received message:', message);
-    var userName = message.user_name;
-    var phoneNumber = message.phone_number;
-    var messageText = message.message;
-    var groupId = message.group_id;
-    GoodMessage = message.good_message;
-      // TODO: Update chat UI with received message, create div elements to show the new messages.
-      showReceivedMessages(userName, phoneNumber, messageText, groupId);
 });
+
 //get the current time stamp:
 function getCurrentTime() {
     const date = new Date();
-    const hours = String(date.getHours()).padStart(2, '0'); // get hours and pad with leading zero if necessary
-    const minutes = String(date.getMinutes()).padStart(2, '0'); // get minutes and pad with leading zero if necessary
-    const time = `${hours}:${minutes}`; // concatenate hours and minutes with a colon
+    const hours = String(date.getHours()).padStart(2, '0'); 
+    const minutes = String(date.getMinutes()).padStart(2, '0'); 
+    const time = `${hours}:${minutes}`; 
     return time;
-  }//console.log(getCurrentTime()); // output: "19:35" (assuming the current time is 7:35 PM)
-//get the message from the user in order to send it.
+  }
 function submitMessage(){
     var messagebox = document.getElementById('message-body');
     var groupId = messagebox.className;
     var message = messagebox.value;
     var phoneNumber = getSessionPhoneNumber();
     console.log("your phone number is : "+ sessionUserPhoneNumber);
-     //TODO: make sure a user does not send a blank message. and color the send button accordingly.
       if(message.trim() === ""){
         messagebox.style.borderColor = "gray";
       }else{
         sendMessage(phoneNumber, groupId, message);
-        //TODO: make the user to see his message by creating a div containing the message. and the current time.
-        //show a warning message if the message contains bad words.
-        // if(GoodMessage){//message is good..
-        //   showSentMessages(message);
-        // } else {//show a warnig message
-        //   showWarning();
-        // }
         messagebox.value = "";
         messagebox.style.borderColor = "";
       } 
@@ -71,6 +95,8 @@ function sendMessage(phoneNumber,groupId, message) {
   var messageData = JSON.stringify(data);
   socket.send(messageData);
 }
+
+
 function showReceivedMessages(jsonuserName, jsonphoneNumber, jsonmessageText, groupId){
   const messagesDiv = document.getElementById("group"+groupId);
   //div that contains the whole message-part.profile and content
@@ -141,19 +167,41 @@ function showSentMessages(message, groupId){
       //put the current message into view
   conntent_and_profileDiv.scrollIntoView();
 }
-function showWarning(groupId){
+function showWarning(information, groupId){
   const messagesDiv = document.getElementById("group"+groupId);
   //div that contains the whole message-part.profile and content
   var conntent_and_profileDiv = document.createElement("div");
     messagesDiv.appendChild(conntent_and_profileDiv);
-    conntent_and_profileDiv.className = "update-container";
+    conntent_and_profileDiv.className = "warning-message-container";
       var contentDiv = document.createElement("div");
           contentDiv.className = "warning";
           conntent_and_profileDiv.appendChild(contentDiv);
       //create the elements to contain the message_body, username, phone, and send time
         var messageText = document.createElement("p");
-            messageText.innerHTML = "using bad language might get you removed!!";
+            messageText.innerHTML = information;
             contentDiv.appendChild(messageText);
       //put the current message into view
       conntent_and_profileDiv.scrollIntoView();
+}
+//display the icoming updates for everyone.
+function showGroupUpdates(information, userName, groupId){
+  const messagesDiv = document.getElementById("group"+groupId);
+        var warningDiv = document.createElement("div");
+            warningDiv.className = "warning-message-container";
+            messagesDiv.appendChild(warningDiv);
+            var warnigText = document.createElement("p");
+                warnigText.innerHTML = userName + ": "+ information;
+                warningDiv.appendChild(warnigText);
+    warningDiv.scrollIntoView();
+}
+//display the personal updates.
+function showPersonUpdates(information, groupId){
+  const messagesDiv = document.getElementById("group"+groupId);
+        var warningDiv = document.createElement("div");
+            warningDiv.className = "warning-message-container";
+            messagesDiv.appendChild(warningDiv);
+            var warnigText = document.createElement("p");
+                warnigText.innerHTML = information;
+                warningDiv.appendChild(warnigText);
+    warningDiv.scrollIntoView();
 }

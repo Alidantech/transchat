@@ -16,53 +16,172 @@ class ChatServer implements MessageComponentInterface {
         echo "connection established ({$conn->resourceId})\n";
         $query = $conn->httpRequest->getUri()->getQuery();
         parse_str($query, $params);
-        $phone_number = $params['phone_number'];
     }
     public function onMessage(ConnectionInterface $from, $msg) {
+        $data = json_decode($msg);
+        $phone = $data->phone_number;
+        $conn = new mysqli("localhost", "root", "", "wechat_db");
+        $sql = $conn->prepare("SELECT blocked FROM users_data where phone_number = '$phone'");
+        $sql->execute();
+        $result = $sql->get_result();         
+            if(!$result){
+            die("failed to connect to database". $sql . ", " . mysqli_error($conn));
+            }
+            $sender = $result->fetch_assoc();
+           $status = $sender["blocked"];
+            $blocked = intval($status);
+    if  ($blocked){
+        echo "this user has been blocked";
+        $error = "You can no longer send messages because You have been blocked!";
+        $data = json_decode($msg);
+        $data->info = $error;
+        $data->blocked = true; #boolean for a blocked user.
+        $msg = json_encode($data);
+        foreach ($this->clients as $client) {
+            if ($client == $from) {                                                              
+                $client->send($msg);
+            }
+        }
+        #if the user is not blocked proceed to check the message.
+    }   else {
         echo "message recieved: {$msg}\n";
         $data = json_decode($msg);
-        $phoneNumber = $data->phone_number;
+        $phone_number = $data->phone_number;
         $message = $data->message;
         $group_id = $data->group_id;
         //get the sender id from the database.
-         $conn = new mysqli("localhost", "root", "", "wechat_db");
-         $sql = $conn->prepare("SELECT * FROM users_data WHERE phone_number = ?");
-         $sql->bind_param("s", $phoneNumber);
-         $sql->execute();
-         $result = $sql->get_result();         
-         if(!$result){
+            $sql = $conn->prepare("SELECT * FROM users_data WHERE phone_number = ?");
+            $sql->bind_param("s", $phone_number);
+            $sql->execute();
+            $result = $sql->get_result();         
+            if(!$result){
             die("failed to connect to database". $sql . ", " . mysqli_error($conn));
-         }
-          $sender = $result->fetch_assoc();
-          $sender_id = $sender["id"];
-          $userName = $sender["user_name"];
-          $data->user_name = $userName;
-         #TODO: make the message has all its details by getting them from the database. parse it to the client as json format.                                   
-    if(sendNewMessage($sender_id, $group_id, $message)){
-        $data->good_message = true;
-        $new_msg = json_encode($data);
-        foreach ($this->clients as $client) {
-            if ($client !== $from) {                                                              
-                $client->send($new_msg);
+            }
+            $sender = $result->fetch_assoc();
+            $sender_id = $sender["id"];
+            $userName = $sender["user_name"];                           
+    if(sendNewMessage($sender_id, $group_id,  $message)){
+            $data->username = $userName;
+            $data->good_message = true; #boolean for a good message.
+            $new_msg = json_encode($data);
+            foreach ($this->clients as $client) {
+                if ($client !== $from) {                                                              
+                    $client->send($new_msg);
+                }
+            }
+    }  else{#when the message contains vulgar words.
+            //update the number of times the user has been warned.
+            $data = json_decode($msg);
+            $data->bad_message = true; #bolean for bad message.
+            //update the user blocked status
+            $sql = $conn->prepare("UPDATE users_data SET warnings = warnings + 1 WHERE id = ?");
+            $sql->bind_param("s", $sender_id);
+            $sql->execute();
+            //check the number of warnings that the user has been given.
+            $sql = $conn->prepare("SELECT warnings FROM users_data WHERE id = ?");
+            $sql->bind_param("s", $sender_id);
+            $sql->execute();
+            $result = $sql->get_result(); 
+            if ($result->num_rows == 1) {
+                $user = $result->fetch_assoc();
+                $warnings_num = $user["warnings"];
+                //if the number of warnigs the user has been given is greater than 2(two) block them immedietly.
+                if($warnings_num > 2){
+                    $sql = $conn->prepare("UPDATE users_data SET blocked = true WHERE id = ?");
+                    $sql->bind_param("s", $sender_id);
+                    $sql->execute();
+                    $_SESSION["blocked"] = true;
+                    $data->username = $userName;
+                    foreach ($this->clients as $client) {
+                        // inform the users that this user has been blocked.
+                        if ($client !== $from) {      
+                            $data->has_been_blocked = true;#boolean for when a person has been blocked.
+                            $data-> you_were_blocked = false;
+                            $data->message = "Was blocked because of violating our terms of service!";
+                            $bad_msg = json_encode($data);                                                         
+                            $client->send($bad_msg);
+                        }else{
+                            //inform the user that he was blocked for violating the terms of service
+                            $data-> you_were_blocked = true;#boolean for when you have been blocked.
+                            $data->has_been_blocked = false;
+                            $data->warnings = $warnings_num;
+                            $data->message = "you were blocked because you violated our terms of service!";
+                            $warn_msg = json_encode($data);  
+                            $client->send($warn_msg);
+                        }
+                    } 
+                }else { 
+                    //if the number of warnings is less than maximum. 
+                        foreach ($this->clients as $client) {
+                            // inform the other users that this message violates our terms of service.
+                            if ($client !== $from) {
+                                $data->cant_be_displayed = true;#boolean for an undisplayable message      
+                                $data->warning = false;
+                                $data->username = $userName;
+                                $data->message = "This message violates  our terms of use! It cannot be displayed.";
+                                $bad_msg = json_encode($data);                                                         
+                                $client->send($bad_msg);
+                            }else{
+                                $data->warning = true;#boolean for a warning message.
+                                $data->cant_be_displayed = false;
+                                $data->warnings = $warnings_num;
+                                $data->username = "admin";
+                                $data->message = "Warning! your message contains words that terms and conditions";
+                                $warn_msg = json_encode($data);  
+                                $client->send($warn_msg);
+                            }
+                        }    
+                    }
             }
         }
-    }else{#when the message contains vulgar words.
-        //TODO: add a functionality to remove a user who misbehaves
-        $data->good_message = false;
-        foreach ($this->clients as $client) {
-            if ($client !== $from) {      
-                $data->message = "this message can't be displayed! It contains bad words;";
-                $bad_msg = json_encode($data);                                                         
-                $client->send($bad_msg);
-            }else{
-                $data->phone_number = "100";
-                $data->user_name = "ADMIN";
-                $data->message = "Warning! you are using bad language!";
-                $warn_msg = json_encode($data);  
-                $client->send($warn_msg);
-            }
-        }    
-    }
+        }
+        $conn->close();
+    
+
+    //     echo "message recieved: {$msg}\n";
+    //     $data = json_decode($msg);
+    //     $phoneNumber = $data->phone_number;
+    //     $message = $data->message;
+    //     $group_id = $data->group_id;
+    //     //get the sender id from the database.
+    //      $conn = new mysqli("localhost", "root", "", "wechat_db");
+    //      $sql = $conn->prepare("SELECT * FROM users_data WHERE phone_number = ?");
+    //      $sql->bind_param("s", $phoneNumber);
+    //      $sql->execute();
+    //      $result = $sql->get_result();         
+    //      if(!$result){
+    //         die("failed to connect to database". $sql . ", " . mysqli_error($conn));
+    //      }
+    //       $sender = $result->fetch_assoc();
+    //       $sender_id = $sender["id"];
+    //       $userName = $sender["user_name"];
+    //       $data->user_name = $userName;
+    //      #TODO: make the message has all its details by getting them from the database. parse it to the client as json format.                                   
+    // if(sendNewMessage($sender_id, $group_id, $message)){
+    //     $data->good_message = true;
+    //     $new_msg = json_encode($data);
+    //     foreach ($this->clients as $client) {
+    //         if ($client !== $from) {                                                              
+    //             $client->send($new_msg);
+    //         }
+    //     }
+    // }else{#when the message contains vulgar words.
+    //     //TODO: add a functionality to remove a user who misbehaves
+    //     $data->good_message = false;
+    //     foreach ($this->clients as $client) {
+    //         if ($client !== $from) {      
+    //             $data->message = "this message can't be displayed! It contains bad words;";
+    //             $bad_msg = json_encode($data);                                                         
+    //             $client->send($bad_msg);
+    //         }else{
+    //             $data->phone_number = "100";
+    //             $data->user_name = "ADMIN";
+    //             $data->message = "Warning! you are using bad language!";
+    //             $warn_msg = json_encode($data);  
+    //             $client->send($warn_msg);
+    //         }
+    //     }    
+    // }
     }
     //when someone disconects from the web socket.
     public function onClose(ConnectionInterface $conn) {

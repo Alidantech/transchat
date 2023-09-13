@@ -84,8 +84,4 @@ Follow these steps to set up the Web Group Chat website on your local environmen
 
 ## License
 
-<<<<<<< HEAD
       This project has not yet been licensed.
-=======
-This project has not yet been licensed.
->>>>>>> 2679528ea61d0c206191d90776e66bffb795dc88

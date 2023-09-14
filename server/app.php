@@ -1,4 +1,6 @@
 <?php
+
+$index_page = __DIR__ . '../index.html';
 # Read the main.html file
 $main_template = __DIR__ . '/templates/main.html';
 $main_templateContent = file_get_contents($main_template);

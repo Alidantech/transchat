@@ -1,0 +1,27 @@
+/* Style for all the elements and the page */
+* {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+}
+
+body, html {
+      font-size: 1em;
+}
+
+
+/* Styling the header */
+header {
+      background-color: rgb(255, 255, 255);
+      position: sticky;
+      box-shadow: 1px 2px 2px rgba(170, 170, 170, 0.171);
+}
+
+nav {
+      border: 1px soild green;
+      padding: 10px;
+}
+
+nav > a {
+      margin:0 20px;
+}

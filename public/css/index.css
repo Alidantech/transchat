@@ -25,3 +25,11 @@ nav {
 nav > a {
       margin:0 20px;
 }
+
+i {
+      color: green;
+      border: 1px solid black;
+      min-width: 30px;
+      min-height: 30px;
+
+}

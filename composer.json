@@ -1,5 +1,9 @@
 {
+    "name": "wechat/chat-app",
+    "description": "An app that enables users to chat in a group and filters messages.",
+    "license": "MIT",
     "require": {
-        "cboden/ratchet": "*"
+        "cboden/ratchet": "^0.4.0"
     }
 }
+

@@ -7,13 +7,29 @@
 
 body, html {
       font-size: 1em;
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+::-webkit-scrollbar {
+      width: 3px;
+}
+::-webkit-scrollbar-thumb {
+      background-color: #5f5f5f63;
+      border-radius: 5px;
+}
 
+/* HOME PAGE */
 /* Styling the header */
 header {
-      background-color: rgb(255, 255, 255);
-      position: sticky;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+}
+.scrolled {
+      background-color: rgba(255, 255, 255, 0.815);
+      backdrop-filter: blur(10px);
+      position: fixed;
       box-shadow: 1px 2px 2px rgba(170, 170, 170, 0.171);
 }
 
@@ -24,12 +40,301 @@ nav {
 
 nav > a {
       margin:0 20px;
+      text-decoration: none;
 }
 
-i {
-      color: green;
-      border: 1px solid black;
-      min-width: 30px;
-      min-height: 30px;
+
+nav > a:visited {
+      color: #0056b3;
+}
+
+nav > a:hover {
+      color: #00ffb3;
+}
+
+.logo {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+}
+.logo > span {
+      margin-left: 10px;
+}
+
+/* Styling the main content of the page */
+main {
+      min-height: 100vh;
+}
+.intro {      
+      height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+}
+.features{
+      background: linear-gradient(to bottom, rgb(13, 143, 143), rgb(0, 122, 92));
+      height: 100vh;
+      padding: 10px;
+}
+
+.about-us {
+      height: 100vh;
+}
+/* Styling the footer part of the page */
+footer {
+      background-color: rgb(6, 43, 37);
+      min-height: 50vh;
+      color: white;
+      display: grid;
+      grid-template-rows: 80% 20%;
+}
+.links {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      padding: 100px;
+}
+
+footer ul {
+      list-style-type: none;
+}
+li  a:visited {
+      color: #00ffb3;
+}
+li  a:hover {
+      color: #00c3ff;
+}
+.copyrights > hr{
+      margin: 10px;
+      border: 1px solid rgba(128, 128, 128, 0.411);
+}
+.copyrights {
+      text-align: center;
+}
+
+
+
+
+
+/* FORMS */
+.form-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      height: 100vh;
+      transition: height 1s ease-in;
+      /* background: linear-gradient(to bottom, rgb(13, 143, 143), rgb(0, 122, 92)); */
+}
+.form-container > h1 {
+      color: rgb(0, 106, 124);
+}
+
+form {
+      width: 350px;
+      margin: 20px auto;
+      margin-top: 40px; 
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f8f8f83a;
+      background: linear-gradient(to bottom, rgba(84, 248, 248, 0.815), rgba(90, 250, 210, 0.884));
+      box-shadow: 1px 1px 2px 2px rgba(32, 31, 31, 0.253);
+   }
+   
+   label {
+      display: flex;
+      font-weight:450;
+      margin-bottom: 10px;
+      color: rgb(0, 0, 0);
+   }
+   
+   input[type="text"],
+   input[type="phone"],
+   input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(4, 75, 58, 0);
+      background-color: #ffffffc4;
+      border-radius: 4px;
+      box-shadow: 1px 1px 1px 1px rgba(53, 50, 50, 0.13);
+      transition: box-shadow 1s ease-in-out, border-color 1s ease-in-out;
+   }
+
+   input[type="text"]:focus,
+   input[type="phone"]:focus,
+   input[type="password"]:focus {
+      outline: none;
+      border: 1px solid #007bff;
+      box-shadow: none;
+   }
+   
+   button.btn {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff; 
+      color: #fff; 
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+   }
+   
+   button.btn:hover {
+      background-color: #0056b3; 
+   }
+
+   .google-sign {
+      margin: 20px auto;
+      background-color: transparent;
+      width: 350px; 
+      padding: 10px;
+      font-size: 1em;
+      border: 2px solid #00aeff;
+      border-radius: 20px;
+      cursor: pointer;
+   }
+
+   .google-sign:hover {
+      border-color: #e703fc;
+   }
+
+
+
+
+
+/* CHAT PAGE */
+.chat-page {
+      border: none;
+}
+
+/* sidebar styling */
+
+.menu {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: 5% 95%;
+}
+
+.navigation {
+      border-bottom: 1px solid #00ffb3;
+      display: grid;
+      grid-template-columns: 30% 60% 10%;
+}
+/* chats */
+#chats {
+      overflow: auto;
 
 }
+.chat {
+      width: 95%;
+      height: 10vh;
+      background-color: #ffffff0a;
+      border-radius: 2px;
+      box-shadow: 0px 2px 0px rgba(37, 35, 35, 0.192);
+      margin: 3px auto;
+      display: flex;
+      align-items: center;
+      padding: auto 20px;
+      transition: scale 0.2s ease-in;
+}
+.chat:hover {
+      scale: 1.01;
+      background-color: #ffffff36;
+      cursor: pointer;
+}
+.chat > img {
+      border: 1px solid blue;
+      max-width: 25px;
+      max-height: 25px;
+      border-radius: 20px;
+      margin: 10px;
+}
+/* chat page styling */
+.chat-page {
+      display: grid;
+      grid-template-columns: 25% auto;
+      height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
+}
+
+
+
+/* messages styling */
+#messages {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: 5% 85% 10%;
+      background: linear-gradient(to bottom, rgb(231, 250, 247) , rgb(195, 235, 215));
+}
+
+
+.heading {
+      height: 5vh;
+      position: sticky;
+      display: grid;
+      box-shadow: 1px 2px 2px rgba(41, 40, 40, 0.199);
+      grid-template-columns: 5% 90% 5%;
+}
+
+.heading img {
+      border: 1px solid blue;
+      height: 30px;
+      width: 30px;
+      margin-bottom: 5px;
+      border-radius: 15px;
+}
+
+#view-messages {
+      overflow-y: auto;
+}
+
+.message {
+      width: fit-content;
+      border-radius: 20px;
+      max-width: min(60%, 500px);
+      margin: 20px;
+      padding: 10px;
+      clear: both;
+}
+
+.message img {
+      max-width: 20px;
+      max-height: 20px;
+      overflow: hidden;
+      background-color: pink;
+      border: 1px solid green;
+      border-radius: 15px;
+}
+
+.recieved {
+      float: left;
+      border-radius: 0 15px 15px 15px;
+      background-color: rgb(234, 253, 253);
+}
+
+.sent {
+      border-radius: 15px 0 15px 15px;
+      float: right;
+      background-color: rgb(187, 255, 235);
+}
+
+/* writing a message */
+#write-message{
+      display: grid;
+      grid-template-columns: 15% 70% 15%;
+      padding: 20px;
+}
+
+textarea {
+      margin:0 10px;
+      padding: 10px;
+      outline: none;
+      background-color: #ffffff1c;
+      border: 2px solid green;
+      border-radius: 15px;
+      box-shadow: 2px 1px 2px black;
+}
+

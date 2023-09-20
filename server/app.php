@@ -1,6 +1,6 @@
 <?php
-
 $index_page = __DIR__ . '../index.html';
+
 # Read the main.html file
 $main_template = __DIR__ . '/templates/main.html';
 $main_templateContent = file_get_contents($main_template);
@@ -22,6 +22,10 @@ if (array_key_exists($page, $page_templates)) {
     $template_file = __DIR__ . '/templates/' . $page_templates[$page];
     if (file_exists($template_file)) {
         $dynamicContent = file_get_contents($template_file);
+        
+        // Set the page title based on the page name
+        $page_title = ucfirst($page); // Assuming you want to capitalize the page name
+        $main_templateContent = str_replace('{title}', $page_title, $main_templateContent);
     } else {
         $dynamicContent = "Template not found.";
     }

@@ -74,7 +74,7 @@ Follow these steps to set up the Web Group Chat website on your local environmen
 * Admins can access moderation features to manage users and messages.
 ## Contributing
 
-      If you would like to contribute to this project, please follow these guidelines:
+If you would like to contribute to this project, please follow these guidelines:
 
 - Fork the repository on GitHub.
 - Create a new branch with a descriptive name.
@@ -84,4 +84,4 @@ Follow these steps to set up the Web Group Chat website on your local environmen
 
 ## License
 
-      This project has not yet been licensed.
+This project has not yet been licensed.

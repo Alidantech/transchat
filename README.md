@@ -25,13 +25,13 @@ Follow these steps to set up the Web Group Chat website on your local environmen
 1. **Clone the Repository:**
 
 ```bash
-      git clone https://github.com/your-username/web-group-chat.git
+      git clone https://github.com/Alidante254/Afichat.git
 ```
 
 2. Navigate to the Project Directory:
 
 ```bash
-      cd web-group-chat
+      cd Afichat
 ```
       
 3. Install PHP Dependencies:
@@ -42,28 +42,43 @@ Follow these steps to set up the Web Group Chat website on your local environmen
 
 4. Start XAMPP:
 
-      Start the Apache and MySQL services in XAMPP.
+Start the Apache and MySQL services in XAMPP.
 
 5. Database Configuration:
 
-      Create a MySQL database for the application.
-      Update the config.php file with your database credentials.
+* Create a MySQL database for the application.
+* Create a **.env** file in the root folder.
+* Update the **.env** file with your database credentials.
+```.env
+      DB_HOST=your-db-host
+      DB_NAME=your-db-name
+      DB_USER=your-username
+      DB_PASS=your-password
+```
 
 6. Run Migrations:
 
-      Use the command-line tool or a tool like phpMyAdmin to run database migrations. This will create the necessary tables in your database.
+Open the terminal and run the  migration_runner.php file to create all the necessary tables.
+- Navigate to the database folder.
+```bash
+      cd database
+```
+- Run the php file.
+```bash
+      php migration_runner.php
+```
 
 7. Start the WebSocket Server:
 
-      Start the Ratchet WebSocket server to enable real-time chat functionality.
+Start the Ratchet WebSocket server to enable real-time chat functionality.
 ```bash
       php bin/chat-server.php
 ```
 
 8. Access the Website:
 
-      Open a web browser and navigate to http://localhost/web-group-chat.
-      Enjoy Chatting:
+Open a web browser and navigate to http://localhost/Afichat.
+Enjoy Chatting:
 
 9. Register an account, log in, and start chatting!
 

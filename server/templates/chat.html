@@ -1,82 +1,27 @@
 <main class="chat-page">
-      <section class="menu">
-            <section class="navigation">
+      <section class="chat-navigation">
+            <div class="menu">
                   <div class="">
-                        <img src="/public/assets/favicon.svg" alt="page logo" width="20vw">            
+                       <img src="/public/assets/favicon.svg" alt="page logo" width="20vw">            
                        <span>AfiChat</span>
                   </div>
                   <h1>Chats</h1>
-                  <button>Menu</button>
-            </section>
-            <section id="chats">
+                  <button id="menu-toggle"><i class="bi bi-house"></i></button>
+            </div>
+            <div id="chats">
                   <div class="chat">
                         <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Jane
+                        <span>Chat One</span>
                   </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        BIT GROUP
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Alan</div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Valencia
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Jane
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        BIT GROUP
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Alan
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Valencia
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Jane
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        BIT GROUP
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Alan
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Valencia
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        BIT GROUP
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Alan
-                  </div>
-                  <div class="chat">
-                        <img src="/public/assets/favicon.svg" alt="na" width="20vw">
-                        Valencia
-                  </div>
-            </section>
+            </div>
       </section>
       <section id="messages">
-            <section class="heading">
+            <div class="messages-heading">
                   <img src="/" alt="chat-photo" width="20vw">
                   <span>Jane</span>
                   <span>:::</span>
-            </section>
-            <section id="view-messages">
+            </div>
+            <div id="view-messages">
                   <div class="message sent">
                         <img src="#" alt="jane-profile-photo">
                         <span>Jane</span> 
@@ -87,60 +32,22 @@
                         <img src="#" alt="jane-profile-photo">
                         <span>Jane</span>
                         <span>02:00 PM</span>
-                        <p>Hello, how are you?</p>
+                        <p>Fine, how are you? It has been a long time since we last met dear.</p>
                   </div>
-                  <div class="message recieved">
-                        <img src="#" alt="jane-profile-photo">
-                        <span>Jane</span>
-                        <span>02:00 PM</span>
-                        <p>Hello, how are you? It has been a long time since we last me dear.</p>
-                  </div>
-                  <div class="message sent">
-                        <img src="#" alt="jane-profile-photo">
-                        <span>Jane</span> 
-                        <span>02:00 PM</span>
-                        <p>Hello, how are you?</p>
-                  </div>
-                  <div class="message recieved">
-                        <img src="#" alt="jane-profile-photo">
-                        <span>Jane</span>
-                        <span>02:00 PM</span>
-                        <p>Hello, how are you?</p>
-                  </div>
-                  <div class="message recieved">
-                        <img src="#" alt="jane-profile-photo">
-                        <span>Jane</span>
-                        <span>02:00 PM</span>
-                        <p>Hello, how are you? It has been a long time since we last me dear.</p>
-                  </div>
-                  <div class="message sent">
-                        <img src="#" alt="jane-profile-photo">
-                        <span>Jane</span> 
-                        <span>02:00 PM</span>
-                        <p>Hello, how are you?</p>
-                  </div>
-                  <div class="message recieved">
-                        <img src="#" alt="jane-profile-photo">
-                        <span>Jane</span>
-                        <span>02:00 PM</span>
-                        <p>Hello, how are you?</p>
-                  </div>
-                  <div class="message recieved">
-                        <img src="#" alt="jane-profile-photo">
-                        <span>Jane</span>
-                        <span>02:00 PM</span>
-                        <p>Hello, how are you? It has been a long time since we last me dear.</p>
-                  </div>
-            </section>
-            <section id="write-message">
+            </div>
+            <div id="write-message">
                   <div>
-                        <button><i class="bi bi-camera"></i></button>
-                        <button><i class="bi bi-mic"></i></button>
-                        <button><i class="bi bi-file-earmark-plus-fill"></i></button>
-                        <button><i class="bi bi-file-earmark-text"></i></button>
+                        <button class="add-files"><i class="bi bi-camera"></i></button>
+                        <button class="add-files"><i class="bi bi-mic"></i></button>
+                        <button class="add-files"><i class="bi bi-file-earmark-plus-fill"></i></button>
+                        <button class="add-files"><i class="bi bi-file-earmark-text"></i></button>
                   </div>
-                  <textarea type="text" id="message-input" placeholder="Type your message"></textarea>
-                  <button id="send-button" onclick="send()"><i class="bi bi-send"></i></button>
-            </section>
+                  <div> 
+                        <textarea type="text" id="message-input" placeholder="Type your message"></textarea>
+                  </div>
+                  <div>
+                        <button id="send-button" onclick="send()"><i class="bi bi-heart"></i></button>
+                  </div>
+            </div>
       </section>
 </main>

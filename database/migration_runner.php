@@ -14,3 +14,5 @@ foreach ($migrationFiles as $migrationFile) {
     $pdo->exec($sql);
     echo "Executed migration: $migrationFile\n";
 }
+
+

@@ -4,7 +4,9 @@
       margin: 0;
       box-sizing: border-box;
 }
-
+i {
+      margin-right: 10px;
+}
 body, html {
       font-size: 1em;
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

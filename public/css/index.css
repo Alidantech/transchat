@@ -12,7 +12,20 @@
 }
 i {
       margin-right: 10px;
+      color: #0056b3;
+      font-size: 1.5em;
+      font-weight: bold;
 }
+
+img {
+      background-color: #00ffb3;
+}
+
+button {
+      background-color: transparent;
+      border: none;
+}
+
 body, html {
       font-size: 1em;
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -218,7 +231,7 @@ form {
 :root {
       /* borders */
       --img-border-color: blue;
-      --textarea-border-color: rgb(192, 221, 255);
+      --textarea-border-color: rgb(122, 247, 226);
       --menu-border-color: gray;
 
       /* backgrounds */
@@ -227,17 +240,17 @@ form {
       --chat-bg: white;
       --chat-hover-bg: linear-gradient(to left, rgb(191, 255, 250), rgb(196, 255, 232));
       --messages-heading-bg: white;
-      --chats-heading-bg: rgba(128, 128, 128, 0.041);
+      --chats-heading-bg: rgb(243, 243, 243);
       --view-messages-bg: white;
-      --recieved-message-bg: rgb(244, 255, 250);
-      --sent-message-bg: rgb(245, 255, 254);
+      --recieved-message-bg: rgba(179, 255, 221, 0.712);
+      --sent-message-bg: rgba(180, 255, 248, 0.699);
       --write-message-bg: white;
 
       /* shadows */
       --messages-heading-shadow: rgba(0, 0, 0, 0.062);
       --chat-shadow: rgba(0, 0, 0, 0.062);
-      --text-area-shadow: rgba(0, 0, 255, 0.178);
-      --message-shadow: rgba(0, 0, 0, 0.034);
+      --text-area-shadow: rgba(0, 119, 255, 0.123);
+      --message-shadow: rgba(46, 46, 46, 0.055);
       /* colors */
       --chat-color: black;
 
@@ -250,13 +263,18 @@ form {
 .chat-navigation {
       height: 100vh;
       display: grid;
-      grid-template-rows: 5% 95%;
+      grid-template-rows: 7% 93%;
 }
 
 .menu {
       display: grid;
-      grid-template-columns: 30% 60% 10%;
+      grid-template-columns: 10% 80% 10%;
       background-color: var(--chats-heading-bg);
+}
+.menu > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
 }
 #menu-toggle {
       background-color: transparent;
@@ -277,10 +295,9 @@ form {
       display: flex;
       align-items: center;
       padding: auto 20px;
-      transition: scale 0.2s ease-in;
+      transition: scale 0.1s ease-in-out, background-color .5s ease-in-out;
 }
 .chat:hover {
-      scale: 1.01;
       background: var(--chat-hover-bg);
       cursor: pointer;
 }
@@ -300,24 +317,43 @@ form {
       overflow: hidden;
 }
 
+@media screen and (max-width: 1000px) {
+      .chat-page {
+            display: grid;
+            grid-template-columns: 100%;
+            height: 100vh;
+            max-height: 100vh;
+            overflow: hidden;
+      }
+      .chat-navigation {
+            display: none;
+      }
+}
+
 
 
 /* messages styling */
 #messages {
       height: 100vh;
       display: grid;
-      grid-template-rows: 5% 85% 10%;
+      grid-template-rows: 7vh 85vh 8vh;
 }
 
 
 .messages-heading {
-      height: 5vh;
+      height: 7vh;
       position: sticky;
       display: grid;
       box-shadow: 1px 2px 2px var(--messages-heading-shadow);
-      grid-template-columns: 5% 90% 5%;
+      grid-template-columns: 10% 85% 5%;
 }
-
+.messages-heading div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+}
 .messages-heading img {
       border: 1px solid var(--img-border-color);
       height: 30px;
@@ -365,27 +401,36 @@ form {
 #write-message{
       display: grid;
       grid-template-columns: 20% 70% 10%;
-      border: 2px solid green;
 }
 #write-message > div {
       display: flex;
       align-items: center;
       justify-content: center;
+      backdrop-filter: blur(5px);
 }
-.add-files {
-      background-color: transparent;
-      border: 1px solid blue;
-      border-radius: 25px;
-      font-size: 1.2em;
-      color: #0051ff;
-      margin: auto;
-      padding:5px;
+#add-files {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      height: 100%;
+}
+.toggle-buttons {
+      display: none;
+}
+
+@media screen and (max-width: 1000px) {
+      #add-files {
+            display: none;
+      }
+      .toggle-buttons {
+            display: block;
+      }
 }
 
 #send-button {
-      color: var(--button-color);
-      background-color: transparent;
-      border: none;
+     width: 40%;
+     height: 50%;
 }
 textarea {  
       min-height: 40%;
@@ -396,9 +441,9 @@ textarea {
       background-color: transparent;
       border: 2px solid var(--textarea-border-color);
       border-radius: 15px;
-      box-shadow: 2px 1px 2px var(--text-area-shadow);
+      box-shadow: 1px 2px 2px 2px var(--text-area-shadow);
       font-size: 1.1em;
       resize: vertical;
-      padding: 5PX 10px;
+      padding: 10PX 10px;
 }
 

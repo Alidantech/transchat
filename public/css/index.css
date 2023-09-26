@@ -1,5 +1,47 @@
 :root {
-      --button-color: blue;
+      /* bg colors */
+      --scroll-bar-thumb-bg: #acacac;
+      --transparent-bg: transparent;
+      --header-scrolled-bg: rgba(255, 255, 255, 0.603);
+      --blurred-bg: blur(10px);
+      --footer-bg: rgb(235, 235, 235);
+      --sidebar-bg: white;
+      --chats-bg: white;
+      --chat-bg: white;
+      --chat-hover-bg: linear-gradient(to left, rgb(191, 255, 250), rgb(196, 255, 232));
+      --messages-heading-bg: white;
+      --chats-heading-bg: white;
+      --view-messages-bg: white;
+      --recieved-message-bg: rgba(179, 255, 221, 0.712);
+      --sent-message-bg: rgba(180, 255, 248, 0.699);
+      --write-message-bg: white;
+      --form-bg: linear-gradient(to bottom, rgba(84, 248, 248, 0.815), rgba(90, 250, 210, 0.884));
+      --input-bg: #ffffffc4;
+
+      /* border colors */
+      --input-border-color: rgba(4, 75, 58, 0);
+      --input-focus-border-color: #007bff;
+      --btn-bg: #007bff;
+      --btn-hover-bg: #0056b3;
+      --google-auth-border-color: #00aeff;
+      --img-border-color: blue;
+      --textarea-border-color: rgb(122, 247, 226);
+      --menu-border-color: gray;
+
+      /* text colors */
+      --icon-color: #097bc7;
+      --chat-color: black;
+      --form-header-color: rgb(0, 106, 124);
+      --btn-text-color: #fff;
+
+      /* shadows */
+      --header-scrolled-shadow: rgba(170, 170, 170, 0.171);
+      --messages-heading-shadow: rgba(0, 0, 0, 0.062);
+      --chat-shadow: rgba(0, 0, 0, 0.062);
+      --text-area-shadow: rgba(0, 119, 255, 0.123);
+      --message-shadow: rgba(46, 46, 46, 0.055);
+      --form-shadow: rgba(32, 31, 31, 0.253);
+      --input-shadow: rgba(53, 50, 50, 0.13);
 }
 
 
@@ -12,17 +54,14 @@
 }
 i {
       margin-right: 10px;
-      color: #0056b3;
+      color: var(--icon-color);
       font-size: 1.5em;
       font-weight: bold;
 }
 
-img {
-      background-color: #0f241e00;
-}
 
 button {
-      background-color: transparent;
+      background-color: var(--transparent-bg);
       border: none;
 }
 
@@ -35,7 +74,7 @@ body, html {
       width: 3px;
 }
 ::-webkit-scrollbar-thumb {
-      background-color: #acacac;
+      background-color: var(--scroll-bar-thumb-bg);
       border-radius: 5px;
 }
 
@@ -48,13 +87,10 @@ header {
       justify-content: space-around;
 }
 .scrolled {
-      background-color: rgba(255, 255, 255, 0.815);
-      backdrop-filter: blur(10px);
+      background-color: var(--header-scrolled-bg);
+      backdrop-filter: var(--blurred-bg);
       position: fixed;
-      box-shadow: 1px 2px 2px rgba(170, 170, 170, 0.171);
-}
-
-nav {
+      box-shadow: 1px 2px 2px var(--header-scrolled-shadow);
 }
 
 nav > a {
@@ -62,25 +98,17 @@ nav > a {
       text-decoration: none;
 }
 
-
-nav > a:visited {
-      color: #0056b3;
-}
-
-nav > a:hover {
-      color: #00ffb3;
-}
-
 .logo {
       padding: 20px;
       display: flex;
       align-items: center;
       justify-content: space-around;
-      color: #00ffb3;
 }
+
 .logo > span {
       margin-left: 10px;
 }
+
 
 /* Styling the main content of the page */
 main {
@@ -93,11 +121,9 @@ main {
       justify-content: center;
       flex-direction: column;
       font-size: 1em;
-      color: #00ffb3;
 }
 
 .features{
-      background: linear-gradient(to bottom, rgb(180, 255, 255),rgb(128, 255, 202));
       min-height: 70vh;
       display: flex;
       align-items: center;
@@ -105,24 +131,19 @@ main {
 }
 .features div h1 {
       text-align: center;
-      color: white;
       font-size: 2em;
-      text-decoration: underline #00ffb3;
 }
+
 .features div > ul li {
       list-style: none;
-      background-color: white;
       margin: 10px;
-      border-left: 3px solid #00ffb3;
-      color: #00ffb3;
       font-weight: bold;
       padding: 5px;
       border-radius: 3px;
-      box-shadow: 1px 2px 1px rgba(4, 4, 105, 0.192);
 }
+
 .features img {
       float: right;
-      box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.171);
       border-radius: 25px;
 }
 
@@ -143,15 +164,13 @@ main {
       margin: 20px;
 }
 .join-us div a {
-      border: 2px solid blue;
       padding: 10px;
       border-radius: 25px;
 }
 /* Styling the footer part of the page */
 footer {
-      background-color: rgb(235, 235, 235);
+      background-color: var(--footer-bg);
       min-height: 50vh;
-      color: rgb(0, 0, 0);
       display: grid;
       grid-template-rows: 80% 20%;
 }
@@ -165,22 +184,13 @@ footer {
 footer ul {
       list-style-type: none;
 }
-li  a:visited {
-      color: #002cbb;
-}
-li  a:hover {
-      color: #00c3ff;
-}
+
 .copyrights > hr{
       margin: 10px;
-      border: 1px solid rgba(128, 128, 128, 0.411);
 }
 .copyrights {
       text-align: center;
 }
-
-
-
 
 
 /* FORMS */
@@ -192,10 +202,11 @@ li  a:hover {
       width: 100%;
       height: 100vh;
       transition: height 1s ease-in;
-      /* background: linear-gradient(to bottom, rgb(13, 143, 143), rgb(0, 122, 92)); */
 }
+
+
 .form-container > h1 {
-      color: rgb(0, 106, 124);
+      color: var(--form-header-color);
 }
 
 form {
@@ -204,16 +215,14 @@ form {
       margin-top: 40px; 
       padding: 20px;
       border-radius: 10px;
-      background-color: #f8f8f83a;
-      background: linear-gradient(to bottom, rgba(84, 248, 248, 0.815), rgba(90, 250, 210, 0.884));
-      box-shadow: 1px 1px 2px 2px rgba(32, 31, 31, 0.253);
+      background: var(--form-bg);
+      box-shadow: 1px 1px 2px 2px var(--form-shadow);
    }
    
    label {
       display: flex;
       font-weight:450;
       margin-bottom: 10px;
-      color: rgb(0, 0, 0);
    }
    
    input[type="text"],
@@ -222,10 +231,10 @@ form {
       width: 100%;
       padding: 10px;
       margin-bottom: 15px;
-      border: 1px solid rgba(4, 75, 58, 0);
-      background-color: #ffffffc4;
+      border: 1px solid var(--input-border-color);
+      background-color: var(--input-bg);
       border-radius: 4px;
-      box-shadow: 1px 1px 1px 1px rgba(53, 50, 50, 0.13);
+      box-shadow: 1px 1px 1px 1px var(--input-shadow);
       transition: box-shadow 1s ease-in-out, border-color 1s ease-in-out;
    }
 
@@ -233,22 +242,22 @@ form {
    input[type="phone"]:focus,
    input[type="password"]:focus {
       outline: none;
-      border: 1px solid #007bff;
+      border: 1px solid var(--input-focus-border-color);
       box-shadow: none;
    }
    
    button.btn {
       width: 100%;
       padding: 10px;
-      background-color: #007bff; 
-      color: #fff; 
+      background-color: var(--btn-bg); 
+      color: var(--btn-text-color); 
       border: none;
       border-radius: 20px;
       cursor: pointer;
    }
    
    button.btn:hover {
-      background-color: #0056b3; 
+      background-color: var(--btn-hover-bg); 
    }
 
    .google-sign {
@@ -257,51 +266,10 @@ form {
       width: 350px; 
       padding: 10px;
       font-size: 1em;
-      border: 2px solid #00aeff;
+      border: 2px solid var(--google-auth-border-color);
       border-radius: 20px;
       cursor: pointer;
    }
-
-   .google-sign:hover {
-      border-color: #e703fc;
-   }
-
-
-
-
-
-
-
-/* chat variable */
-:root {
-      /* borders */
-      --img-border-color: blue;
-      --textarea-border-color: rgb(122, 247, 226);
-      --menu-border-color: gray;
-
-      /* backgrounds */
-      --sidebar-bg: white;
-      --chats-bg:white;
-      --chat-bg: white;
-      --chat-hover-bg: linear-gradient(to left, rgb(191, 255, 250), rgb(196, 255, 232));
-      --messages-heading-bg: white;
-      --chats-heading-bg: white
-      --view-messages-bg: white;
-      --recieved-message-bg: rgba(179, 255, 221, 0.712);
-      --sent-message-bg: rgba(180, 255, 248, 0.699);
-      --write-message-bg: white;
-
-      /* shadows */
-      --messages-heading-shadow: rgba(0, 0, 0, 0.062);
-      --chat-shadow: rgba(0, 0, 0, 0.062);
-      --text-area-shadow: rgba(0, 119, 255, 0.123);
-      --message-shadow: rgba(46, 46, 46, 0.055);
-      /* colors */
-      --chat-color: black;
-
-}
-
-
 
 /* CHAT PAGE */
 /* sidebar styling */
@@ -309,7 +277,7 @@ form {
       height: 100vh;
       display: grid;
       grid-template-rows: 7% 93%;
-      box-shadow: 2px 4px 7px rgba(0, 0, 0, 0.26);
+      box-shadow: 2px 4px 7px var(--messages-heading-shadow);
 }
 
 .menu {
@@ -329,14 +297,14 @@ form {
 /* chats */
 #chats {
       overflow: auto;
-      border-top: 2px double rgba(0, 68, 68, 0.055);
+      border-top: 2px double var(--menu-border-color);
 }
 #chats::-webkit-scrollbar {
       width: 2px;
 }
 
 #chats::-webkit-scrollbar-thumb {
-      background-color: #acacac;
+      background-color: var(--scroll-bar-thumb-bg);
       border-radius: 5px;
 }
 

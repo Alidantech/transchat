@@ -269,6 +269,33 @@ form {
       border: 2px solid var(--google-auth-border-color);
       border-radius: 20px;
       cursor: pointer;
+      color: var(--google-auth-border-color);
+   }
+   .google-sign:hover {
+      animation: googleColors 1.5s infinite;
+            transition: border-color 0.2s ease-in-out;
+   }
+  
+   @keyframes googleColors {
+         0% {
+               border-color: #0263ff;
+         }
+
+         25% {
+               border-color: #00ff84;
+         }
+
+         50% {
+               border-color: #ffc013;
+         }
+
+         75% {
+               border-color: #ff1500;
+         }
+
+         100% {
+               border-color: #00ccff;
+         }
    }
 
 /* CHAT PAGE */

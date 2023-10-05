@@ -3,3 +3,4 @@ vendor
 
 # ignore the env file
 .env
+database/config.php

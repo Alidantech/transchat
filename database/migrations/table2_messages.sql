@@ -1,9 +1,0 @@
-CREATE TABLE Messages (
-    MessageID INT PRIMARY KEY AUTO_INCREMENT,
-    SenderID INT NOT NULL,
-    RecipientID INT NOT NULL,
-    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Content TEXT,
-    FOREIGN KEY (SenderID) REFERENCES Users(UserID),
-    FOREIGN KEY (RecipientID) REFERENCES Users(UserID)
-);

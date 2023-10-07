@@ -1,6 +1,6 @@
 -- Create the 'groups' table
 CREATE TABLE groups (
-    gid INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     group_name VARCHAR(255) NOT NULL,
     description TEXT,
     members_count INT,

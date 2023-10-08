@@ -1,107 +1,382 @@
-/* HOME PAGE */
-/* Styling the header */
-header {
-      width: 100%;
-      height: 10vh;
-      z-index: 1000;
+section {
+      min-height: 100vh;
+      margin: 1px;
+      padding: 1px;
+}
+:root {
+      /* background-color */
+      --bg-welcome: white;
+      --bg-settings: rgb(5, 131, 180);
+      --carousel-shadow: rgba(11, 181, 248, 0.089);
 }
 
-.scrolled {
-      background-color: var(--header-scrolled-bg);
-      backdrop-filter: var(--blurred-bg);
-      position: fixed;
-      box-shadow: 1px 2px 2px var(--header-scrolled-shadow);
+/* SECTION ONE */
+.intro {
+      display: grid;
+      grid-template-columns: 70% 30%;
+}
+.intro > div {
+      height: 100%;
 }
 
-/* a logo */ 
-.logo {
+/* welcome part*/
+.navigate .logo {
+      width: 40%;
+      height: 50%;
+      font-size: 1.4em;
+      font-family: fantasy;
+}
+.navigate nav {
+      height: 60%;
+      width: 40%;
+}
+
+.navigate nav a{
+      color: var(--bg-settings);
+      padding-bottom: 3px;
+      border-bottom: 2px solid var(--bg-settings);
+      font-size: 1.1rem;
+}
+
+.welcome {
+      color: var(--bg-settings);
+      background-color: var(--bg-welcome);
+}
+.welcome-text {
+      padding: 3vw;
+      color: var(--bg-settings);
+}
+
+.welcome-text h1 {
+      font-size: 3em;
+}
+
+.welcome-text hr {
+      border: 1px solid var(--bg-settings);
+      width: 6vw;
+}
+
+.welcome-text p {
+      font-size: 0.8rem;
+}
+.welcome-text a {
+      color: var(--bg-settings);
+      padding: 2vh 4px;
+      font-size: 1.5rem;
+      background: linear-gradient(to right, rgba(1, 63, 29, 0.055) , aliceblue);
+      border-radius: 5px;
+}
+
+/* settings part */
+.settings {
+      background-color: var(--bg-settings);
+}
+.top-links {
+      height: 10%;
+}
+
+.top-links a {
+      color: white;
+}
+
+.top-links button {
+      color: var(--color-Secondary);
+      font-size: 1.1rem;
+      border: 1px solid var(--color-Secondary);
+      padding: 5px 10px;
       width: 10vw;
-      height: 6vh;
-      color: var(--color-primary);
-      font-size: clamp(5vw , 5vh + 10%);
-      font-family: cursive;
+      border-radius: 5px;
 }
 
-.logo img {
-      width: 75%;
+.customize-container {
+      position: absolute;
+      right: 3.5vw;
+      height: 30vh;
+      width: 10vw;
+      background-color: rgba(240, 248, 255, 0.658);
+      color: var(--bg-settings);
+      border-radius: 5px;
+      box-shadow: var(--carousel-shadow) 1px 1px 3px 3px;
+      backdrop-filter: blur(20px);
+}
+.customize-container > div {
+      height: 20%;
+      width: 100%;
+}
+
+.bottom-links {
+      width: 70%;
+}
+
+.bottom-links a {
+      color: var(--color-Secondary);
+      font-size: 1.3;
+      font-weight: bold;
+}
+/* styling the carousel */
+
+.carousel {
+      padding: 0;
+      width: 45vw;
+      max-height: 75vh;
+      position: absolute;
+      top: 20%;
+      right: 10vw;
+      color: var(--bg-settings);
+      font-size: 0.8em;
+      font-weight: bold;
+}
+
+.scroll-progress {
+      width: 40%;
+      height: 40px;
+}
+
+#carousel-bar{
+      border-radius: 2px;
+      height: 5px;
+      width: 250px;
+      margin: 1px;
+      background: linear-gradient(to right, green, white);
+}
+
+.carousel img {
+      width: 100%;
+      height: 80%;
+      margin: 0;
+      padding: 0;
+      border-radius: 1px;
+      box-shadow: var(--carousel-shadow) 1px 1px 3px 3px;
+}
+
+
+
+/* SECTION TWO */
+.features {
+}
+
+.features > div {
+      width: 90%;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-around;
+}
+
+.features > div div {
+      border: 0.5px solid rgb(230, 230, 230);
+      box-shadow: var(--carousel-shadow) 1px 1px 2px 2px;
+      border-radius: 10px;
+      width: 20vw;
+      height: 60%;
+}
+
+/* cards styling */
+.card-name {
+      color: var(--bg-settings);
+      margin: 0;
+      padding: 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+}
+.card {
+      text-align: center;
+      padding: 0 2vw;
+}
+
+.card button{
+      border: none;
+      padding: 10px 35px;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      color: white;
+}
+
+#card1 > button {
+      background-color: rgb(9, 85, 99);
+}
+
+#card2 > button {
+      background-color: rgb(73, 7, 94);
+}
+
+#card3 > button {
+      background-color: rgb(0, 174, 255);
+}
+
+#card4 > button {
+      background-color: rgb(141, 84, 20);
+}
+
+#card5 > button {
+      background-color: rgb(56, 104, 9);
+}
+
+#card6 > button{
+      background-color: rgb(6, 100, 61);
+}
+
+#card1>span {
+      color: rgb(9, 85, 99);
+}
+
+#card2>span {
+      color: rgb(73, 7, 94);
+}
+
+#card3>span {
+      color: rgb(0, 174, 255);
+}
+
+#card4>span {
+      color: rgb(141, 84, 20);
+}
+
+#card5>span {
+      color: rgb(56, 104, 9);
+}
+
+#card6>span {
+      color: rgb(6, 100, 61);
+}
+
+/* SECTION THREE */
+
+.sec-3-container {
+      background-color: white;
+      padding: 3vw;
+      width: 80%;
+      height: 85vh;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.034) 1px 1px 7px 5px;
+}
+
+.sec-3-container .top {
+      display: grid;
+      grid-template-columns: 50% 50%;
+}
+
+.about-text {
+      color: var(--bg-settings);
+}
+
+.about-text h2 {
+      color: rgb(5, 54, 110);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+}
+
+.about-text a {
+      background-color: var(--bg-settings);
+      padding: 10px 30px;
+      border-radius: 5px;
+      color: white;
+}
+
+
+.sec-3-container .top img {
+      width: 100%;
       height: auto;
 }
-#nav-bar{
-      min-width: 40%;
+
+.sec-3-container .bottom {
+      display: grid;
+      grid-template-rows: 50% 50%;
 }
-#nav-bar a {
+.bottom .description {
+      color: var(--bg-settings);
+}
+
+.patnership {
+      color: rgb(28, 172, 148);
+      font-size: 1.5rem;
+      font-weight: 500;
+}
+
+/* SECTION FOUR */
+.outro {
+      display: grid;
+      grid-template-rows: 70% 30%;
+}
+
+.chat-images {
+      display: grid;
+      grid-template-columns: 30% 70%;
+}
+
+.chat-images img {
+      width: 80%;
+      max-height: 80%;
       margin: auto;
 }
 
-#menu-btn {
-      display: none;
+.chat-images .desktop {
+      box-shadow: var(--carousel-shadow) 1px 1px 3px 3px;
+      border-radius: 10px;
 }
 
-@media screen and (max-width: 800px) {
-      
-      #menu-btn {
-            display: block;
-      }
-
-      #nav-bar {
-            display: none;
-            animation: navBarAnimate 1s 1;
-            transition: height width 1s ease-in-out;
-      }
-
-      .toggled-nav {
-            position: fixed;
-            right: 2vw;
-            top: 10vh;
-            height: 40vh;
-            width: 50vw;
-            overflow: hidden;
-            background-color: var(--header-scrolled-bg);
-            backdrop-filter: var(--blurred-bg);
-            box-shadow: var(--header-scrolled-shadow) 1px 2px 2px 2px;
-      }
-}
-@keyframes navBarAnimate {
-      0% {
-            height: 0vh;
-            width: 0vw;
-      }
-      100% {
-            height: 40vh;
-            width: 50vw;
-      }
-      0% {
-            height: 0vh;
-            width: 0vw;
-      }
+.outro-text h3 {
+      color: var(--bg-settings);
+      text-align: center;
+      font-size: 2em;
 }
 
-@keyframes navBarRm {
-     0% {
-            height: 40vh;
-            width: 50vw;
-      }
-
-      100% {
-            height: 0vh;
-            width: 0vw;
-            display: none;
-      }
+.outro-text a {
+      background-color: var(--bg-settings);
+      text-align: center;
+      font-size: 1.2em;
+      color: white;
+      box-shadow: 1px 2px 3px black;
+      padding: 5px 10px;
 }
 
-/* Styling the main page */
-main {
-      min-height: 100vh;
-}
-
-section {
-      border: 1px solid magenta;
-      margin: 2px;
-      min-height: 90vh;
-}
-
-/* Styling the footer */
+/* FOOTER */
 footer {
-      border: 1px solid greenyellow;
-      margin: 2px;
+      display: grid;
+      color: white;
+      grid-template-rows: 60% 40%;
+      height: 60vh;
+      background-color: rgb(15, 37, 48);
+      font-size: 1.1em;
+}
+
+footer .top {
+      display: grid;
+      grid-template-columns: 60% 40%;
+}
+
+.top .links div {
+      height: 100%;
+}
+.top .links nav {
+      width: 40%;
+      height: 50%;
+}
+
+.top .links nav a {
+      color: white;
+}
+
+.send-email {
+      background: url(/public/assets/footer-img.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+}
+
+.send-email input {
+      width: 20vw;
+      outline: none;
+      padding: 10px;
+      border:  2px solid var(--bg-settings);
+}
+.send-email button {
+      color: white;
+      outline: none;
+      padding: 10px;
+      background-color:  var(--bg-settings);
+}
+
+.send-email h4 { 
+      margin: 10PX;
 }

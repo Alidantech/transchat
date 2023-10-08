@@ -32,11 +32,13 @@
 
       /* text colors */
       --color-primary: #097bc7;
-      --color-Secondary:#09c7bd ;
+      --color-Secondary:#3efff5 ;
+      --color-light: white;
       --icon-color: #097bc7;
       --chat-color: black;
       --form-header-color: rgb(0, 106, 124);
       --btn-text-color: #fff;
+      --color-emphasis: gray;
 
       /* shadows */
       --header-scrolled-shadow: rgba(170, 170, 170, 0.171);
@@ -59,8 +61,17 @@ body, html {
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* text colors */
+.text-light {
+      color: var(--color-light);
+}
+
 a {
       text-decoration: none;
+}
+
+em {
+      color: var(--color-emphasis);
 }
 
 a:visited {
@@ -76,9 +87,20 @@ button {
       border: 2px solid var(--color-primary);
 }
 
+button:hover{
+      background:linear-gradient(to left,var(--bg-Secondary), var(--bg-primary)) ;
+      cursor: pointer;
+}
 /* FLEX ELEMENTS STYLE */
 
 /* center flex row*/
+.ctr-items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+}
+
 .ctr-row {
       display: flex;
       align-items: center;
@@ -93,6 +115,7 @@ button {
       justify-content: flex-start;
       flex-direction: row;
 }
+
 
 /* center flex end*/
 .ctr-row-end {
@@ -110,6 +133,14 @@ button {
       flex-direction: column;
 }
 
+/* center flex start column*/
+.ctr-column-start {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      flex-direction: column;
+}
+
 /* GRID ELEMENTS STYLE */
 
 /* a grid divided into 30% and 70% */
@@ -117,3 +148,22 @@ button {
       display: grid;
       grid-template-columns: 30% 70%;
 }
+
+/* a grid divided into 30% and 70% in rows*/
+.grid-r-90-10 {
+      display: grid;
+      grid-template-rows: 90% 10%;
+}
+
+/* a grid divided into 30% and 70% in rows*/
+.grid-r-70-30 {
+      display: grid;
+      grid-template-rows: 70% 30%;
+}
+
+/* a grid divided into 20% , 70% and 10% in rows*/
+.grid-r-10-80-10 {
+      display: grid;
+      grid-template-rows: 10% 80% 10%;
+}
+

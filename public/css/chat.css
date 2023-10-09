@@ -1,0 +1,74 @@
+:root {
+      /* backgrounds */
+      --bg-primary: rgb(6, 81, 124);
+      --bg-secondary: rgb(212, 107, 9);
+}
+
+/* CHAT PAGE STYLE */
+fragment{
+      height: 100vh;
+}
+.chat-page {
+      display: grid;
+      grid-template-columns: 30% 70%;
+      height: min(100vh, 800px);
+      width: min(100vw, 1500px);
+      border-radius: 5px;
+      box-shadow: rgb(128, 128, 128) 1px 1px 2px 2px;
+      margin: auto;
+}
+
+/* PAGE NAV CONTAINERS */
+.nav-container {
+      display: grid;
+      grid-template-columns: 15% 85%;
+      background-color: aliceblue;
+}
+
+.nav-container > div {
+      border: 1px solid rgb(172, 6, 34);
+      margin: 1px;
+}
+
+.nav-content-container {
+      display: grid;
+      grid-template-rows: 10% 90%;
+}
+
+.nav-content-container > div{
+      border: 1px solid rgb(6, 31, 172);
+      margin: 1px;
+}
+
+.nav-content {
+      display: grid;
+      grid-template-rows: 10% 90%;
+}
+.nav-content > div {
+      border: 1px solid rgb(255, 0, 234);
+      margin: 1px;
+}
+
+.nav-icons {
+      background-color: var(--bg-primary);
+}
+/* MAIN PAGE CONTAIINERS */
+.main-container {
+      display: grid;
+      grid-template-rows: 10% 90%;
+}
+
+.main-container > div {
+      border: 1px solid rgb(40, 255, 226);
+      margin: 1px;
+}
+
+.main-content {
+      display: grid;
+      grid-template-rows: 10% 80% 10%;
+}
+
+.main-content > div {
+      border: 1px solid rgb(255, 40, 40);
+      margin: 1px;
+}

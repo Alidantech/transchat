@@ -6,7 +6,7 @@ section {
 :root {
       /* background-color */
       --bg-welcome: white;
-      --bg-settings: rgb(5, 131, 180);
+      --bg-settings: rgb(5, 180, 122);
       --carousel-shadow: rgba(11, 181, 248, 0.089);
 }
 
@@ -90,7 +90,7 @@ section {
 
 .customize-container {
       position: absolute;
-      right: 3.5vw;
+      right: 3vw;
       height: 30vh;
       width: 10vw;
       background-color: rgba(240, 248, 255, 0.658);
@@ -365,14 +365,14 @@ footer .top {
 }
 
 .send-email input {
-      width: 20vw;
+      width: 25vw;
       outline: none;
       padding: 10px;
       border:  2px solid var(--bg-settings);
 }
 .send-email button {
       color: white;
-      outline: none;
+      border: 2px solid var(--bg-settings);
       padding: 10px;
       background-color:  var(--bg-settings);
 }

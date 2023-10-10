@@ -75,11 +75,15 @@ em {
 }
 
 a:visited {
-      color: var(--color-primary);
+      color: var(--color-primary) ;
+}
+
+i {
+      margin: 2px;
 }
 
 a:hover {
-      color: var(--color-Secondary);
+      color: var(--color-Secondary) !important;
 }
 
 button {
@@ -87,9 +91,13 @@ button {
       border: 2px solid var(--color-primary);
 }
 
+button:hover i {
+      color: #09c7bd !important;
+}
+
 button:hover{
-      background:linear-gradient(to left,var(--bg-Secondary), var(--bg-primary)) ;
       cursor: pointer;
+      color: #09c7bd !important;
 }
 /* FLEX ELEMENTS STYLE */
 
@@ -167,3 +175,35 @@ button:hover{
       grid-template-rows: 10% 80% 10%;
 }
 
+
+
+
+/* Style for the standard title tooltips */
+.tooltip {
+      position: relative;
+      cursor: pointer;
+}
+
+/* Customize the tooltip appearance */
+.tooltip:hover::before {
+      content: attr(title);
+      position: absolute;
+      background: rgba(0, 0, 0, 0.8);
+      /* Glass-like background color */
+      color: #fff;
+      /* Text color for the tooltip */
+      text-align: center;
+      border-radius: 4px;
+      padding: 5px 10px;
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      bottom: 125%;
+      /* Position above the element */
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      /* Prevent line breaks within the tooltip */
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      /* Add a subtle shadow */
+}

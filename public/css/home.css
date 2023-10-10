@@ -6,7 +6,7 @@ section {
 :root {
       /* background-color */
       --bg-welcome: white;
-      --bg-settings: rgb(5, 180, 122);
+      --bg-settings: rgb(5, 116, 180);
       --carousel-shadow: rgba(11, 181, 248, 0.089);
 }
 
@@ -249,7 +249,7 @@ section {
       width: 80%;
       height: 85vh;
       border-radius: 10px;
-      box-shadow: rgba(0, 0, 0, 0.034) 1px 1px 7px 5px;
+      box-shadow: rgba(0, 0, 0, 0.164) 1px 1px 7px 5px;
 }
 
 .sec-3-container .top {
@@ -289,9 +289,20 @@ section {
 }
 
 .patnership {
-      color: rgb(28, 172, 148);
+      /* color: rgb(28, 172, 148); */
       font-size: 1.5rem;
       font-weight: 500;
+      cursor: default;
+}
+
+.gradient-text {
+      background-image: linear-gradient(to right, var(--bg-settings), var(--color-Secondary), #63ff33, #33ff81, #33f1ff, #33b4ff, #cf33ff);
+      -webkit-background-clip: text;
+      /* For Webkit browsers like Chrome and Safari */
+      background-clip: text;
+      color: transparent;
+      /* Hide the actual text color */
+      font-size: 24px;
 }
 
 /* SECTION FOUR */
@@ -359,9 +370,8 @@ footer .top {
 }
 
 .send-email {
-      background: url(/public/assets/footer-img.jpg);
-      background-position: center;
-      background-repeat: no-repeat;
+      background-color: rgba(1, 15, 31, 0.76);
+      height: 100%;
 }
 
 .send-email input {
@@ -375,6 +385,13 @@ footer .top {
       border: 2px solid var(--bg-settings);
       padding: 10px;
       background-color:  var(--bg-settings);
+}
+
+.image-bg {
+      background: url(/public/assets/footer-img.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100%;
 }
 
 .send-email h4 { 

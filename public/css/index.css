@@ -57,8 +57,9 @@
 }
 
 body, html {
-      font-size: 1em;
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: clamp(12px, 1vw, 1vh);
+      line-height: 1.5;
+      font-family: 'Poppins', sans-serif;
 }
 
 /* text colors */

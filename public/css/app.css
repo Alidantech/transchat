@@ -1,0 +1,214 @@
+:root {
+      /* bg colors */
+      --bg-primary: #097bc7;
+      --bg-Secondary: #09c7bd;
+      --scroll-bar-thumb-bg: #acacac;
+      --transparent-bg: transparent;
+      --header-scrolled-bg: rgba(255, 255, 255, 0.603);
+      --blurred-bg: blur(10px);
+      --footer-bg: rgb(235, 235, 235);
+      --sidebar-bg: white;
+      --chats-bg: white;
+      --chat-bg: white;
+      --chat-hover-bg: linear-gradient(to left, rgb(191, 255, 250), rgb(196, 255, 232));
+      --messages-heading-bg: white;
+      --chats-heading-bg: white;
+      --view-messages-bg: white;
+      --recieved-message-bg: rgba(179, 255, 221, 0.712);
+      --sent-message-bg: rgba(180, 255, 248, 0.699);
+      --write-message-bg: white;
+      --form-bg: linear-gradient(to bottom, rgba(84, 248, 248, 0.815), rgba(90, 250, 210, 0.884));
+      --input-bg: #ffffffc4;
+
+      /* border colors */
+      --input-border-color: rgba(4, 75, 58, 0);
+      --input-focus-border-color: #007bff;
+      --btn-bg: #007bff;
+      --btn-hover-bg: #0056b3;
+      --google-auth-border-color: #00aeff;
+      --img-border-color: blue;
+      --textarea-border-color: rgb(122, 247, 226);
+      --menu-border-color: gray;
+
+      /* text colors */
+      --color-primary: #097bc7;
+      --color-Secondary: #3efff5;
+      --color-light: white;
+      --icon-color: #097bc7;
+      --chat-color: black;
+      --form-header-color: rgb(0, 106, 124);
+      --btn-text-color: #fff;
+      --color-emphasis: gray;
+
+      /* shadows */
+      --header-scrolled-shadow: rgba(170, 170, 170, 0.171);
+      --messages-heading-shadow: rgba(0, 0, 0, 0.062);
+      --chat-shadow: rgba(0, 0, 0, 0.062);
+      --text-area-shadow: rgba(0, 119, 255, 0.123);
+      --message-shadow: rgba(46, 46, 46, 0.055);
+      --form-shadow: rgba(32, 31, 31, 0.253);
+      --input-shadow: rgba(53, 50, 50, 0.13);
+}
+
+/*global Style for the elements */
+* {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+}
+
+body,
+html {
+      font-size: clamp(0.8em, 1vw, 1em);
+
+      line-height: 1.5;
+      font-family: 'Figtree', sans-serif !important;
+}
+
+/* text colors */
+.text-light {
+      color: var(--color-light);
+}
+
+a {
+      text-decoration: none;
+}
+
+em {
+      color: var(--color-emphasis);
+}
+
+a:visited {
+      color: var(--color-primary);
+}
+
+i {
+      margin: 2px;
+}
+
+a:hover {
+      color: var(--color-Secondary) !important;
+}
+
+button {
+      background-color: transparent;
+      border: 2px solid var(--color-primary);
+}
+
+button:hover i {
+      color: #09c7bd !important;
+}
+
+button:hover {
+      cursor: pointer;
+      color: #09c7bd !important;
+}
+
+/* FLEX ELEMENTS STYLE */
+
+/* center flex row*/
+.ctr-items {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+}
+
+.ctr-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: row;
+}
+
+/* center flex start*/
+.ctr-row-start {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: row;
+}
+
+
+/* center flex end*/
+.ctr-row-end {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-direction: row;
+}
+
+/* center flex column*/
+.ctr-column {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-direction: column;
+}
+
+/* center flex start column*/
+.ctr-column-start {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      flex-direction: column;
+}
+
+/* GRID ELEMENTS STYLE */
+
+/* a grid divided into 30% and 70% */
+.grid-c-30-70 {
+      display: grid;
+      grid-template-columns: 30% 70%;
+}
+
+/* a grid divided into 30% and 70% in rows*/
+.grid-r-90-10 {
+      display: grid;
+      grid-template-rows: 90% 10%;
+}
+
+/* a grid divided into 30% and 70% in rows*/
+.grid-r-70-30 {
+      display: grid;
+      grid-template-rows: 70% 30%;
+}
+
+/* a grid divided into 20% , 70% and 10% in rows*/
+.grid-r-10-80-10 {
+      display: grid;
+      grid-template-rows: 10% 80% 10%;
+}
+
+
+
+
+/* Style for the standard title tooltips */
+.tooltip {
+      position: relative;
+      cursor: pointer;
+}
+
+/* Customize the tooltip appearance */
+.tooltip:hover::before {
+      content: attr(title);
+      position: absolute;
+      background: rgba(0, 0, 0, 0.8);
+      /* Glass-like background color */
+      color: #fff;
+      /* Text color for the tooltip */
+      text-align: center;
+      border-radius: 4px;
+      padding: 5px 10px;
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      bottom: 125%;
+      /* Position above the element */
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      /* Prevent line breaks within the tooltip */
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      /* Add a subtle shadow */
+}

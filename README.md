@@ -25,13 +25,13 @@ Follow these steps to set up the Web Group Chat website on your local environmen
 1. **Clone the Repository:**
 
 ```bash
-      git clone https://github.com/Alidante254/Afichat.git
+      git clone https://github.com/Alidante254/transchat.git
 ```
 
 2. Navigate to the Project Directory:
 
 ```bash
-      cd Afichat
+      cd transchat
 ```
       
 3. Install PHP Dependencies:
